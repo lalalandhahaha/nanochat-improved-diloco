@@ -35,7 +35,10 @@ from nanochat.engine import Engine
 from nanochat.flash_attention import HAS_FA3
 from scripts.base_eval import evaluate_core
 from nanochat.diloco import DiLoCoWrapper
+from nanochat.weight_analysis import analyze_model_weights
+from nanochat.diloco_analysis import analyze_node_weight_differences
 print_banner()
+
 
 # -----------------------------------------------------------------------------
 # CLI arguments
@@ -453,6 +456,57 @@ while True:
     if last_step and args.use_diloco:
         optimizer.sync_if_pending()
 
+    # DiLoCo node difference analysis: analyze weight differences across nodes BEFORE synchronization
+    # Only run this before eval steps (not at last_step since we sync before that)
+    diloco_diff_metrics = {}
+    if args.use_diloco and args.eval_every > 0 and not last_step and step > 0 and step % args.eval_every == 0:
+        # Check if we're about to do an outer sync (at the boundary of diloco_H steps)
+        if hasattr(optimizer, 'inner_steps') and optimizer.inner_steps % args.diloco_H == 0:
+            print0(f"Analyzing DiLoCo node weight differences at step {step} (before outer sync)...")
+
+            # Analyze weight differences across nodes
+            num_layers = len(orig_model.transformer.h)
+            layer_indices = list(range(min(3, num_layers))) + list(range(max(0, num_layers - 3), num_layers))
+            layer_indices = sorted(set(layer_indices))
+
+            node_diffs = analyze_node_weight_differences(orig_model, layer_indices=layer_indices, device=device)
+
+            # Only master process has the results
+            if master_process and node_diffs:
+                print0("=" * 100)
+                print0(f"DiLoCo Node Weight Differences at Step {step} (Before Outer Sync)")
+                print0("=" * 100)
+                for name, result in node_diffs.items():
+                    print0(f"{name:40s}")
+                    print0(f"  Max Singular Value  : mean={result['s_max_mean']:.4f} std={result['s_max_std']:.6f} "
+                           f"min={result['s_max_min']:.4f} max={result['s_max_max']:.4f}")
+                    print0(f"  Condition Number    : mean={result['cond_mean']:.2f} std={result['cond_std']:.2f}")
+                    print0(f"  Stable Rank         : mean={result['stable_rank_mean']:.2f} std={result['stable_rank_std']:.4f}")
+                    print0(f"  Effective Rank      : mean={result['effective_rank_mean']:.2f} std={result['effective_rank_std']:.4f}")
+                    print0(f"  Frobenius Norm      : mean={result['fro_norm_mean']:.4f} std={result['fro_norm_std']:.6f}")
+                    print0(f"  Cosine Similarity   : mean={result['cosine_sim_mean']:.6f} std={result['cosine_sim_std']:.6f} "
+                           f"min={result['cosine_sim_min']:.6f}")
+                    print0(f"  Weight Diff (vs rank0): mean={result['weight_diff_mean']:.6f} std={result['weight_diff_std']:.6f} "
+                           f"max={result['weight_diff_max']:.6f}")
+                print0("=" * 100)
+
+                # Prepare wandb logging
+                for name, result in node_diffs.items():
+                    diloco_diff_metrics[f"diloco_diff/{name}/s_max_mean"] = result['s_max_mean']
+                    diloco_diff_metrics[f"diloco_diff/{name}/s_max_std"] = result['s_max_std']
+                    diloco_diff_metrics[f"diloco_diff/{name}/cond_mean"] = result['cond_mean']
+                    diloco_diff_metrics[f"diloco_diff/{name}/cond_std"] = result['cond_std']
+                    diloco_diff_metrics[f"diloco_diff/{name}/stable_rank_mean"] = result['stable_rank_mean']
+                    diloco_diff_metrics[f"diloco_diff/{name}/stable_rank_std"] = result['stable_rank_std']
+                    diloco_diff_metrics[f"diloco_diff/{name}/effective_rank_mean"] = result['effective_rank_mean']
+                    diloco_diff_metrics[f"diloco_diff/{name}/effective_rank_std"] = result['effective_rank_std']
+                    diloco_diff_metrics[f"diloco_diff/{name}/fro_norm_mean"] = result['fro_norm_mean']
+                    diloco_diff_metrics[f"diloco_diff/{name}/fro_norm_std"] = result['fro_norm_std']
+                    diloco_diff_metrics[f"diloco_diff/{name}/cosine_sim_mean"] = result['cosine_sim_mean']
+                    diloco_diff_metrics[f"diloco_diff/{name}/cosine_sim_std"] = result['cosine_sim_std']
+                    diloco_diff_metrics[f"diloco_diff/{name}/weight_diff_mean"] = result['weight_diff_mean']
+                    diloco_diff_metrics[f"diloco_diff/{name}/weight_diff_std"] = result['weight_diff_std']
+
     # once in a while: evaluate the val bpb (all ranks participate)
     if args.eval_every > 0 and (last_step or step % args.eval_every == 0):
         model.eval()
@@ -463,11 +517,51 @@ while True:
         print0(f"Step {step:05d} | Validation bpb: {val_bpb:.6f}")
         if val_bpb < min_val_bpb:
             min_val_bpb = val_bpb
+
+        # 权重矩阵分析（只在master进程上执行）
+        weight_metrics = {}
+        if master_process:
+            print0(f"Analyzing weight matrices at step {step}...")
+            # 分析前3层和最后3层
+            num_layers = len(orig_model.transformer.h)
+            layer_indices = list(range(min(3, num_layers))) + list(range(max(0, num_layers - 3), num_layers))
+            layer_indices = sorted(set(layer_indices))  # 去重并排序
+
+            weight_analysis = analyze_model_weights(orig_model, layer_indices=layer_indices)
+
+            # 打印结果
+            print0("=" * 100)
+            print0(f"Weight Matrix Analysis at Step {step}")
+            print0("=" * 100)
+            for result in weight_analysis:
+                print0(f"{result['name']:40s} | shape: {str(result['shape']):20s} | "
+                       f"s_max: {result['max_singular_value']:8.4f} | "
+                       f"s_min: {result['min_singular_value']:8.6f} | "
+                       f"cond: {result['condition_number']:10.2f}")
+                print0(f"{'':40s} | Frobenius: {result['frobenius_norm']:10.4f} | "
+                       f"Spectral: {result['spectral_norm']:8.4f} | "
+                       f"Stable rank: {result['stable_rank']:8.2f} | "
+                       f"Effective rank: {result['effective_rank']:8.2f}")
+            print0("=" * 100)
+
+            # 准备wandb日志数据
+            for result in weight_analysis:
+                name = result['name']
+                weight_metrics[f"weights/{name}/max_singular_value"] = result['max_singular_value']
+                weight_metrics[f"weights/{name}/min_singular_value"] = result['min_singular_value']
+                weight_metrics[f"weights/{name}/condition_number"] = result['condition_number']
+                weight_metrics[f"weights/{name}/frobenius_norm"] = result['frobenius_norm']
+                weight_metrics[f"weights/{name}/spectral_norm"] = result['spectral_norm']
+                weight_metrics[f"weights/{name}/stable_rank"] = result['stable_rank']
+                weight_metrics[f"weights/{name}/effective_rank"] = result['effective_rank']
+
         wandb_run.log({
             "step": step,
             "total_training_flops": flops_so_far,
             "total_training_time": total_training_time,
             "val/bpb": val_bpb,
+            **weight_metrics,
+            **diloco_diff_metrics,
         })
         model.train()
 
