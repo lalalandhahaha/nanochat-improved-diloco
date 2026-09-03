@@ -17,11 +17,11 @@ from typing import List, Optional
 class DiLoCoWrapper:
     """
     Wrapper for DiLoCo distributed training.
-    
+
     DiLoCo performs:
     - Inner optimization: standard optimizers (AdamW, Muon) run locally for H steps
     - Outer optimization: SGD with Nesterov momentum on pseudo-gradients every H steps
-    
+
     Args:
         inner_optimizers: List of inner optimizers (e.g., [adamw_optimizer, muon_optimizer])
         model: The model being trained
@@ -29,8 +29,9 @@ class DiLoCoWrapper:
         outer_momentum: Momentum coefficient for outer SGD optimizer (default: 0.9)
         H: Number of inner steps before outer synchronization (communication interval)
         nesterov: Whether to use Nesterov momentum in outer optimizer (default: True)
+        pre_sync_callback: Optional callback function called before all_reduce, for analysis
     """
-    
+
     def __init__(
         self,
         inner_optimizers: List[torch.optim.Optimizer],
@@ -39,10 +40,12 @@ class DiLoCoWrapper:
         outer_momentum: float = 0.9,
         H: int = 500,
         nesterov: bool = True,
+        pre_sync_callback: Optional[callable] = None,
     ):
         self.inner_optimizers = inner_optimizers
         self.model = model
         self.H = H
+        self.pre_sync_callback = pre_sync_callback
         
         # Collect all parameters from inner optimizers in order
         # This ensures outer optimizer has same parameter order as inner optimizers
@@ -108,13 +111,18 @@ class DiLoCoWrapper:
     def _outer_step(self):
         """
         Perform outer optimization step on device (parity with original):
-        1. Compute pseudo-gradients: g = (w_old - w_new) on device
-        2. Average pseudo-gradients across workers via all_reduce (AVG)
-        3. Restore params to offloaded values (w_old)
-        4. Apply outer optimizer (SGD with momentum)
-        5. Zero outer gradients
-        6. Update offloaded params snapshot
+        1. [CALLBACK] Call pre_sync_callback if set (for analysis before sync)
+        2. Compute pseudo-gradients: g = (w_old - w_new) on device
+        3. Average pseudo-gradients across workers via all_reduce (AVG)
+        4. Restore params to offloaded values (w_old)
+        5. Apply outer optimizer (SGD with momentum)
+        6. Zero outer gradients
+        7. Update offloaded params snapshot
         """
+        # Call pre-sync callback BEFORE any synchronization
+        if self.pre_sync_callback is not None:
+            self.pre_sync_callback()
+
         # Get parameters from outer optimizer (already in correct order)
         main_params = [
             param
@@ -123,7 +131,7 @@ class DiLoCoWrapper:
             for param in group["params"]
             if param.requires_grad
         ]
-        
+
         # Compute pseudo-grads and sync across workers on device
         for param_offloaded_cpu, param in zip(self.params_offloaded, main_params):
             param_offloaded_on_device = param_offloaded_cpu.to(param.device, non_blocking=True)
@@ -133,10 +141,10 @@ class DiLoCoWrapper:
                 dist.all_reduce(tensor=param.grad, op=dist.ReduceOp.AVG)
             # Restore weights to w_old before applying the outer step
             param.data.copy_(param_offloaded_on_device)
-        
+
         self.outer_optimizer.step()
         self.outer_optimizer.zero_grad()
-        
+
         # Refresh offloaded snapshot after the outer step
         self.params_offloaded = self._get_offloaded_params()
     

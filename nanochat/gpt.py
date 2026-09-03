@@ -418,7 +418,7 @@ class GPT(nn.Module):
         }
 
     def setup_optimizer(self, unembedding_lr=0.004, embedding_lr=0.2, matrix_lr=0.02, weight_decay=0.0, scalar_lr=0.5,
-                        use_diloco=0, diloco_H=100, diloco_outer_lr=0.75, diloco_outer_momentum=0.9):
+                        use_diloco=0, diloco_H=100, diloco_outer_lr=0.75, diloco_outer_momentum=0.9, diloco_pre_sync_callback=None):
         model_dim = self.config.n_embd
         ddp, rank, local_rank, world_size = get_dist_info()
         
@@ -467,6 +467,7 @@ class GPT(nn.Module):
                 outer_lr=diloco_outer_lr,
                 outer_momentum=diloco_outer_momentum,
                 H=diloco_H,
+                pre_sync_callback=diloco_pre_sync_callback,
             )
         return optimizer
 

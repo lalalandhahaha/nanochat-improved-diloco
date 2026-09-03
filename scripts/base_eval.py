@@ -27,8 +27,9 @@ import zipfile
 import tempfile
 import argparse
 import torch
+import wandb
 
-from nanochat.common import compute_init, compute_cleanup, print0, get_base_dir, autodetect_device_type, download_file_with_lock
+from nanochat.common import compute_init, compute_cleanup, print0, DummyWandb, get_base_dir, autodetect_device_type, download_file_with_lock
 from nanochat.tokenizer import get_token_bytes
 from nanochat.checkpoint_manager import load_model
 from nanochat.core_eval import evaluate_task
@@ -134,6 +135,7 @@ def main():
     parser.add_argument('--device-batch-size', type=int, default=32, help='Per-device batch size for BPB evaluation')
     parser.add_argument('--split-tokens', type=int, default=40*524288, help='Number of tokens to evaluate per split for BPB')
     parser.add_argument('--device-type', type=str, default='', help='cuda|cpu|mps (empty = autodetect)')
+    parser.add_argument('--run', type=str, default='dummy', help='wandb run name ("dummy" disables W&B logging but saves locally)')
     args = parser.parse_args()
 
     # Parse evaluation modes
@@ -146,6 +148,8 @@ def main():
     # Distributed / precision setup
     device_type = autodetect_device_type() if args.device_type == '' else args.device_type
     ddp, ddp_rank, ddp_local_rank, ddp_world_size, device = compute_init(device_type)
+    master_process = ddp_rank == 0
+
     # Load model and tokenizer
     model, tokenizer, meta = load_model("base", device, phase="eval", model_tag=args.model_tag, step=args.step)
     sequence_len = meta["model_config"]["sequence_len"]
@@ -155,6 +159,27 @@ def main():
 
     print0(f"Evaluating model: {model_name}")
     print0(f"Eval modes: {', '.join(sorted(eval_modes))}")
+
+    # Initialize W&B (on master process only)
+    use_dummy_wandb = args.run == "dummy" or not master_process
+    if use_dummy_wandb:
+        wandb_run = DummyWandb(project="nanochat", name=args.run if args.run != "dummy" else f"eval_{model_slug}", save_local=True)
+    else:
+        # Create wandb config
+        wandb_config = {
+            "model_tag": args.model_tag,
+            "step": meta['step'],
+            "eval_modes": list(eval_modes),
+            "max_per_task": args.max_per_task,
+            "device_batch_size": args.device_batch_size,
+            "split_tokens": args.split_tokens,
+        }
+        wandb_run = wandb.init(
+            project="nanochat",
+            name=args.run,
+            config=wandb_config,
+            job_type="eval"
+        )
 
     # Results to log
     core_results = None
@@ -236,6 +261,34 @@ def main():
             print0(f"\nResults written to: {output_csv_path}")
             print0(f"CORE metric: {core_results['core_metric']:.4f}")
 
+    # --- Upload results to W&B ---
+    if master_process:
+        log_dict = {"step": meta['step']}
+
+        # Log BPB results
+        if bpb_results:
+            for split_name, bpb_value in bpb_results.items():
+                log_dict[f"eval/{split_name}_bpb"] = bpb_value
+
+        # Log CORE results
+        if core_results:
+            log_dict["eval/core_metric"] = core_results['core_metric']
+            # Log individual task results
+            for label, acc in core_results["results"].items():
+                log_dict[f"eval/core/{label}/accuracy"] = acc
+                log_dict[f"eval/core/{label}/centered"] = core_results["centered_results"][label]
+
+        # Log samples as text
+        if samples:
+            log_dict["eval/conditioned_samples"] = "\n\n".join(samples)
+        if unconditioned_samples:
+            log_dict["eval/unconditioned_samples"] = "\n\n".join(unconditioned_samples)
+
+        wandb_run.log(log_dict)
+        print0(f"\nResults logged to W&B: {len(log_dict)} metrics")
+
+    # Finish W&B run
+    wandb_run.finish()
     compute_cleanup()
 
 

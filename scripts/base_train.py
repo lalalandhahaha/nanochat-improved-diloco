@@ -113,7 +113,7 @@ print0(f"COMPUTE_DTYPE: {COMPUTE_DTYPE} ({COMPUTE_DTYPE_REASON})")
 
 # wandb logging init
 use_dummy_wandb = args.run == "dummy" or not master_process
-wandb_run = DummyWandb() if use_dummy_wandb else wandb.init(project="nanochat-improved-diloco", name=args.run, config=user_config)
+wandb_run = DummyWandb(project="nanochat-improved-diloco", name=args.run, save_local=True) if use_dummy_wandb else wandb.init(project="nanochat-improved-diloco", name=args.run, config=user_config)
 
 # Flash Attention status
 # 代码不负责开启 FA3，只是读取 flash_attention.py 中的状态，然后告诉你实际使用的是 FA3 还是 PyTorch fallback
@@ -322,6 +322,82 @@ if weight_decay_scaled != args.weight_decay:
 
 # -----------------------------------------------------------------------------
 # Initialize the Optimizer (combined MuonAdamW: Muon for matrix params, AdamW for rest)
+
+# DiLoCo pre-sync callback for analyzing node differences before synchronization
+diloco_diff_metrics = {}
+
+def diloco_pre_sync_callback():
+    """Called by DiLoCo right before all_reduce. Analyzes node weight differences."""
+    global diloco_diff_metrics
+
+    if not hasattr(diloco_pre_sync_callback, 'should_analyze') or not diloco_pre_sync_callback.should_analyze:
+        return
+
+    diloco_pre_sync_callback.should_analyze = False  # Reset flag
+    current_step = diloco_pre_sync_callback.current_step
+
+    print0(f"Analyzing DiLoCo node weight differences at step {current_step} (BEFORE outer sync)...")
+
+    # Analyze weight differences across nodes
+    num_layers = len(orig_model.transformer.h)
+    if num_layers <= 5:
+        layer_indices = list(range(num_layers))
+    else:
+        # 等间隔采样：首层、尾层、以及中间等距的3层
+        step_size = (num_layers - 1) / 4.0
+        layer_indices = [
+            0,  # 首层
+            int(round(step_size)),
+            int(round(2 * step_size)),
+            int(round(3 * step_size)),
+            num_layers - 1  # 尾层
+        ]
+        layer_indices = sorted(set(layer_indices))
+
+    print0(f"Analyzing layers: {layer_indices} (total {num_layers} layers)")
+    node_diffs = analyze_node_weight_differences(orig_model, layer_indices=layer_indices, device=device)
+
+    # Only master process has the results
+    if master_process and node_diffs:
+        print0("=" * 100)
+        print0(f"DiLoCo Node Weight Differences at Step {current_step} (Before Outer Sync)")
+        print0("=" * 100)
+        for name, result in node_diffs.items():
+            print0(f"{name:40s}")
+            print0(f"  Max Singular Value  : mean={result['s_max_mean']:.4f} std={result['s_max_std']:.6f} "
+                   f"min={result['s_max_min']:.4f} max={result['s_max_max']:.4f}")
+            print0(f"  Condition Number    : mean={result['cond_mean']:.2f} std={result['cond_std']:.2f}")
+            print0(f"  Stable Rank         : mean={result['stable_rank_mean']:.2f} std={result['stable_rank_std']:.4f}")
+            print0(f"  Effective Rank      : mean={result['effective_rank_mean']:.2f} std={result['effective_rank_std']:.4f}")
+            print0(f"  Frobenius Norm      : mean={result['fro_norm_mean']:.4f} std={result['fro_norm_std']:.6f}")
+            print0(f"  Cosine Similarity   : mean={result['cosine_sim_mean']:.6f} std={result['cosine_sim_std']:.6f} "
+                   f"min={result['cosine_sim_min']:.6f}")
+            print0(f"  Weight Diff (vs rank0): mean={result['weight_diff_mean']:.6f} std={result['weight_diff_std']:.6f} "
+                   f"max={result['weight_diff_max']:.6f}")
+        print0("=" * 100)
+
+        # Prepare wandb logging (stored in global variable)
+        diloco_diff_metrics = {}
+        for name, result in node_diffs.items():
+            diloco_diff_metrics[f"diloco_diff/{name}/s_max_mean"] = result['s_max_mean']
+            diloco_diff_metrics[f"diloco_diff/{name}/s_max_std"] = result['s_max_std']
+            diloco_diff_metrics[f"diloco_diff/{name}/cond_mean"] = result['cond_mean']
+            diloco_diff_metrics[f"diloco_diff/{name}/cond_std"] = result['cond_std']
+            diloco_diff_metrics[f"diloco_diff/{name}/stable_rank_mean"] = result['stable_rank_mean']
+            diloco_diff_metrics[f"diloco_diff/{name}/stable_rank_std"] = result['stable_rank_std']
+            diloco_diff_metrics[f"diloco_diff/{name}/effective_rank_mean"] = result['effective_rank_mean']
+            diloco_diff_metrics[f"diloco_diff/{name}/effective_rank_std"] = result['effective_rank_std']
+            diloco_diff_metrics[f"diloco_diff/{name}/fro_norm_mean"] = result['fro_norm_mean']
+            diloco_diff_metrics[f"diloco_diff/{name}/fro_norm_std"] = result['fro_norm_std']
+            diloco_diff_metrics[f"diloco_diff/{name}/cosine_sim_mean"] = result['cosine_sim_mean']
+            diloco_diff_metrics[f"diloco_diff/{name}/cosine_sim_std"] = result['cosine_sim_std']
+            diloco_diff_metrics[f"diloco_diff/{name}/weight_diff_mean"] = result['weight_diff_mean']
+            diloco_diff_metrics[f"diloco_diff/{name}/weight_diff_std"] = result['weight_diff_std']
+
+# Initialize callback attributes
+diloco_pre_sync_callback.should_analyze = False
+diloco_pre_sync_callback.current_step = 0
+
 # optimizer = model.setup_optimizer(
 #     # AdamW hyperparameters
 #     unembedding_lr=args.unembedding_lr * batch_lr_scale,
@@ -345,6 +421,7 @@ optimizer = model.setup_optimizer(
     diloco_H=args.diloco_H,
     diloco_outer_lr=args.diloco_outer_lr,
     diloco_outer_momentum=args.diloco_outer_momentum,
+    diloco_pre_sync_callback=diloco_pre_sync_callback if args.use_diloco else None,
 )
 # fp16's GradScaler calls unscale_/step on a torch.optim.Optimizer; the DiLoCo wrapper isn't one.
 if args.use_diloco:
@@ -456,69 +533,6 @@ while True:
     # eval/checkpoint so we measure and save the averaged model, not just rank 0's local copy.
     if last_step and args.use_diloco:
         optimizer.sync_if_pending()
-
-    # DiLoCo node difference analysis: analyze weight differences across nodes BEFORE synchronization
-    # Only run this before eval steps (not at last_step since we sync before that)
-    diloco_diff_metrics = {}
-    if args.use_diloco and args.eval_every > 0 and not last_step and step > 0 and step % args.eval_every == 0:
-        # Check if we're about to do an outer sync (at the boundary of diloco_H steps)
-        if hasattr(optimizer, 'inner_step_count') and optimizer.inner_step_count % args.diloco_H == 0:
-            print0(f"Analyzing DiLoCo node weight differences at step {step} (before outer sync)...")
-
-            # Analyze weight differences across nodes
-            num_layers = len(orig_model.transformer.h)
-            if num_layers <= 5:
-                layer_indices = list(range(num_layers))
-            else:
-                # 等间隔采样：首层、尾层、以及中间等距的3层
-                step_size = (num_layers - 1) / 4.0
-                layer_indices = [
-                    0,  # 首层
-                    int(round(step_size)),
-                    int(round(2 * step_size)),
-                    int(round(3 * step_size)),
-                    num_layers - 1  # 尾层
-                ]
-                layer_indices = sorted(set(layer_indices))
-
-            print0(f"Analyzing layers: {layer_indices} (total {num_layers} layers)")
-            node_diffs = analyze_node_weight_differences(orig_model, layer_indices=layer_indices, device=device)
-
-            # Only master process has the results
-            if master_process and node_diffs:
-                print0("=" * 100)
-                print0(f"DiLoCo Node Weight Differences at Step {step} (Before Outer Sync)")
-                print0("=" * 100)
-                for name, result in node_diffs.items():
-                    print0(f"{name:40s}")
-                    print0(f"  Max Singular Value  : mean={result['s_max_mean']:.4f} std={result['s_max_std']:.6f} "
-                           f"min={result['s_max_min']:.4f} max={result['s_max_max']:.4f}")
-                    print0(f"  Condition Number    : mean={result['cond_mean']:.2f} std={result['cond_std']:.2f}")
-                    print0(f"  Stable Rank         : mean={result['stable_rank_mean']:.2f} std={result['stable_rank_std']:.4f}")
-                    print0(f"  Effective Rank      : mean={result['effective_rank_mean']:.2f} std={result['effective_rank_std']:.4f}")
-                    print0(f"  Frobenius Norm      : mean={result['fro_norm_mean']:.4f} std={result['fro_norm_std']:.6f}")
-                    print0(f"  Cosine Similarity   : mean={result['cosine_sim_mean']:.6f} std={result['cosine_sim_std']:.6f} "
-                           f"min={result['cosine_sim_min']:.6f}")
-                    print0(f"  Weight Diff (vs rank0): mean={result['weight_diff_mean']:.6f} std={result['weight_diff_std']:.6f} "
-                           f"max={result['weight_diff_max']:.6f}")
-                print0("=" * 100)
-
-                # Prepare wandb logging
-                for name, result in node_diffs.items():
-                    diloco_diff_metrics[f"diloco_diff/{name}/s_max_mean"] = result['s_max_mean']
-                    diloco_diff_metrics[f"diloco_diff/{name}/s_max_std"] = result['s_max_std']
-                    diloco_diff_metrics[f"diloco_diff/{name}/cond_mean"] = result['cond_mean']
-                    diloco_diff_metrics[f"diloco_diff/{name}/cond_std"] = result['cond_std']
-                    diloco_diff_metrics[f"diloco_diff/{name}/stable_rank_mean"] = result['stable_rank_mean']
-                    diloco_diff_metrics[f"diloco_diff/{name}/stable_rank_std"] = result['stable_rank_std']
-                    diloco_diff_metrics[f"diloco_diff/{name}/effective_rank_mean"] = result['effective_rank_mean']
-                    diloco_diff_metrics[f"diloco_diff/{name}/effective_rank_std"] = result['effective_rank_std']
-                    diloco_diff_metrics[f"diloco_diff/{name}/fro_norm_mean"] = result['fro_norm_mean']
-                    diloco_diff_metrics[f"diloco_diff/{name}/fro_norm_std"] = result['fro_norm_std']
-                    diloco_diff_metrics[f"diloco_diff/{name}/cosine_sim_mean"] = result['cosine_sim_mean']
-                    diloco_diff_metrics[f"diloco_diff/{name}/cosine_sim_std"] = result['cosine_sim_std']
-                    diloco_diff_metrics[f"diloco_diff/{name}/weight_diff_mean"] = result['weight_diff_mean']
-                    diloco_diff_metrics[f"diloco_diff/{name}/weight_diff_std"] = result['weight_diff_std']
 
     # once in a while: evaluate the val bpb (all ranks participate)
     if args.eval_every > 0 and (last_step or step % args.eval_every == 0):
@@ -680,6 +694,19 @@ while True:
         if group['kind'] == 'muon':
             group["momentum"] = muon_momentum
             group["weight_decay"] = muon_weight_decay
+
+    # DiLoCo: Set flag for node difference analysis before next outer sync
+    # This needs to happen BEFORE optimizer.step() so the callback can analyze before all_reduce
+    if args.use_diloco and args.eval_every > 0 and step > 0 and (step + 1) % args.eval_every == 0:
+        # Check if next step will trigger outer sync
+        if hasattr(optimizer, 'inner_step_count'):
+            next_inner_count = optimizer.inner_step_count + 1
+            if next_inner_count % args.diloco_H == 0:
+                # Next optimizer.step() will trigger outer sync - set flag for analysis
+                diloco_pre_sync_callback.should_analyze = True
+                diloco_pre_sync_callback.current_step = step + 1
+                print0(f"DiLoCo analysis enabled for step {step + 1} (inner_step_count will be {next_inner_count})")
+
     if scaler is not None:
         scaler.unscale_(optimizer)
         # In distributed training, all ranks must agree on whether to skip the step.
@@ -692,6 +719,9 @@ while True:
         scaler.update()
     else:
         optimizer.step()
+
+    # Clear diloco_diff_metrics after step (will be repopulated by callback if triggered)
+    diloco_diff_metrics = {}
     model.zero_grad(set_to_none=True)
     train_loss_f = train_loss.item() # .item() is a CPU-GPU sync point
     synchronize()

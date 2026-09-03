@@ -214,13 +214,43 @@ def compute_cleanup():
         dist.destroy_process_group()
 
 class DummyWandb:
-    """Useful if we wish to not use wandb but have all the same signatures"""
-    def __init__(self):
-        pass
-    def log(self, *args, **kwargs):
-        pass
+    """Useful if we wish to not use wandb but have all the same signatures.
+    In dummy mode, logs are saved locally to a date-stamped directory."""
+    def __init__(self, project="nanochat", name="dummy", save_local=True):
+        self.project = project
+        self.name = name
+        self.save_local = save_local
+        self.logs = []
+
+        if self.save_local:
+            from datetime import datetime
+            date_str = datetime.now().strftime("%Y%m%d")
+            self.log_dir = os.path.join(os.getcwd(), "wandb_local", f"{date_str}_{name}")
+            os.makedirs(self.log_dir, exist_ok=True)
+            self.log_file = os.path.join(self.log_dir, "metrics.jsonl")
+            print0(f"DummyWandb: Logging to {self.log_file}")
+
+    def log(self, data, *args, **kwargs):
+        if self.save_local:
+            import json
+            self.logs.append(data)
+            # Append to JSONL file
+            with open(self.log_file, 'a') as f:
+                f.write(json.dumps(data) + '\n')
+
     def finish(self):
-        pass
+        if self.save_local and self.logs:
+            import json
+            # Also save a summary JSON
+            summary_file = os.path.join(self.log_dir, "summary.json")
+            with open(summary_file, 'w') as f:
+                json.dump({
+                    'project': self.project,
+                    'name': self.name,
+                    'total_logs': len(self.logs),
+                    'last_log': self.logs[-1] if self.logs else None
+                }, f, indent=2)
+            print0(f"DummyWandb: Saved {len(self.logs)} logs to {self.log_dir}")
 
 # hardcoded BF16 peak flops for various GPUs
 # inspired by torchtitan: https://github.com/pytorch/torchtitan/blob/main/torchtitan/tools/utils.py
