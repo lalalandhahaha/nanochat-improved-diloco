@@ -134,11 +134,17 @@ def analyze_node_weight_differences(model, layer_indices=None, device='cuda'):
 
             layer = model.transformer.h[layer_idx]
 
-            # Attention层
+            # Attention层 - 新版本使用 c_q, c_k, c_v, c_proj
             if hasattr(layer, 'attn'):
-                if hasattr(layer.attn, 'c_attn') and hasattr(layer.attn.c_attn, 'weight'):
-                    weights_to_analyze.append(layer.attn.c_attn.weight)
-                    weight_names.append(f'layer_{layer_idx}.attn.c_attn.weight')
+                if hasattr(layer.attn, 'c_q') and hasattr(layer.attn.c_q, 'weight'):
+                    weights_to_analyze.append(layer.attn.c_q.weight)
+                    weight_names.append(f'layer_{layer_idx}.attn.c_q.weight')
+                if hasattr(layer.attn, 'c_k') and hasattr(layer.attn.c_k, 'weight'):
+                    weights_to_analyze.append(layer.attn.c_k.weight)
+                    weight_names.append(f'layer_{layer_idx}.attn.c_k.weight')
+                if hasattr(layer.attn, 'c_v') and hasattr(layer.attn.c_v, 'weight'):
+                    weights_to_analyze.append(layer.attn.c_v.weight)
+                    weight_names.append(f'layer_{layer_idx}.attn.c_v.weight')
                 if hasattr(layer.attn, 'c_proj') and hasattr(layer.attn.c_proj, 'weight'):
                     weights_to_analyze.append(layer.attn.c_proj.weight)
                     weight_names.append(f'layer_{layer_idx}.attn.c_proj.weight')

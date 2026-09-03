@@ -57,15 +57,15 @@ parser.add_argument("--head-dim", type=int, default=128, help="target head dimen
 parser.add_argument("--max-seq-len", type=int, default=2048, help="max context length")
 parser.add_argument("--window-pattern", type=str, default="SSSL", help="sliding window pattern tiled across layers: L=full, S=half context (e.g. 'SSL')")
 # Training horizon (only one used, in order of precedence)
-parser.add_argument("--num-iterations", type=int, default=-1, help="explicit number of optimization steps (-1 = disable)")
+parser.add_argument("--num-iterations", type=int, default=214000, help="explicit number of optimization steps (-1 = disable)")
 parser.add_argument("--target-flops", type=float, default=-1.0, help="calculate num_iterations to reach target_flops (-1 = disable)")
-parser.add_argument("--target-param-data-ratio", type=float, default=12, help="calculate num_iterations to maintain data:param ratio (Chinchilla=20, -1 = disable)")
+parser.add_argument("--target-param-data-ratio", type=float, default=20, help="calculate num_iterations to maintain data:param ratio (Chinchilla=20, -1 = disable)")
 # Optimization
-parser.add_argument("--device-batch-size", type=int, default=32, help="per-device batch size. good number to reduce to 16,8,4,... if you OOM on VRAM.")
-parser.add_argument("--total-batch-size", type=int, default=-1, help="total batch size in tokens. decent numbers are e.g. 524288. (-1 = auto-compute optimal)")
-parser.add_argument("--embedding-lr", type=float, default=0.3, help="learning rate for embedding parameters (Adam)")
-parser.add_argument("--unembedding-lr", type=float, default=0.008, help="learning rate for unembedding parameters (Adam)")
-parser.add_argument("--weight-decay", type=float, default=0.28, help="cautious weight decay for the Muon optimizer (for weights)")
+parser.add_argument("--device-batch-size", type=int, default=16, help="per-device batch size. good number to reduce to 16,8,4,... if you OOM on VRAM.")
+parser.add_argument("--total-batch-size", type=int, default=524288, help="total batch size in tokens. decent numbers are e.g. 524288. (-1 = auto-compute optimal)")
+parser.add_argument("--embedding-lr", type=float, default=0.2, help="learning rate for embedding parameters (Adam)")
+parser.add_argument("--unembedding-lr", type=float, default=0.004, help="learning rate for unembedding parameters (Adam)")
+parser.add_argument("--weight-decay", type=float, default=0.00, help="cautious weight decay for the Muon optimizer (for weights)")
 parser.add_argument("--matrix-lr", type=float, default=0.02, help="learning rate for matrix parameters (Muon)")
 parser.add_argument("--scalar-lr", type=float, default=0.5, help="learning rate for scalars (resid_lambdas, x0_lambdas)")
 parser.add_argument("--warmup-steps", type=int, default=40, help="number of steps for LR warmup")
@@ -73,11 +73,11 @@ parser.add_argument("--warmdown-ratio", type=float, default=0.65, help="ratio of
 parser.add_argument("--final-lr-frac", type=float, default=0.05, help="final LR as fraction of initial LR")
 parser.add_argument("--resume-from-step", type=int, default=-1, help="resume training from this step (-1 = disable)")
 # Evaluation
-parser.add_argument("--eval-every", type=int, default=250, help="evaluate val bpb every N steps (-1 = disable)")
-parser.add_argument("--eval-tokens", type=int, default=80*524288, help="number of tokens to evaluate val loss on")
-parser.add_argument("--core-metric-every", type=int, default=2000, help="evaluate CORE metric every N steps (-1 = disable)")
+parser.add_argument("--eval-every", type=int, default=500, help="evaluate val bpb every N steps (-1 = disable)")
+parser.add_argument("--eval-tokens", type=int, default=10*524288, help="number of tokens to evaluate val loss on")
+parser.add_argument("--core-metric-every", type=int, default=500, help="evaluate CORE metric every N steps (-1 = disable)")
 parser.add_argument("--core-metric-max-per-task", type=int, default=500, help="examples per task for CORE metric")
-parser.add_argument("--sample-every", type=int, default=2000, help="sample from model every N steps (-1 = disable)")
+parser.add_argument("--sample-every", type=int, default=1000, help="sample from model every N steps (-1 = disable)")
 parser.add_argument("--save-every", type=int, default=-1, help="save checkpoints every N steps (-1 = only at end)")
 # Output
 parser.add_argument("--model-tag", type=str, default=None, help="override model tag for checkpoint directory name")
@@ -113,9 +113,10 @@ print0(f"COMPUTE_DTYPE: {COMPUTE_DTYPE} ({COMPUTE_DTYPE_REASON})")
 
 # wandb logging init
 use_dummy_wandb = args.run == "dummy" or not master_process
-wandb_run = DummyWandb() if use_dummy_wandb else wandb.init(project="nanochat", name=args.run, config=user_config)
+wandb_run = DummyWandb() if use_dummy_wandb else wandb.init(project="nanochat-improved-diloco", name=args.run, config=user_config)
 
 # Flash Attention status
+# 代码不负责开启 FA3，只是读取 flash_attention.py 中的状态，然后告诉你实际使用的是 FA3 还是 PyTorch fallback
 from nanochat.flash_attention import USE_FA3
 using_fa3 = USE_FA3
 if using_fa3:
@@ -461,14 +462,26 @@ while True:
     diloco_diff_metrics = {}
     if args.use_diloco and args.eval_every > 0 and not last_step and step > 0 and step % args.eval_every == 0:
         # Check if we're about to do an outer sync (at the boundary of diloco_H steps)
-        if hasattr(optimizer, 'inner_steps') and optimizer.inner_steps % args.diloco_H == 0:
+        if hasattr(optimizer, 'inner_step_count') and optimizer.inner_step_count % args.diloco_H == 0:
             print0(f"Analyzing DiLoCo node weight differences at step {step} (before outer sync)...")
 
             # Analyze weight differences across nodes
             num_layers = len(orig_model.transformer.h)
-            layer_indices = list(range(min(3, num_layers))) + list(range(max(0, num_layers - 3), num_layers))
-            layer_indices = sorted(set(layer_indices))
+            if num_layers <= 5:
+                layer_indices = list(range(num_layers))
+            else:
+                # 等间隔采样：首层、尾层、以及中间等距的3层
+                step_size = (num_layers - 1) / 4.0
+                layer_indices = [
+                    0,  # 首层
+                    int(round(step_size)),
+                    int(round(2 * step_size)),
+                    int(round(3 * step_size)),
+                    num_layers - 1  # 尾层
+                ]
+                layer_indices = sorted(set(layer_indices))
 
+            print0(f"Analyzing layers: {layer_indices} (total {num_layers} layers)")
             node_diffs = analyze_node_weight_differences(orig_model, layer_indices=layer_indices, device=device)
 
             # Only master process has the results
@@ -522,11 +535,23 @@ while True:
         weight_metrics = {}
         if master_process:
             print0(f"Analyzing weight matrices at step {step}...")
-            # 分析前3层和最后3层
+            # 等间隔采样5层（适应不同模型规模）
             num_layers = len(orig_model.transformer.h)
-            layer_indices = list(range(min(3, num_layers))) + list(range(max(0, num_layers - 3), num_layers))
-            layer_indices = sorted(set(layer_indices))  # 去重并排序
+            if num_layers <= 5:
+                layer_indices = list(range(num_layers))
+            else:
+                # 等间隔采样：首层、尾层、以及中间等距的3层
+                step_size = (num_layers - 1) / 4.0
+                layer_indices = [
+                    0,  # 首层
+                    int(round(step_size)),
+                    int(round(2 * step_size)),
+                    int(round(3 * step_size)),
+                    num_layers - 1  # 尾层
+                ]
+                layer_indices = sorted(set(layer_indices))  # 去重并排序
 
+            print0(f"Analyzing layers: {layer_indices} (total {num_layers} layers)")
             weight_analysis = analyze_model_weights(orig_model, layer_indices=layer_indices)
 
             # 打印结果
