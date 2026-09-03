@@ -515,6 +515,10 @@ else:
     smooth_train_loss = loop_state["smooth_train_loss"]
     total_training_time = loop_state["total_training_time"]
 
+val_eval_time = 0.0
+weight_analysis_time = 0.0
+core_eval_time = 0.0
+
 # Figure out the needed gradient accumulation micro-steps to reach the desired total batch size per step
 tokens_per_fwdbwd = args.device_batch_size * args.max_seq_len # tokens per iteration for a single rank
 world_tokens_per_fwdbwd = tokens_per_fwdbwd * ddp_world_size # total tokens per iteration for all ranks
@@ -536,11 +540,13 @@ while True:
 
     # once in a while: evaluate the val bpb (all ranks participate)
     if args.eval_every > 0 and (last_step or step % args.eval_every == 0):
+        val_eval_start = time.perf_counter()
         model.eval()
         val_loader = build_val_loader()
         eval_steps = args.eval_tokens // (args.device_batch_size * args.max_seq_len * ddp_world_size)
         with disable_fp8(model):
             val_bpb = evaluate_bpb(model, val_loader, eval_steps, token_bytes)
+        val_eval_time = time.perf_counter() - val_eval_start
         print0(f"Step {step:05d} | Validation bpb: {val_bpb:.6f}")
         if val_bpb < min_val_bpb:
             min_val_bpb = val_bpb
@@ -548,6 +554,7 @@ while True:
         # 权重矩阵分析（只在master进程上执行）
         weight_metrics = {}
         if master_process:
+            weight_analysis_start = time.perf_counter()
             print0(f"Analyzing weight matrices at step {step}...")
             # 等间隔采样5层（适应不同模型规模）
             num_layers = len(orig_model.transformer.h)
@@ -593,12 +600,15 @@ while True:
                 weight_metrics[f"weights/{name}/spectral_norm"] = result['spectral_norm']
                 weight_metrics[f"weights/{name}/stable_rank"] = result['stable_rank']
                 weight_metrics[f"weights/{name}/effective_rank"] = result['effective_rank']
+            weight_analysis_time = time.perf_counter() - weight_analysis_start
 
         wandb_run.log({
             "step": step,
             "total_training_flops": flops_so_far,
             "total_training_time": total_training_time,
             "val/bpb": val_bpb,
+            "eval/val_bpb_seconds": val_eval_time,
+            "eval/weight_analysis_seconds": weight_analysis_time,
             **weight_metrics,
             **diloco_diff_metrics,
         })
@@ -609,14 +619,17 @@ while True:
     # disable FP8 for evaluation to use BF16 for more consistent/accurate results
     results = {}
     if args.core_metric_every > 0 and (last_step or (step > 0 and step % args.core_metric_every == 0)):
+        core_eval_start = time.perf_counter()
         model.eval()
         with disable_fp8(orig_model):
             results = evaluate_core(orig_model, tokenizer, device, max_per_task=args.core_metric_max_per_task)
+        core_eval_time = time.perf_counter() - core_eval_start
         print0(f"Step {step:05d} | CORE metric: {results['core_metric']:.4f}")
         wandb_run.log({
             "step": step,
             "total_training_flops": flops_so_far,
             "core_metric": results["core_metric"],
+            "eval/core_seconds": core_eval_time,
             "centered_results": results["centered_results"],
         })
         model.train()

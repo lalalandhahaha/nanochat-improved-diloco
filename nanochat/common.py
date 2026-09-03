@@ -6,6 +6,7 @@ import os
 import re
 import logging
 import urllib.request
+import numpy as np
 import torch
 import torch.distributed as dist
 from filelock import FileLock
@@ -233,6 +234,7 @@ class DummyWandb:
     def log(self, data, *args, **kwargs):
         if self.save_local:
             import json
+            data = _to_jsonable(data)
             self.logs.append(data)
             # Append to JSONL file
             with open(self.log_file, 'a') as f:
@@ -251,6 +253,19 @@ class DummyWandb:
                     'last_log': self.logs[-1] if self.logs else None
                 }, f, indent=2)
             print0(f"DummyWandb: Saved {len(self.logs)} logs to {self.log_dir}")
+
+
+def _to_jsonable(value):
+    """Convert tensor and NumPy scalar values into JSON-compatible values."""
+    if isinstance(value, dict):
+        return {key: _to_jsonable(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_to_jsonable(item) for item in value]
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().item() if value.ndim == 0 else value.detach().cpu().tolist()
+    if isinstance(value, np.generic):
+        return value.item()
+    return value
 
 # hardcoded BF16 peak flops for various GPUs
 # inspired by torchtitan: https://github.com/pytorch/torchtitan/blob/main/torchtitan/tools/utils.py

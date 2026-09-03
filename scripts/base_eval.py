@@ -186,9 +186,11 @@ def main():
     bpb_results = {}
     samples = []
     unconditioned_samples = []
+    eval_timings = {}
 
     # --- Sampling ---
     if 'sample' in eval_modes:
+        sample_eval_start = time.perf_counter()
         print0("\n" + "="*80)
         print0("Model Samples")
         print0("="*80)
@@ -220,9 +222,11 @@ def main():
                 print0("-" * 80)
                 print0(sample_str)
                 unconditioned_samples.append(sample_str)
+        eval_timings["eval/sample_seconds"] = time.perf_counter() - sample_eval_start
 
     # --- BPB evaluation ---
     if 'bpb' in eval_modes:
+        bpb_eval_start = time.perf_counter()
         print0("\n" + "="*80)
         print0("BPB Evaluation")
         print0("="*80)
@@ -238,9 +242,11 @@ def main():
             bpb = evaluate_bpb(model, loader, steps, token_bytes)
             bpb_results[split_name] = bpb
             print0(f"{split_name} bpb: {bpb:.6f}")
+        eval_timings["eval/bpb_seconds"] = time.perf_counter() - bpb_eval_start
 
     # --- CORE evaluation ---
     if 'core' in eval_modes:
+        core_eval_start = time.perf_counter()
         print0("\n" + "="*80)
         print0("CORE Evaluation")
         print0("="*80)
@@ -260,6 +266,7 @@ def main():
                 f.write(f"{'CORE':<35}, {'':<10}, {core_results['core_metric']:<10.6f}\n")
             print0(f"\nResults written to: {output_csv_path}")
             print0(f"CORE metric: {core_results['core_metric']:.4f}")
+        eval_timings["eval/core_seconds"] = time.perf_counter() - core_eval_start
 
     # --- Upload results to W&B ---
     if master_process:
@@ -283,6 +290,9 @@ def main():
             log_dict["eval/conditioned_samples"] = "\n\n".join(samples)
         if unconditioned_samples:
             log_dict["eval/unconditioned_samples"] = "\n\n".join(unconditioned_samples)
+
+        log_dict.update(eval_timings)
+        log_dict["eval/total_seconds"] = sum(eval_timings.values())
 
         wandb_run.log(log_dict)
         print0(f"\nResults logged to W&B: {len(log_dict)} metrics")
