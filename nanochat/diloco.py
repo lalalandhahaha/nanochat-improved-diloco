@@ -13,6 +13,9 @@ import time
 import torch.distributed as dist
 from typing import List, Optional
 
+from nanochat.isocmerge import ISOCMerge
+from nanochat.mergeloco import MergeLoCo
+
 
 class DiLoCoWrapper:
     """
@@ -20,15 +23,27 @@ class DiLoCoWrapper:
 
     DiLoCo performs:
     - Inner optimization: standard optimizers (AdamW, Muon) run locally for H steps
-    - Outer optimization: SGD with Nesterov momentum on pseudo-gradients every H steps
+    - Outer optimization every H steps on the pseudo-gradients (w_old - w_new), with a
+      selectable outer optimizer:
+        - "nesterov": average pseudo-gradients across workers (all_reduce AVG), then SGD
+          with Nesterov momentum (original DiLoCo)
+        - "isoc": ISOCMerge — all_gather pseudo-gradients and merge them with ISO-C
+          (isotropic covariance: SVD, replace singular values by their mean)
+        - "ties": MergeLoCo — all_gather pseudo-gradients and merge them TIES-style
+          (optional sparsification + sign election + disjoint mean)
 
     Args:
         inner_optimizers: List of inner optimizers (e.g., [adamw_optimizer, muon_optimizer])
         model: The model being trained
-        outer_lr: Learning rate for outer SGD optimizer
-        outer_momentum: Momentum coefficient for outer SGD optimizer (default: 0.9)
+        outer_lr: Learning rate for outer optimizer
+        outer_momentum: Momentum coefficient for outer optimizer (default: 0.9)
         H: Number of inner steps before outer synchronization (communication interval)
         nesterov: Whether to use Nesterov momentum in outer optimizer (default: True)
+        outer_opt: Which outer optimizer to use: "nesterov" | "isoc" | "ties"
+        isoc_orthogonalize_object: For "isoc": apply ISO-C to "gradient" (before momentum)
+            or "update" (after momentum)
+        ties_disjoint: For "ties": use TIES sign election + disjoint mean (False = plain average)
+        ties_sparsity: For "ties": proportion of pseudo-gradient entries to prune before merging
         pre_sync_callback: Optional callback function called before all_reduce, for analysis
     """
 
@@ -40,13 +55,18 @@ class DiLoCoWrapper:
         outer_momentum: float = 0.9,
         H: int = 500,
         nesterov: bool = True,
+        outer_opt: str = "nesterov",
+        isoc_orthogonalize_object: str = "gradient",
+        ties_disjoint: bool = True,
+        ties_sparsity: float = 0.0,
         pre_sync_callback: Optional[callable] = None,
     ):
         self.inner_optimizers = inner_optimizers
         self.model = model
         self.H = H
+        self.outer_opt = outer_opt
         self.pre_sync_callback = pre_sync_callback
-        
+
         # Collect all parameters from inner optimizers in order
         # This ensures outer optimizer has same parameter order as inner optimizers
         all_params = []
@@ -55,18 +75,49 @@ class DiLoCoWrapper:
                 for param in group["params"]:
                     if param.requires_grad:
                         all_params.append(param)
-        
-        # Create outer optimizer with the same parameters in the same order
-        self.outer_optimizer = torch.optim.SGD(
-            all_params,
-            lr=outer_lr,
-            momentum=outer_momentum,
-            nesterov=nesterov,
-        )
-        
+
+        # Create outer optimizer with the same parameters in the same order.
+        # ISOCMerge/MergeLoCo do their own cross-worker communication (all_gather) inside
+        # step(), so for them the wrapper skips the all_reduce of pseudo-gradients.
+        process_group = dist.group.WORLD if dist.is_initialized() else None
+        if outer_opt == "nesterov":
+            self.outer_optimizer = torch.optim.SGD(
+                all_params,
+                lr=outer_lr,
+                momentum=outer_momentum,
+                nesterov=nesterov and outer_momentum > 0,
+            )
+        elif outer_opt == "isoc":
+            self.outer_optimizer = ISOCMerge(
+                [all_params],  # single (virtual) worker per rank
+                lr=outer_lr,
+                momentum=outer_momentum,
+                nesterov=nesterov and outer_momentum > 0,
+                orthogonalize_object=isoc_orthogonalize_object,
+                virtual_workers=1,
+                process_group=process_group,
+            )
+        elif outer_opt == "ties":
+            self.outer_optimizer = MergeLoCo(
+                [all_params],  # single (virtual) worker per rank
+                lr=outer_lr,
+                momentum=outer_momentum,
+                nesterov=nesterov and outer_momentum > 0,
+                weight_decay=0.0,
+                sparsity=ties_sparsity,
+                ties_disjoint=ties_disjoint,
+                virtual_workers=1,
+                process_group=process_group,
+            )
+        else:
+            raise ValueError(f"Unknown DiLoCo outer optimizer: {outer_opt} (expected 'nesterov', 'isoc' or 'ties')")
+
+        # Merge-based outer optimizers gather + merge + apply the update themselves
+        self.outer_is_merge_based = outer_opt in ("isoc", "ties")
+
         # Track inner steps
         self.inner_step_count = 0
-        
+
         # Store offloaded parameters (CPU clones) for computing pseudo-gradients
         self.params_offloaded = self._get_offloaded_params()
     
@@ -113,9 +164,12 @@ class DiLoCoWrapper:
         Perform outer optimization step on device (parity with original):
         1. [CALLBACK] Call pre_sync_callback if set (for analysis before sync)
         2. Compute pseudo-gradients: g = (w_old - w_new) on device
-        3. Average pseudo-gradients across workers via all_reduce (AVG)
+        3. Synchronize across workers:
+           - "nesterov": average pseudo-gradients via all_reduce (AVG) here
+           - "isoc"/"ties": skip — the merge-based outer optimizer all_gathers and
+             merges the pseudo-gradients itself inside step()
         4. Restore params to offloaded values (w_old)
-        5. Apply outer optimizer (SGD with momentum)
+        5. Apply outer optimizer
         6. Zero outer gradients
         7. Update offloaded params snapshot
         """
@@ -137,7 +191,7 @@ class DiLoCoWrapper:
             param_offloaded_on_device = param_offloaded_cpu.to(param.device, non_blocking=True)
             # g = w_old - w_new
             param.grad = param_offloaded_on_device - param.data
-            if dist.is_initialized():
+            if dist.is_initialized() and not self.outer_is_merge_based:
                 dist.all_reduce(tensor=param.grad, op=dist.ReduceOp.AVG)
             # Restore weights to w_old before applying the outer step
             param.data.copy_(param_offloaded_on_device)

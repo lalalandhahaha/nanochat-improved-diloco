@@ -418,10 +418,17 @@ class GPT(nn.Module):
         }
 
     def setup_optimizer(self, unembedding_lr=0.004, embedding_lr=0.2, matrix_lr=0.02, weight_decay=0.0, scalar_lr=0.5,
-                        use_diloco=0, diloco_H=100, diloco_outer_lr=0.75, diloco_outer_momentum=0.9, diloco_pre_sync_callback=None):
+                        use_diloco=0, diloco_H=100, diloco_outer_lr=0.75, diloco_outer_momentum=0.9,
+                        diloco_inner_opt="mixed", diloco_outer_opt="nesterov",
+                        diloco_isoc_object="gradient", diloco_ties_disjoint=1, diloco_ties_sparsity=0.0,
+                        diloco_pre_sync_callback=None):
         model_dim = self.config.n_embd
         ddp, rank, local_rank, world_size = get_dist_info()
-        
+
+        # Inner/outer optimizer selection is only meaningful in DiLoCo mode
+        if not use_diloco:
+            diloco_inner_opt = "mixed"
+
         # Separate out all parameters into groups
         matrix_params = list(self.transformer.h.parameters())
         value_embeds_params = list(self.value_embeds.parameters())
@@ -436,22 +443,58 @@ class GPT(nn.Module):
         dmodel_lr_scale = (model_dim / 768) ** -0.5
         print0(f"Scaling the LR for the AdamW parameters ∝1/√({model_dim}/768) = {dmodel_lr_scale:.6f}")
 
-        # Build param_groups with all required fields explicit
-        param_groups = [
-            # AdamW groups (embeddings, lm_head, scalars)
-            dict(kind='adamw', params=lm_head_params, lr=unembedding_lr * dmodel_lr_scale, betas=(0.8, 0.96), eps=1e-10, weight_decay=0.01),
-            dict(kind='adamw', params=embedding_params, lr=embedding_lr * dmodel_lr_scale, betas=(0.8, 0.995), eps=1e-10, weight_decay=0.001),
-            dict(kind='adamw', params=value_embeds_params, lr=embedding_lr * dmodel_lr_scale * 0.5, betas=(0.8, 0.995), eps=1e-10, weight_decay=0.01),
-            dict(kind='adamw', params=resid_params, lr=scalar_lr * 0.01, betas=(0.8, 0.95), eps=1e-10, weight_decay=0.05),
-            dict(kind='adamw', params=x0_params, lr=scalar_lr, betas=(0.96, 0.95), eps=1e-10, weight_decay=0.0),  # higher beta1 for x0
-            dict(kind='adamw', params=smear_params, lr=0.2, betas=(0.8, 0.95), eps=1e-10, weight_decay=0.0),
-        ]
-        # Muon groups (matrix params, grouped by shape for stacking)
-        for shape in sorted({p.shape for p in matrix_params}):
-            group_params = [p for p in matrix_params if p.shape == shape]
-            param_groups.append(
-                dict(kind='muon', params=group_params, lr=matrix_lr,momentum=0.95, ns_steps=5, beta2=0.9, weight_decay=weight_decay,
-            ))
+        # ---------------------------------------------------------------------
+        # Build param_groups depending on the (DiLoCo) inner optimizer choice.
+        # "mixed" is the original nanochat setup: AdamW for embeddings/lm_head/scalars, Muon for matrices.
+        if diloco_inner_opt == "mixed":
+            param_groups = [
+                # AdamW groups (embeddings, lm_head, scalars)
+                dict(kind='adamw', params=lm_head_params, lr=unembedding_lr * dmodel_lr_scale, betas=(0.8, 0.96), eps=1e-10, weight_decay=0.01),
+                dict(kind='adamw', params=embedding_params, lr=embedding_lr * dmodel_lr_scale, betas=(0.8, 0.995), eps=1e-10, weight_decay=0.001),
+                dict(kind='adamw', params=value_embeds_params, lr=embedding_lr * dmodel_lr_scale * 0.5, betas=(0.8, 0.995), eps=1e-10, weight_decay=0.01),
+                dict(kind='adamw', params=resid_params, lr=scalar_lr * 0.01, betas=(0.8, 0.95), eps=1e-10, weight_decay=0.05),
+                dict(kind='adamw', params=x0_params, lr=scalar_lr, betas=(0.96, 0.95), eps=1e-10, weight_decay=0.0),  # higher beta1 for x0
+                dict(kind='adamw', params=smear_params, lr=0.2, betas=(0.8, 0.95), eps=1e-10, weight_decay=0.0),
+            ]
+            # Muon groups (matrix params, grouped by shape for stacking)
+            for shape in sorted({p.shape for p in matrix_params}):
+                group_params = [p for p in matrix_params if p.shape == shape]
+                param_groups.append(
+                    dict(kind='muon', params=group_params, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.9, weight_decay=weight_decay,
+                ))
+        elif diloco_inner_opt == "adam":
+            # Everything on AdamW, including the transformer matrices
+            param_groups = [
+                dict(kind='adamw', params=lm_head_params, lr=unembedding_lr * dmodel_lr_scale, betas=(0.8, 0.96), eps=1e-10, weight_decay=0.01),
+                dict(kind='adamw', params=embedding_params, lr=embedding_lr * dmodel_lr_scale, betas=(0.8, 0.995), eps=1e-10, weight_decay=0.001),
+                dict(kind='adamw', params=value_embeds_params, lr=embedding_lr * dmodel_lr_scale * 0.5, betas=(0.8, 0.995), eps=1e-10, weight_decay=0.01),
+                dict(kind='adamw', params=resid_params, lr=scalar_lr * 0.01, betas=(0.8, 0.95), eps=1e-10, weight_decay=0.05),
+                dict(kind='adamw', params=x0_params, lr=scalar_lr, betas=(0.96, 0.95), eps=1e-10, weight_decay=0.0),
+                dict(kind='adamw', params=smear_params, lr=0.2, betas=(0.8, 0.95), eps=1e-10, weight_decay=0.0),
+                # Matrix params also on AdamW (matrix_lr is a Muon LR; the dmodel scale keeps it in an AdamW-friendly range)
+                dict(kind='adamw', params=matrix_params, lr=matrix_lr * dmodel_lr_scale, betas=(0.8, 0.95), eps=1e-10, weight_decay=weight_decay),
+            ]
+        elif diloco_inner_opt == "muon":
+            # All 2D params on Muon (matrices + embeddings + lm_head + value_embeds);
+            # non-matrix scalars stay on AdamW since Muon only handles 2D params.
+            param_groups = [
+                dict(kind='adamw', params=resid_params, lr=scalar_lr * 0.01, betas=(0.8, 0.95), eps=1e-10, weight_decay=0.05),
+                dict(kind='adamw', params=x0_params, lr=scalar_lr, betas=(0.96, 0.95), eps=1e-10, weight_decay=0.0),
+                dict(kind='adamw', params=smear_params, lr=0.2, betas=(0.8, 0.95), eps=1e-10, weight_decay=0.0),
+            ]
+            muon_params = matrix_params + embedding_params + lm_head_params + value_embeds_params
+            assert all(p.dim() == 2 for p in muon_params), "Muon inner optimizer requires all non-scalar params to be 2D"
+            # Group by (shape, dtype): params in a Muon group get stacked, and wte/value_embeds
+            # are stored in bf16 while other matrices are fp32, so shape alone is not enough
+            for shape, dtype in sorted({(p.shape, p.dtype) for p in muon_params}, key=str):
+                group_params = [p for p in muon_params if p.shape == shape and p.dtype == dtype]
+                param_groups.append(
+                    dict(kind='muon', params=group_params, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.9, weight_decay=weight_decay,
+                ))
+        elif diloco_inner_opt in ("normalized_s", "sgd", "nsgd"):
+            raise NotImplementedError(f"Inner optimizer '{diloco_inner_opt}' is not implemented yet")
+        else:
+            raise ValueError(f"Unknown DiLoCo inner optimizer: {diloco_inner_opt}")
 
         # With DiLoCo, the inner optimizer must stay local (no gradient sync / no state
         # sharding): DiLoCo synchronizes weights itself every H steps via the outer optimizer.
@@ -460,13 +503,18 @@ class GPT(nn.Module):
             group["initial_lr"] = group["lr"]
 
         if use_diloco:
-            print0(f"DiLoCo enabled: H={diloco_H}, outer_lr={diloco_outer_lr}, outer_momentum={diloco_outer_momentum}")
+            print0(f"DiLoCo enabled: H={diloco_H}, inner_opt={diloco_inner_opt}, outer_opt={diloco_outer_opt}, "
+                   f"outer_lr={diloco_outer_lr}, outer_momentum={diloco_outer_momentum}")
             optimizer = DiLoCoWrapper(
                 inner_optimizers=[optimizer],
                 model=self,
                 outer_lr=diloco_outer_lr,
                 outer_momentum=diloco_outer_momentum,
                 H=diloco_H,
+                outer_opt=diloco_outer_opt,
+                isoc_orthogonalize_object=diloco_isoc_object,
+                ties_disjoint=bool(diloco_ties_disjoint),
+                ties_sparsity=diloco_ties_sparsity,
                 pre_sync_callback=diloco_pre_sync_callback,
             )
         return optimizer

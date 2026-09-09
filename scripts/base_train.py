@@ -87,6 +87,21 @@ parser.add_argument("--diloco-H", type=int, default=100, help="number of inner o
 # parser.add_argument("--diloco-inner-lr", type=float, default=0.75, help="inner optimizer learning rate (SGD with momentum)")
 parser.add_argument("--diloco-outer-lr", type=float, default=0.75, help="outer optimizer learning rate (SGD with momentum)")
 parser.add_argument("--diloco-outer-momentum", type=float, default=0.9, help="outer optimizer momentum coefficient")
+# DiLoCo inner/outer optimizer selection (only effective when --use-diloco=1), following isoloco-main/train.py
+parser.add_argument("--diloco-inner-opt", type=str, default="mixed",
+                    choices=["adam", "muon", "mixed", "normalized_s", "sgd", "nsgd"],
+                    help="DiLoCo inner optimizer: adam (all AdamW) | muon (all Muon) | mixed (original AdamW+Muon setup) | "
+                         "normalized_s (not implemented yet) | sgd (not implemented yet) | nsgd (not implemented yet)")
+parser.add_argument("--diloco-outer-opt", type=str, default="nesterov",
+                    choices=["nesterov", "isoc", "ties"],
+                    help="DiLoCo outer optimizer: nesterov (SGD+Nesterov on averaged pseudo-grads) | "
+                         "isoc (ISOCMerge ISO-C merging) | ties (MergeLoCo TIES-style merging)")
+parser.add_argument("--diloco-isoc-object", type=str, default="gradient", choices=["gradient", "update"],
+                    help="for --diloco-outer-opt=isoc: apply ISO-C to 'gradient' (before momentum) or 'update' (after momentum)")
+parser.add_argument("--diloco-ties-disjoint", type=int, default=1,
+                    help="for --diloco-outer-opt=ties: 1 = TIES sign election + disjoint mean, 0 = plain averaging")
+parser.add_argument("--diloco-ties-sparsity", type=float, default=0.0,
+                    help="for --diloco-outer-opt=ties: proportion of pseudo-gradient entries to prune before merging (0.0 = none)")
 # parser.add_argument("--diloco-outer-wd", type=float, default=0.0, help="outer optimizer weight decay")
 # parser.add_argument("--diloco-inner-wd", type=float, default=0.0, help="inner optimizer weight decay")
 # parser.add_argument("--diloco-inner-nesterov", type=int, default=0, help="use Nesterov momentum for inner optimizer (0 = no, 1 = yes)")
@@ -421,6 +436,11 @@ optimizer = model.setup_optimizer(
     diloco_H=args.diloco_H,
     diloco_outer_lr=args.diloco_outer_lr,
     diloco_outer_momentum=args.diloco_outer_momentum,
+    diloco_inner_opt=args.diloco_inner_opt,
+    diloco_outer_opt=args.diloco_outer_opt,
+    diloco_isoc_object=args.diloco_isoc_object,
+    diloco_ties_disjoint=args.diloco_ties_disjoint,
+    diloco_ties_sparsity=args.diloco_ties_sparsity,
     diloco_pre_sync_callback=diloco_pre_sync_callback if args.use_diloco else None,
 )
 # fp16's GradScaler calls unscale_/step on a torch.optim.Optimizer; the DiLoCo wrapper isn't one.
