@@ -93,6 +93,8 @@ parser.add_argument("--diloco-outer-momentum", type=float, default=0.9, help="ou
 # parser.add_argument("--diloco-outer-nesterov", type=int, default=0, help="use Nesterov momentum for outer optimizer (0 = no, 1 = yes)") 
 # parser.add_argument("--diloco-outer-clip", type=float, default=1.0, help="gradient clipping for outer optimizer")
 
+# lambda_reg setting
+parser.add_argument("--lambda-reg", type=float, default=0.0, help="regularization coefficient for spectral norm regularization")
 args = parser.parse_args()
 user_config = vars(args).copy()  # for logging
 # -----------------------------------------------------------------------------
@@ -158,6 +160,49 @@ def build_model_meta(depth):
     with torch.device("meta"):
         model_meta = GPT(config)
     return model_meta
+
+def spectral_norm_power_iteration(weight, num_iters=1, eps=1e-6):
+    # W: [out_features, in_features]
+    weight_fp32 = weight.float()
+    out_features, in_features = weight_fp32.shape
+
+    v = torch.randn(
+        in_features,
+        device=weight.device,
+        dtype=torch.float32,
+    )
+    v = v / (v.norm() + eps)
+
+    for _ in range(num_iters):
+        u = weight_fp32 @ v
+        u = u / (u.norm() + eps)
+
+        v = weight_fp32.mT @ u
+        v = v / (v.norm() + eps)
+
+    # Approximate sigma_max(W) = u^T W v
+    return torch.sum(u * (weight_fp32 @ v))
+
+def compute_regularizer(model, power=2, num_iters=1):
+    regularizer = torch.zeros((), device=model.get_device(), dtype=torch.float32)
+
+    for layer in model.transformer.h:
+        for module in (
+            layer.attn.c_q,
+            layer.attn.c_k,
+            layer.attn.c_v,
+            layer.attn.c_proj,
+            layer.mlp.c_fc,
+            layer.mlp.c_proj,
+        ):
+            sigma = spectral_norm_power_iteration(
+                module.weight,
+                num_iters=num_iters,
+            )
+            regularizer = regularizer + (sigma ** power - 1.0) ** 2
+
+    return regularizer
+
 
 # Build the model, move to device, init the weights
 model = build_model_meta(args.depth) # 1) Build on meta device (only shapes/dtypes, no data)
@@ -338,62 +383,63 @@ def diloco_pre_sync_callback():
 
     print0(f"Analyzing DiLoCo node weight differences at step {current_step} (BEFORE outer sync)...")
 
-    # Analyze weight differences across nodes
-    num_layers = len(orig_model.transformer.h)
-    if num_layers <= 5:
-        layer_indices = list(range(num_layers))
-    else:
-        # 等间隔采样：首层、尾层、以及中间等距的3层
-        step_size = (num_layers - 1) / 4.0
-        layer_indices = [
-            0,  # 首层
-            int(round(step_size)),
-            int(round(2 * step_size)),
-            int(round(3 * step_size)),
-            num_layers - 1  # 尾层
-        ]
-        layer_indices = sorted(set(layer_indices))
+    #########################################################################################################################
+    # # Analyze weight differences across nodes
+    # num_layers = len(orig_model.transformer.h)
+    # if num_layers <= 5:
+    #     layer_indices = list(range(num_layers))
+    # else:
+    #     # 等间隔采样：首层、尾层、以及中间等距的3层
+    #     step_size = (num_layers - 1) / 4.0
+    #     layer_indices = [
+    #         0,  # 首层
+    #         int(round(step_size)),
+    #         int(round(2 * step_size)),
+    #         int(round(3 * step_size)),
+    #         num_layers - 1  # 尾层
+    #     ]
+    #     layer_indices = sorted(set(layer_indices))
 
-    print0(f"Analyzing layers: {layer_indices} (total {num_layers} layers)")
-    node_diffs = analyze_node_weight_differences(orig_model, layer_indices=layer_indices, device=device)
+    # print0(f"Analyzing layers: {layer_indices} (total {num_layers} layers)")
+    # node_diffs = analyze_node_weight_differences(orig_model, layer_indices=layer_indices, device=device)
 
-    # Only master process has the results
-    if master_process and node_diffs:
-        print0("=" * 100)
-        print0(f"DiLoCo Node Weight Differences at Step {current_step} (Before Outer Sync)")
-        print0("=" * 100)
-        for name, result in node_diffs.items():
-            print0(f"{name:40s}")
-            print0(f"  Max Singular Value  : mean={result['s_max_mean']:.4f} std={result['s_max_std']:.6f} "
-                   f"min={result['s_max_min']:.4f} max={result['s_max_max']:.4f}")
-            print0(f"  Condition Number    : mean={result['cond_mean']:.2f} std={result['cond_std']:.2f}")
-            print0(f"  Stable Rank         : mean={result['stable_rank_mean']:.2f} std={result['stable_rank_std']:.4f}")
-            print0(f"  Effective Rank      : mean={result['effective_rank_mean']:.2f} std={result['effective_rank_std']:.4f}")
-            print0(f"  Frobenius Norm      : mean={result['fro_norm_mean']:.4f} std={result['fro_norm_std']:.6f}")
-            print0(f"  Cosine Similarity   : mean={result['cosine_sim_mean']:.6f} std={result['cosine_sim_std']:.6f} "
-                   f"min={result['cosine_sim_min']:.6f}")
-            print0(f"  Weight Diff (vs rank0): mean={result['weight_diff_mean']:.6f} std={result['weight_diff_std']:.6f} "
-                   f"max={result['weight_diff_max']:.6f}")
-        print0("=" * 100)
+    # # Only master process has the results
+    # if master_process and node_diffs:
+    #     print0("=" * 100)
+    #     print0(f"DiLoCo Node Weight Differences at Step {current_step} (Before Outer Sync)")
+    #     print0("=" * 100)
+    #     for name, result in node_diffs.items():
+    #         print0(f"{name:40s}")
+    #         print0(f"  Max Singular Value  : mean={result['s_max_mean']:.4f} std={result['s_max_std']:.6f} "
+    #                f"min={result['s_max_min']:.4f} max={result['s_max_max']:.4f}")
+    #         print0(f"  Condition Number    : mean={result['cond_mean']:.2f} std={result['cond_std']:.2f}")
+    #         print0(f"  Stable Rank         : mean={result['stable_rank_mean']:.2f} std={result['stable_rank_std']:.4f}")
+    #         print0(f"  Effective Rank      : mean={result['effective_rank_mean']:.2f} std={result['effective_rank_std']:.4f}")
+    #         print0(f"  Frobenius Norm      : mean={result['fro_norm_mean']:.4f} std={result['fro_norm_std']:.6f}")
+    #         print0(f"  Cosine Similarity   : mean={result['cosine_sim_mean']:.6f} std={result['cosine_sim_std']:.6f} "
+    #                f"min={result['cosine_sim_min']:.6f}")
+    #         print0(f"  Weight Diff (vs rank0): mean={result['weight_diff_mean']:.6f} std={result['weight_diff_std']:.6f} "
+    #                f"max={result['weight_diff_max']:.6f}")
+    #     print0("=" * 100)
 
-        # Prepare wandb logging (stored in global variable)
-        diloco_diff_metrics = {}
-        for name, result in node_diffs.items():
-            diloco_diff_metrics[f"diloco_diff/{name}/s_max_mean"] = result['s_max_mean']
-            diloco_diff_metrics[f"diloco_diff/{name}/s_max_std"] = result['s_max_std']
-            diloco_diff_metrics[f"diloco_diff/{name}/cond_mean"] = result['cond_mean']
-            diloco_diff_metrics[f"diloco_diff/{name}/cond_std"] = result['cond_std']
-            diloco_diff_metrics[f"diloco_diff/{name}/stable_rank_mean"] = result['stable_rank_mean']
-            diloco_diff_metrics[f"diloco_diff/{name}/stable_rank_std"] = result['stable_rank_std']
-            diloco_diff_metrics[f"diloco_diff/{name}/effective_rank_mean"] = result['effective_rank_mean']
-            diloco_diff_metrics[f"diloco_diff/{name}/effective_rank_std"] = result['effective_rank_std']
-            diloco_diff_metrics[f"diloco_diff/{name}/fro_norm_mean"] = result['fro_norm_mean']
-            diloco_diff_metrics[f"diloco_diff/{name}/fro_norm_std"] = result['fro_norm_std']
-            diloco_diff_metrics[f"diloco_diff/{name}/cosine_sim_mean"] = result['cosine_sim_mean']
-            diloco_diff_metrics[f"diloco_diff/{name}/cosine_sim_std"] = result['cosine_sim_std']
-            diloco_diff_metrics[f"diloco_diff/{name}/weight_diff_mean"] = result['weight_diff_mean']
-            diloco_diff_metrics[f"diloco_diff/{name}/weight_diff_std"] = result['weight_diff_std']
-
+    #     # Prepare wandb logging (stored in global variable)
+    #     diloco_diff_metrics = {}
+    #     for name, result in node_diffs.items():
+    #         diloco_diff_metrics[f"diloco_diff/{name}/s_max_mean"] = result['s_max_mean']
+    #         diloco_diff_metrics[f"diloco_diff/{name}/s_max_std"] = result['s_max_std']
+    #         diloco_diff_metrics[f"diloco_diff/{name}/cond_mean"] = result['cond_mean']
+    #         diloco_diff_metrics[f"diloco_diff/{name}/cond_std"] = result['cond_std']
+    #         diloco_diff_metrics[f"diloco_diff/{name}/stable_rank_mean"] = result['stable_rank_mean']
+    #         diloco_diff_metrics[f"diloco_diff/{name}/stable_rank_std"] = result['stable_rank_std']
+    #         diloco_diff_metrics[f"diloco_diff/{name}/effective_rank_mean"] = result['effective_rank_mean']
+    #         diloco_diff_metrics[f"diloco_diff/{name}/effective_rank_std"] = result['effective_rank_std']
+    #         diloco_diff_metrics[f"diloco_diff/{name}/fro_norm_mean"] = result['fro_norm_mean']
+    #         diloco_diff_metrics[f"diloco_diff/{name}/fro_norm_std"] = result['fro_norm_std']
+    #         diloco_diff_metrics[f"diloco_diff/{name}/cosine_sim_mean"] = result['cosine_sim_mean']
+    #         diloco_diff_metrics[f"diloco_diff/{name}/cosine_sim_std"] = result['cosine_sim_std']
+    #         diloco_diff_metrics[f"diloco_diff/{name}/weight_diff_mean"] = result['weight_diff_mean']
+    #         diloco_diff_metrics[f"diloco_diff/{name}/weight_diff_std"] = result['weight_diff_std']
+    ###########################################################################################################################################
 # Initialize callback attributes
 diloco_pre_sync_callback.should_analyze = False
 diloco_pre_sync_callback.current_step = 0
@@ -528,11 +574,15 @@ print0(f"Tokens / micro-batch / rank: {args.device_batch_size} x {args.max_seq_l
 print0(f"Tokens / micro-batch: {world_tokens_per_fwdbwd:,}")
 print0(f"Total batch size {total_batch_size:,} => gradient accumulation steps: {grad_accum_steps}")
 
+lambda_reg = args.lambda_reg
+
 # Go!
 while True:
     last_step = step == num_iterations # loop runs num_iterations+1 times so that we can eval/save at the end
     flops_so_far = num_flops_per_token * total_batch_size * step
 
+    ##############################################################################################################################
+    
     # DiLoCo: ranks hold locally-drifted weights between outer steps. Sync before the final
     # eval/checkpoint so we measure and save the averaged model, not just rank 0's local copy.
     if last_step and args.use_diloco:
@@ -683,21 +733,46 @@ while True:
     # termination conditions (TODO: possibly also add loss explosions etc.)
     if last_step:
         break
-
+    
+    #############################################################################################################################
     # -------------------------------------------------------------------------
     # single training step
     # evaluate the gradient
     synchronize()
     t0 = time.time()
+    
     for micro_step in range(grad_accum_steps):
         loss = model(x, y)
         train_loss = loss.detach() # for logging
+        
         loss = loss / grad_accum_steps # each .backward() is a grad sum => normalize loss here
         if scaler is not None:
             scaler.scale(loss).backward()
         else:
             loss.backward()
+        #################################
         x, y, dataloader_state_dict = next(train_loader) # prefetch the next batch while the GPU is busy with forward/backward
+
+    # #################################################################################################
+    # #所有数据的 CE 梯度已经累计完成
+    regularizer = compute_regularizer(
+        orig_model,
+        power=2,
+        num_iters=1,
+    )
+
+    regularizer_loss = lambda_reg * regularizer
+
+    if scaler is not None:
+        scaler.scale(regularizer_loss).backward()
+    else:
+        regularizer_loss.backward()
+
+    print0(f"Step {step:05d} | CE Loss: {train_loss.item():.6f} | Regularizer Loss: {regularizer_loss.item():.6f} | Total Loss: {(train_loss + regularizer_loss).item():.6f}")
+    # print0(f"Step {step:05d} | CE Loss: {train_loss.item():.6f}")
+    # ###################################################################################################
+    # print0(f"step {step:05d}/{num_iterations:05d} ({pct_done:.2f}%) | loss: {debiased_smooth_loss:.6f} | lrm: {lrm:.2f} | dt: {dt * 1000:.2f}ms | tok/sec: {tok_per_sec:,} | bf16_mfu: {mfu:.2f} | epoch: {epoch} | total time: {total_training_time/60:.2f}m{eta_str}")
+    
     # step the optimizer
     lrm = get_lr_multiplier(step)
     muon_momentum = get_muon_momentum(step)

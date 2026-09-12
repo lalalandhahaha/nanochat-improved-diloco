@@ -9,6 +9,7 @@ import os
 import json
 import random
 import urllib.request
+from urllib.parse import quote
 
 import numpy as np
 import pyarrow as pa
@@ -16,6 +17,9 @@ import pyarrow.parquet as pq
 from filelock import FileLock
 
 from nanochat.common import get_base_dir
+
+HF_ENDPOINT = os.environ.get("HF_ENDPOINT", "https://hf-mirror.com").rstrip("/")
+HTTP_HEADERS = {"User-Agent": "nanochat-dataset-loader/1.0"}
 
 
 class HubDataset:
@@ -60,14 +64,32 @@ def load_hub_dataset(repo_id, subset="default", split="train"):
             # only a single rank acquires the lock and downloads, the others block
             # here and then skip the download because they recheck the manifest
             if not os.path.exists(manifest_path):
-                listing_url = f"https://huggingface.co/api/datasets/{repo_id}/parquet/{subset}/{split}"
-                with urllib.request.urlopen(listing_url) as response:
-                    shard_urls = json.loads(response.read())
+                listing_url = f"{HF_ENDPOINT}/api/datasets/{repo_id}/tree/main?recursive=true"
+                listing_request = urllib.request.Request(listing_url, headers=HTTP_HEADERS)
+                with urllib.request.urlopen(listing_request) as response:
+                    entries = json.loads(response.read())
+                parquet_paths = []
+                for entry in entries:
+                    if entry.get("type") != "file" or not entry["path"].endswith(".parquet"):
+                        continue
+                    path_parts = entry["path"].split("/")
+                    filename = path_parts[-1]
+                    has_split = split == filename.removesuffix(".parquet") or filename.startswith(f"{split}-")
+                    has_subset = subset == "default" or subset in path_parts
+                    if has_split and has_subset:
+                        parquet_paths.append(entry["path"])
+                if not parquet_paths:
+                    raise RuntimeError(f"No parquet files found for {repo_id} subset={subset!r} split={split!r}")
+                shard_urls = [
+                    f"{HF_ENDPOINT}/datasets/{repo_id}/resolve/main/{quote(path, safe='/')}"
+                    for path in sorted(parquet_paths)
+                ]
                 filenames = []
                 for shard_index, shard_url in enumerate(shard_urls):
                     filename = f"{shard_index:05d}.parquet"
                     print(f"Downloading {shard_url} ...")
-                    with urllib.request.urlopen(shard_url) as response:
+                    shard_request = urllib.request.Request(shard_url, headers=HTTP_HEADERS)
+                    with urllib.request.urlopen(shard_request) as response:
                         content = response.read()
                     with open(os.path.join(shards_dir, filename), "wb") as f:
                         f.write(content)
