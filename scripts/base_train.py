@@ -757,20 +757,21 @@ while True:
 
     # #################################################################################################
     # #所有数据的 CE 梯度已经累计完成
-    regularizer = compute_regularizer(
-        orig_model,
-        power=2,
-        num_iters=10,
-    )
+    if lambda_reg > 0:
+        regularizer = compute_regularizer(
+            orig_model,
+            power=2,
+            num_iters=10,
+        )
 
-    regularizer_loss = lambda_reg * regularizer
+        regularizer_loss = lambda_reg * regularizer
 
-    if scaler is not None:
-        scaler.scale(regularizer_loss).backward()
-    else:
-        regularizer_loss.backward()
+        if scaler is not None:
+            scaler.scale(regularizer_loss).backward()
+        else:
+            regularizer_loss.backward()
 
-    print0(f"Step {step:05d} | CE Loss: {train_loss.item():.6f} | Regularizer Loss: {regularizer_loss.item():.6f} | Total Loss: {(train_loss + regularizer_loss).item():.6f}")
+        print0(f"Step {step:05d} | CE Loss: {train_loss.item():.6f} | Regularizer Loss: {regularizer_loss.item():.6f} | Total Loss: {(train_loss + regularizer_loss).item():.6f}")
     # print0(f"Step {step:05d} | CE Loss: {train_loss.item():.6f}")
     # ###################################################################################################
     # print0(f"step {step:05d}/{num_iterations:05d} ({pct_done:.2f}%) | loss: {debiased_smooth_loss:.6f} | lrm: {lrm:.2f} | dt: {dt * 1000:.2f}ms | tok/sec: {tok_per_sec:,} | bf16_mfu: {mfu:.2f} | epoch: {epoch} | total time: {total_training_time/60:.2f}m{eta_str}")

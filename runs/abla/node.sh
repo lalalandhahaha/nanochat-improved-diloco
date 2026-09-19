@@ -25,7 +25,7 @@
 
 
 # ##node =2
-# CUDA_VISIBLE_DEVICES=0,2 torchrun --standalone --nproc_per_node=2 -m scripts.base_train -- \
+# CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.base_train -- \
 #     --depth=24 \
 #     --max-seq-len=2048 \
 #     --device-batch-size=4 \
@@ -35,11 +35,11 @@
 #     --use-diloco=0 \
 #     --model-tag=d24-ddp-2gpu-0919-h100 \
 #     --run=d24_ddp_2gpu_h100
-# CUDA_VISIBLE_DEVICES=0,2 torchrun --standalone --nproc_per_node=2 -m scripts.chat_sft \
+# CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.chat_sft \
 #     -- --run=d24_ddp_2gpu_sft_h100   \
 #     --model-tag=d24-ddp-2gpu-0919-h100 \
 #     --load-optimizer=0
-# CUDA_VISIBLE_DEVICES=0,2 torchrun --standalone --nproc_per_node=2 -m scripts.chat_rl \
+# CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.chat_rl \
 #     -- --run=d24_ddp_2gpu_rl   \
 #     --model-tag=d24-ddp-2gpu-0919-h100 
 
@@ -88,7 +88,7 @@
 
 ############################################################ diloco ##############################################
 ##node =1 6000pro 0919
-CUDA_VISIBLE_DEVICES=0 torchrun --standalone --nproc_per_node=1 -m scripts.base_train -- \
+CUDA_VISIBLE_DEVICES=3 torchrun --standalone --nproc_per_node=1 -m scripts.base_train -- \
     --depth=24 \
     --max-seq-len=2048 \
     --device-batch-size=16 \
@@ -99,22 +99,22 @@ CUDA_VISIBLE_DEVICES=0 torchrun --standalone --nproc_per_node=1 -m scripts.base_
     --diloco-H=100 \
     --model-tag=d24-diloco-1gpu-0919-h100 \
     --run=d24_diloco_1gpu_h100 
-CUDA_VISIBLE_DEVICES=0 torchrun --standalone --nproc_per_node=1 -m scripts.chat_sft \
+CUDA_VISIBLE_DEVICES=3 torchrun --standalone --nproc_per_node=1 -m scripts.chat_sft \
     -- --run=d24_diloco_1gpu_sft_h100   \
     --model-tag=d24-diloco-1gpu-0919-h100 \
     --device-batch-size=16 \
     --load-optimizer=0
-CUDA_VISIBLE_DEVICES=0 torchrun --standalone --nproc_per_node=1 -m scripts.chat_rl \
+CUDA_VISIBLE_DEVICES=3 torchrun --standalone --nproc_per_node=1 -m scripts.chat_rl \
     -- --run=d24_diloco_1gpu_rl   \
     --device-batch-size=16 \
     --model-tag=d24-diloco-1gpu-0919-h100
 
 
 ##node =2 6000pro 0919
-CUDA_VISIBLE_DEVICES=0,2 torchrun --standalone --nproc_per_node=2 -m scripts.base_train -- \
+CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.base_train -- \
     --depth=24 \
     --max-seq-len=2048 \
-    --device-batch-size=4 \
+    --device-batch-size=16 \
     --total-batch-size=524288 \
     --num-iterations=21400 \
     --target-param-data-ratio=-1 \
@@ -122,19 +122,19 @@ CUDA_VISIBLE_DEVICES=0,2 torchrun --standalone --nproc_per_node=2 -m scripts.bas
     --diloco-H=100 \
     --model-tag=d24-diloco-2gpu-0919-h100 \
     --run=d24_diloco_2gpu_h100
-CUDA_VISIBLE_DEVICES=0,2 torchrun --standalone --nproc_per_node=2 -m scripts.chat_sft \
+CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.chat_sft \
     -- --run=d24_diloco_2gpu_sft_h100   \
     --model-tag=d24-diloco-2gpu-0919-h100 \
     --device-batch-size=16 \
     --load-optimizer=0
-CUDA_VISIBLE_DEVICES=0,2 torchrun --standalone --nproc_per_node=2 -m scripts.chat_rl \
+CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.chat_rl \
     -- --run=d24_diloco_2gpu_rl   \
     --device-batch-size=16 \
     --model-tag=d24-diloco-2gpu-0919-h100 
 
 
 ##node =4
-CUDA_VISIBLE_DEVICES=0,2,3,1 torchrun --standalone --nproc_per_node=4  -m scripts.base_train -- \
+CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4  -m scripts.base_train -- \
     --depth=24 \
     --max-seq-len=2048 \
     --device-batch-size=4 \
