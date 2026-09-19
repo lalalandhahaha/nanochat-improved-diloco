@@ -1,0 +1,1 @@
+{"step": 0, "total_training_flops": 0, "total_training_time": 0, "train/loss": 10.397325515747072, "train/lrm": 0.025, "train/dt": 75.71322512626648, "train/tok_per_sec": 6924, "train/mfu": 10.00810904223349, "train/epoch": "1 pq: 0 rg: 3"}

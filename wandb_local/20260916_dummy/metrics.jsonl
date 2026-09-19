@@ -1,0 +1,2826 @@
+{"step": 0, "pass@1": 0.0, "pass@2": 0.0024999999441206455, "pass@3": 0.007499999832361937, "pass@4": 0.009999999776482582, "pass@5": 0.009999999776482582, "pass@6": 0.014999999664723873, "pass@7": 0.017500000074505806, "pass@8": 0.022499999031424522}
+{"step": 0, "pass@1": 0.0, "pass@2": 0.0024999999441206455, "pass@3": 0.007499999832361937, "pass@4": 0.009999999776482582, "pass@5": 0.009999999776482582, "pass@6": 0.014999999664723873, "pass@7": 0.017500000074505806, "pass@8": 0.022499999031424522}
+{"step": 0, "pass@1": 0.0, "pass@2": 0.0024999999441206455, "pass@3": 0.007499999832361937, "pass@4": 0.009999999776482582, "pass@5": 0.009999999776482582, "pass@6": 0.014999999664723873, "pass@7": 0.017500000074505806, "pass@8": 0.022499999031424522}
+{"step": 0, "reward": 0.0, "sequence_length": 265.8125}
+{"step": 0, "reward": 0.0, "sequence_length": 265.8125}
+{"step": 0, "reward": 0.0, "sequence_length": 265.8125}
+{"step": 0, "lrm": 1.0}
+{"step": 0, "lrm": 1.0}
+{"step": 0, "lrm": 1.0}
+{"step": 1, "reward": 0.0078125, "sequence_length": 262.1796875}
+{"step": 1, "reward": 0.0078125, "sequence_length": 262.1796875}
+{"step": 1, "reward": 0.0078125, "sequence_length": 262.1796875}
+{"step": 1, "lrm": 0.9978586723768736}
+{"step": 1, "lrm": 0.9978586723768736}
+{"step": 1, "lrm": 0.9978586723768736}
+{"step": 2, "reward": 0.015625, "sequence_length": 246.0}
+{"step": 2, "reward": 0.015625, "sequence_length": 246.0}
+{"step": 2, "reward": 0.015625, "sequence_length": 246.0}
+{"step": 2, "lrm": 0.9957173447537473}
+{"step": 2, "lrm": 0.9957173447537473}
+{"step": 2, "lrm": 0.9957173447537473}
+{"step": 3, "reward": 0.00390625, "sequence_length": 246.40234375}
+{"step": 3, "reward": 0.00390625, "sequence_length": 246.40234375}
+{"step": 3, "reward": 0.00390625, "sequence_length": 246.40234375}
+{"step": 3, "lrm": 0.9935760171306209}
+{"step": 3, "lrm": 0.9935760171306209}
+{"step": 3, "lrm": 0.9935760171306209}
+{"step": 4, "reward": 0.01953125, "sequence_length": 237.1328125}
+{"step": 4, "reward": 0.01953125, "sequence_length": 237.1328125}
+{"step": 4, "reward": 0.01953125, "sequence_length": 237.1328125}
+{"step": 4, "lrm": 0.9914346895074947}
+{"step": 4, "lrm": 0.9914346895074947}
+{"step": 4, "lrm": 0.9914346895074947}
+{"step": 5, "reward": 0.0, "sequence_length": 244.18359375}
+{"step": 5, "reward": 0.0, "sequence_length": 244.18359375}
+{"step": 5, "reward": 0.0, "sequence_length": 244.18359375}
+{"step": 5, "lrm": 0.9892933618843683}
+{"step": 5, "lrm": 0.9892933618843683}
+{"step": 5, "lrm": 0.9892933618843683}
+{"step": 6, "reward": 0.0078125, "sequence_length": 234.75}
+{"step": 6, "reward": 0.0078125, "sequence_length": 234.75}
+{"step": 6, "reward": 0.0078125, "sequence_length": 234.75}
+{"step": 6, "lrm": 0.987152034261242}
+{"step": 6, "lrm": 0.987152034261242}
+{"step": 6, "lrm": 0.987152034261242}
+{"step": 7, "reward": 0.00390625, "sequence_length": 243.4921875}
+{"step": 7, "reward": 0.00390625, "sequence_length": 243.4921875}
+{"step": 7, "reward": 0.00390625, "sequence_length": 243.4921875}
+{"step": 7, "lrm": 0.9850107066381156}
+{"step": 7, "lrm": 0.9850107066381156}
+{"step": 7, "lrm": 0.9850107066381156}
+{"step": 8, "reward": 0.015625, "sequence_length": 245.34765625}
+{"step": 8, "reward": 0.015625, "sequence_length": 245.34765625}
+{"step": 8, "reward": 0.015625, "sequence_length": 245.34765625}
+{"step": 8, "lrm": 0.9828693790149893}
+{"step": 8, "lrm": 0.9828693790149893}
+{"step": 8, "lrm": 0.9828693790149893}
+{"step": 9, "reward": 0.015625, "sequence_length": 235.39453125}
+{"step": 9, "reward": 0.015625, "sequence_length": 235.39453125}
+{"step": 9, "reward": 0.015625, "sequence_length": 235.39453125}
+{"step": 9, "lrm": 0.9807280513918629}
+{"step": 9, "lrm": 0.9807280513918629}
+{"step": 9, "lrm": 0.9807280513918629}
+{"step": 10, "reward": 0.04296875, "sequence_length": 222.359375}
+{"step": 10, "reward": 0.04296875, "sequence_length": 222.359375}
+{"step": 10, "reward": 0.04296875, "sequence_length": 222.359375}
+{"step": 10, "lrm": 0.9785867237687366}
+{"step": 10, "lrm": 0.9785867237687366}
+{"step": 10, "lrm": 0.9785867237687366}
+{"step": 11, "reward": 0.0078125, "sequence_length": 240.12890625}
+{"step": 11, "reward": 0.0078125, "sequence_length": 240.12890625}
+{"step": 11, "reward": 0.0078125, "sequence_length": 240.12890625}
+{"step": 11, "lrm": 0.9764453961456103}
+{"step": 11, "lrm": 0.9764453961456103}
+{"step": 11, "lrm": 0.9764453961456103}
+{"step": 12, "reward": 0.0390625, "sequence_length": 227.921875}
+{"step": 12, "reward": 0.0390625, "sequence_length": 227.921875}
+{"step": 12, "reward": 0.0390625, "sequence_length": 227.921875}
+{"step": 12, "lrm": 0.974304068522484}
+{"step": 12, "lrm": 0.974304068522484}
+{"step": 12, "lrm": 0.974304068522484}
+{"step": 13, "reward": 0.0234375, "sequence_length": 235.44921875}
+{"step": 13, "reward": 0.0234375, "sequence_length": 235.44921875}
+{"step": 13, "reward": 0.0234375, "sequence_length": 235.44921875}
+{"step": 13, "lrm": 0.9721627408993576}
+{"step": 13, "lrm": 0.9721627408993576}
+{"step": 13, "lrm": 0.9721627408993576}
+{"step": 14, "reward": 0.0234375, "sequence_length": 217.515625}
+{"step": 14, "reward": 0.0234375, "sequence_length": 217.515625}
+{"step": 14, "reward": 0.0234375, "sequence_length": 217.515625}
+{"step": 14, "lrm": 0.9700214132762313}
+{"step": 14, "lrm": 0.9700214132762313}
+{"step": 14, "lrm": 0.9700214132762313}
+{"step": 15, "reward": 0.0390625, "sequence_length": 208.1953125}
+{"step": 15, "reward": 0.0390625, "sequence_length": 208.1953125}
+{"step": 15, "reward": 0.0390625, "sequence_length": 208.1953125}
+{"step": 15, "lrm": 0.9678800856531049}
+{"step": 15, "lrm": 0.9678800856531049}
+{"step": 15, "lrm": 0.9678800856531049}
+{"step": 16, "reward": 0.03125, "sequence_length": 216.05859375}
+{"step": 16, "reward": 0.03125, "sequence_length": 216.05859375}
+{"step": 16, "reward": 0.03125, "sequence_length": 216.05859375}
+{"step": 16, "lrm": 0.9657387580299786}
+{"step": 16, "lrm": 0.9657387580299786}
+{"step": 16, "lrm": 0.9657387580299786}
+{"step": 17, "reward": 0.0234375, "sequence_length": 216.26953125}
+{"step": 17, "reward": 0.0234375, "sequence_length": 216.26953125}
+{"step": 17, "reward": 0.0234375, "sequence_length": 216.26953125}
+{"step": 17, "lrm": 0.9635974304068522}
+{"step": 17, "lrm": 0.9635974304068522}
+{"step": 17, "lrm": 0.9635974304068522}
+{"step": 18, "reward": 0.01171875, "sequence_length": 198.92578125}
+{"step": 18, "reward": 0.01171875, "sequence_length": 198.92578125}
+{"step": 18, "reward": 0.01171875, "sequence_length": 198.92578125}
+{"step": 18, "lrm": 0.961456102783726}
+{"step": 18, "lrm": 0.961456102783726}
+{"step": 18, "lrm": 0.961456102783726}
+{"step": 19, "reward": 0.03125, "sequence_length": 183.90234375}
+{"step": 19, "reward": 0.03125, "sequence_length": 183.90234375}
+{"step": 19, "reward": 0.03125, "sequence_length": 183.90234375}
+{"step": 19, "lrm": 0.9593147751605996}
+{"step": 19, "lrm": 0.9593147751605996}
+{"step": 19, "lrm": 0.9593147751605996}
+{"step": 20, "reward": 0.02734375, "sequence_length": 219.5703125}
+{"step": 20, "reward": 0.02734375, "sequence_length": 219.5703125}
+{"step": 20, "reward": 0.02734375, "sequence_length": 219.5703125}
+{"step": 20, "lrm": 0.9571734475374732}
+{"step": 20, "lrm": 0.9571734475374732}
+{"step": 20, "lrm": 0.9571734475374732}
+{"step": 21, "reward": 0.046875, "sequence_length": 222.21484375}
+{"step": 21, "reward": 0.046875, "sequence_length": 222.21484375}
+{"step": 21, "reward": 0.046875, "sequence_length": 222.21484375}
+{"step": 21, "lrm": 0.9550321199143469}
+{"step": 21, "lrm": 0.9550321199143469}
+{"step": 21, "lrm": 0.9550321199143469}
+{"step": 22, "reward": 0.02734375, "sequence_length": 186.828125}
+{"step": 22, "reward": 0.02734375, "sequence_length": 186.828125}
+{"step": 22, "reward": 0.02734375, "sequence_length": 186.828125}
+{"step": 22, "lrm": 0.9528907922912205}
+{"step": 22, "lrm": 0.9528907922912205}
+{"step": 22, "lrm": 0.9528907922912205}
+{"step": 23, "reward": 0.015625, "sequence_length": 183.36328125}
+{"step": 23, "reward": 0.015625, "sequence_length": 183.36328125}
+{"step": 23, "reward": 0.015625, "sequence_length": 183.36328125}
+{"step": 23, "lrm": 0.9507494646680942}
+{"step": 23, "lrm": 0.9507494646680942}
+{"step": 23, "lrm": 0.9507494646680942}
+{"step": 24, "reward": 0.03125, "sequence_length": 191.80859375}
+{"step": 24, "reward": 0.03125, "sequence_length": 191.80859375}
+{"step": 24, "reward": 0.03125, "sequence_length": 191.80859375}
+{"step": 24, "lrm": 0.9486081370449679}
+{"step": 24, "lrm": 0.9486081370449679}
+{"step": 24, "lrm": 0.9486081370449679}
+{"step": 25, "reward": 0.03515625, "sequence_length": 182.94140625}
+{"step": 25, "reward": 0.03515625, "sequence_length": 182.94140625}
+{"step": 25, "reward": 0.03515625, "sequence_length": 182.94140625}
+{"step": 25, "lrm": 0.9464668094218416}
+{"step": 25, "lrm": 0.9464668094218416}
+{"step": 25, "lrm": 0.9464668094218416}
+{"step": 26, "reward": 0.015625, "sequence_length": 168.0859375}
+{"step": 26, "reward": 0.015625, "sequence_length": 168.0859375}
+{"step": 26, "reward": 0.015625, "sequence_length": 168.0859375}
+{"step": 26, "lrm": 0.9443254817987152}
+{"step": 26, "lrm": 0.9443254817987152}
+{"step": 26, "lrm": 0.9443254817987152}
+{"step": 27, "reward": 0.02734375, "sequence_length": 176.609375}
+{"step": 27, "reward": 0.02734375, "sequence_length": 176.609375}
+{"step": 27, "reward": 0.02734375, "sequence_length": 176.609375}
+{"step": 27, "lrm": 0.9421841541755889}
+{"step": 27, "lrm": 0.9421841541755889}
+{"step": 27, "lrm": 0.9421841541755889}
+{"step": 28, "reward": 0.046875, "sequence_length": 183.640625}
+{"step": 28, "reward": 0.046875, "sequence_length": 183.640625}
+{"step": 28, "reward": 0.046875, "sequence_length": 183.640625}
+{"step": 28, "lrm": 0.9400428265524625}
+{"step": 28, "lrm": 0.9400428265524625}
+{"step": 28, "lrm": 0.9400428265524625}
+{"step": 29, "reward": 0.03515625, "sequence_length": 170.5}
+{"step": 29, "reward": 0.03515625, "sequence_length": 170.5}
+{"step": 29, "reward": 0.03515625, "sequence_length": 170.5}
+{"step": 29, "lrm": 0.9379014989293362}
+{"step": 29, "lrm": 0.9379014989293362}
+{"step": 29, "lrm": 0.9379014989293362}
+{"step": 30, "reward": 0.0234375, "sequence_length": 173.15234375}
+{"step": 30, "reward": 0.0234375, "sequence_length": 173.15234375}
+{"step": 30, "reward": 0.0234375, "sequence_length": 173.15234375}
+{"step": 30, "lrm": 0.9357601713062098}
+{"step": 30, "lrm": 0.9357601713062098}
+{"step": 30, "lrm": 0.9357601713062098}
+{"step": 31, "reward": 0.03125, "sequence_length": 158.54296875}
+{"step": 31, "reward": 0.03125, "sequence_length": 158.54296875}
+{"step": 31, "reward": 0.03125, "sequence_length": 158.54296875}
+{"step": 31, "lrm": 0.9336188436830835}
+{"step": 31, "lrm": 0.9336188436830835}
+{"step": 31, "lrm": 0.9336188436830835}
+{"step": 32, "reward": 0.015625, "sequence_length": 172.53515625}
+{"step": 32, "reward": 0.015625, "sequence_length": 172.53515625}
+{"step": 32, "reward": 0.015625, "sequence_length": 172.53515625}
+{"step": 32, "lrm": 0.9314775160599572}
+{"step": 32, "lrm": 0.9314775160599572}
+{"step": 32, "lrm": 0.9314775160599572}
+{"step": 33, "reward": 0.046875, "sequence_length": 159.0625}
+{"step": 33, "reward": 0.046875, "sequence_length": 159.0625}
+{"step": 33, "reward": 0.046875, "sequence_length": 159.0625}
+{"step": 33, "lrm": 0.9293361884368309}
+{"step": 33, "lrm": 0.9293361884368309}
+{"step": 33, "lrm": 0.9293361884368309}
+{"step": 34, "reward": 0.0234375, "sequence_length": 164.87109375}
+{"step": 34, "reward": 0.0234375, "sequence_length": 164.87109375}
+{"step": 34, "reward": 0.0234375, "sequence_length": 164.87109375}
+{"step": 34, "lrm": 0.9271948608137045}
+{"step": 34, "lrm": 0.9271948608137045}
+{"step": 34, "lrm": 0.9271948608137045}
+{"step": 35, "reward": 0.01171875, "sequence_length": 158.95703125}
+{"step": 35, "reward": 0.01171875, "sequence_length": 158.95703125}
+{"step": 35, "reward": 0.01171875, "sequence_length": 158.95703125}
+{"step": 35, "lrm": 0.9250535331905781}
+{"step": 35, "lrm": 0.9250535331905781}
+{"step": 35, "lrm": 0.9250535331905781}
+{"step": 36, "reward": 0.0390625, "sequence_length": 159.22265625}
+{"step": 36, "reward": 0.0390625, "sequence_length": 159.22265625}
+{"step": 36, "reward": 0.0390625, "sequence_length": 159.22265625}
+{"step": 36, "lrm": 0.9229122055674518}
+{"step": 36, "lrm": 0.9229122055674518}
+{"step": 36, "lrm": 0.9229122055674518}
+{"step": 37, "reward": 0.03125, "sequence_length": 157.60546875}
+{"step": 37, "reward": 0.03125, "sequence_length": 157.60546875}
+{"step": 37, "reward": 0.03125, "sequence_length": 157.60546875}
+{"step": 37, "lrm": 0.9207708779443254}
+{"step": 37, "lrm": 0.9207708779443254}
+{"step": 37, "lrm": 0.9207708779443254}
+{"step": 38, "reward": 0.01953125, "sequence_length": 156.7265625}
+{"step": 38, "reward": 0.01953125, "sequence_length": 156.7265625}
+{"step": 38, "reward": 0.01953125, "sequence_length": 156.7265625}
+{"step": 38, "lrm": 0.9186295503211992}
+{"step": 38, "lrm": 0.9186295503211992}
+{"step": 38, "lrm": 0.9186295503211992}
+{"step": 39, "reward": 0.04296875, "sequence_length": 158.79296875}
+{"step": 39, "reward": 0.04296875, "sequence_length": 158.79296875}
+{"step": 39, "reward": 0.04296875, "sequence_length": 158.79296875}
+{"step": 39, "lrm": 0.9164882226980728}
+{"step": 39, "lrm": 0.9164882226980728}
+{"step": 39, "lrm": 0.9164882226980728}
+{"step": 40, "reward": 0.0546875, "sequence_length": 153.8046875}
+{"step": 40, "reward": 0.0546875, "sequence_length": 153.8046875}
+{"step": 40, "reward": 0.0546875, "sequence_length": 153.8046875}
+{"step": 40, "lrm": 0.9143468950749465}
+{"step": 40, "lrm": 0.9143468950749465}
+{"step": 40, "lrm": 0.9143468950749465}
+{"step": 41, "reward": 0.0546875, "sequence_length": 154.67578125}
+{"step": 41, "reward": 0.0546875, "sequence_length": 154.67578125}
+{"step": 41, "reward": 0.0546875, "sequence_length": 154.67578125}
+{"step": 41, "lrm": 0.9122055674518201}
+{"step": 41, "lrm": 0.9122055674518201}
+{"step": 41, "lrm": 0.9122055674518201}
+{"step": 42, "reward": 0.06640625, "sequence_length": 152.09375}
+{"step": 42, "reward": 0.06640625, "sequence_length": 152.09375}
+{"step": 42, "reward": 0.06640625, "sequence_length": 152.09375}
+{"step": 42, "lrm": 0.9100642398286938}
+{"step": 42, "lrm": 0.9100642398286938}
+{"step": 42, "lrm": 0.9100642398286938}
+{"step": 43, "reward": 0.08203125, "sequence_length": 158.15234375}
+{"step": 43, "reward": 0.08203125, "sequence_length": 158.15234375}
+{"step": 43, "reward": 0.08203125, "sequence_length": 158.15234375}
+{"step": 43, "lrm": 0.9079229122055674}
+{"step": 43, "lrm": 0.9079229122055674}
+{"step": 43, "lrm": 0.9079229122055674}
+{"step": 44, "reward": 0.03125, "sequence_length": 165.953125}
+{"step": 44, "reward": 0.03125, "sequence_length": 165.953125}
+{"step": 44, "reward": 0.03125, "sequence_length": 165.953125}
+{"step": 44, "lrm": 0.9057815845824411}
+{"step": 44, "lrm": 0.9057815845824411}
+{"step": 44, "lrm": 0.9057815845824411}
+{"step": 45, "reward": 0.03515625, "sequence_length": 165.859375}
+{"step": 45, "reward": 0.03515625, "sequence_length": 165.859375}
+{"step": 45, "reward": 0.03515625, "sequence_length": 165.859375}
+{"step": 45, "lrm": 0.9036402569593147}
+{"step": 45, "lrm": 0.9036402569593147}
+{"step": 45, "lrm": 0.9036402569593147}
+{"step": 46, "reward": 0.04296875, "sequence_length": 171.93359375}
+{"step": 46, "reward": 0.04296875, "sequence_length": 171.93359375}
+{"step": 46, "reward": 0.04296875, "sequence_length": 171.93359375}
+{"step": 46, "lrm": 0.9014989293361885}
+{"step": 46, "lrm": 0.9014989293361885}
+{"step": 46, "lrm": 0.9014989293361885}
+{"step": 47, "reward": 0.05078125, "sequence_length": 158.31640625}
+{"step": 47, "reward": 0.05078125, "sequence_length": 158.31640625}
+{"step": 47, "reward": 0.05078125, "sequence_length": 158.31640625}
+{"step": 47, "lrm": 0.8993576017130621}
+{"step": 47, "lrm": 0.8993576017130621}
+{"step": 47, "lrm": 0.8993576017130621}
+{"step": 48, "reward": 0.02734375, "sequence_length": 160.4140625}
+{"step": 48, "reward": 0.02734375, "sequence_length": 160.4140625}
+{"step": 48, "reward": 0.02734375, "sequence_length": 160.4140625}
+{"step": 48, "lrm": 0.8972162740899358}
+{"step": 48, "lrm": 0.8972162740899358}
+{"step": 48, "lrm": 0.8972162740899358}
+{"step": 49, "reward": 0.05859375, "sequence_length": 140.9609375}
+{"step": 49, "reward": 0.05859375, "sequence_length": 140.9609375}
+{"step": 49, "reward": 0.05859375, "sequence_length": 140.9609375}
+{"step": 49, "lrm": 0.8950749464668094}
+{"step": 49, "lrm": 0.8950749464668094}
+{"step": 49, "lrm": 0.8950749464668094}
+{"step": 50, "reward": 0.05078125, "sequence_length": 152.38671875}
+{"step": 50, "reward": 0.05078125, "sequence_length": 152.38671875}
+{"step": 50, "reward": 0.05078125, "sequence_length": 152.38671875}
+{"step": 50, "lrm": 0.892933618843683}
+{"step": 50, "lrm": 0.892933618843683}
+{"step": 50, "lrm": 0.892933618843683}
+{"step": 51, "reward": 0.046875, "sequence_length": 156.24609375}
+{"step": 51, "reward": 0.046875, "sequence_length": 156.24609375}
+{"step": 51, "reward": 0.046875, "sequence_length": 156.24609375}
+{"step": 51, "lrm": 0.8907922912205567}
+{"step": 51, "lrm": 0.8907922912205567}
+{"step": 51, "lrm": 0.8907922912205567}
+{"step": 52, "reward": 0.1171875, "sequence_length": 135.03515625}
+{"step": 52, "reward": 0.1171875, "sequence_length": 135.03515625}
+{"step": 52, "reward": 0.1171875, "sequence_length": 135.03515625}
+{"step": 52, "lrm": 0.8886509635974305}
+{"step": 52, "lrm": 0.8886509635974305}
+{"step": 52, "lrm": 0.8886509635974305}
+{"step": 53, "reward": 0.078125, "sequence_length": 147.4609375}
+{"step": 53, "reward": 0.078125, "sequence_length": 147.4609375}
+{"step": 53, "reward": 0.078125, "sequence_length": 147.4609375}
+{"step": 53, "lrm": 0.8865096359743041}
+{"step": 53, "lrm": 0.8865096359743041}
+{"step": 53, "lrm": 0.8865096359743041}
+{"step": 54, "reward": 0.0625, "sequence_length": 151.9609375}
+{"step": 54, "reward": 0.0625, "sequence_length": 151.9609375}
+{"step": 54, "reward": 0.0625, "sequence_length": 151.9609375}
+{"step": 54, "lrm": 0.8843683083511777}
+{"step": 54, "lrm": 0.8843683083511777}
+{"step": 54, "lrm": 0.8843683083511777}
+{"step": 55, "reward": 0.0625, "sequence_length": 135.64453125}
+{"step": 55, "reward": 0.0625, "sequence_length": 135.64453125}
+{"step": 55, "reward": 0.0625, "sequence_length": 135.64453125}
+{"step": 55, "lrm": 0.8822269807280514}
+{"step": 55, "lrm": 0.8822269807280514}
+{"step": 55, "lrm": 0.8822269807280514}
+{"step": 56, "reward": 0.01953125, "sequence_length": 157.3046875}
+{"step": 56, "reward": 0.01953125, "sequence_length": 157.3046875}
+{"step": 56, "reward": 0.01953125, "sequence_length": 157.3046875}
+{"step": 56, "lrm": 0.880085653104925}
+{"step": 56, "lrm": 0.880085653104925}
+{"step": 56, "lrm": 0.880085653104925}
+{"step": 57, "reward": 0.0390625, "sequence_length": 147.8203125}
+{"step": 57, "reward": 0.0390625, "sequence_length": 147.8203125}
+{"step": 57, "reward": 0.0390625, "sequence_length": 147.8203125}
+{"step": 57, "lrm": 0.8779443254817987}
+{"step": 57, "lrm": 0.8779443254817987}
+{"step": 57, "lrm": 0.8779443254817987}
+{"step": 58, "reward": 0.0625, "sequence_length": 158.1484375}
+{"step": 58, "reward": 0.0625, "sequence_length": 158.1484375}
+{"step": 58, "reward": 0.0625, "sequence_length": 158.1484375}
+{"step": 58, "lrm": 0.8758029978586723}
+{"step": 58, "lrm": 0.8758029978586723}
+{"step": 58, "lrm": 0.8758029978586723}
+{"step": 59, "reward": 0.0234375, "sequence_length": 153.91015625}
+{"step": 59, "reward": 0.0234375, "sequence_length": 153.91015625}
+{"step": 59, "reward": 0.0234375, "sequence_length": 153.91015625}
+{"step": 59, "lrm": 0.873661670235546}
+{"step": 59, "lrm": 0.873661670235546}
+{"step": 59, "lrm": 0.873661670235546}
+{"step": 60, "pass@1": 0.019999999552965164, "pass@2": 0.03749999776482582, "pass@3": 0.07249999791383743, "pass@4": 0.09999999403953552, "pass@5": 0.11999999731779099, "pass@6": 0.12999999523162842, "pass@7": 0.14999999105930328, "pass@8": 0.16249999403953552}
+{"step": 60, "pass@1": 0.019999999552965164, "pass@2": 0.03749999776482582, "pass@3": 0.07249999791383743, "pass@4": 0.09999999403953552, "pass@5": 0.11999999731779099, "pass@6": 0.12999999523162842, "pass@7": 0.14999999105930328, "pass@8": 0.16249999403953552}
+{"step": 60, "pass@1": 0.019999999552965164, "pass@2": 0.03749999776482582, "pass@3": 0.07249999791383743, "pass@4": 0.09999999403953552, "pass@5": 0.11999999731779099, "pass@6": 0.12999999523162842, "pass@7": 0.14999999105930328, "pass@8": 0.16249999403953552}
+{"step": 60, "reward": 0.01953125, "sequence_length": 162.6171875}
+{"step": 60, "reward": 0.01953125, "sequence_length": 162.6171875}
+{"step": 60, "reward": 0.01953125, "sequence_length": 162.6171875}
+{"step": 60, "lrm": 0.8715203426124197}
+{"step": 60, "lrm": 0.8715203426124197}
+{"step": 60, "lrm": 0.8715203426124197}
+{"step": 61, "reward": 0.05078125, "sequence_length": 135.03125}
+{"step": 61, "reward": 0.05078125, "sequence_length": 135.03125}
+{"step": 61, "reward": 0.05078125, "sequence_length": 135.03125}
+{"step": 61, "lrm": 0.8693790149892934}
+{"step": 61, "lrm": 0.8693790149892934}
+{"step": 61, "lrm": 0.8693790149892934}
+{"step": 62, "reward": 0.0234375, "sequence_length": 160.02734375}
+{"step": 62, "reward": 0.0234375, "sequence_length": 160.02734375}
+{"step": 62, "reward": 0.0234375, "sequence_length": 160.02734375}
+{"step": 62, "lrm": 0.867237687366167}
+{"step": 62, "lrm": 0.867237687366167}
+{"step": 62, "lrm": 0.867237687366167}
+{"step": 63, "reward": 0.0703125, "sequence_length": 141.234375}
+{"step": 63, "reward": 0.0703125, "sequence_length": 141.234375}
+{"step": 63, "reward": 0.0703125, "sequence_length": 141.234375}
+{"step": 63, "lrm": 0.8650963597430407}
+{"step": 63, "lrm": 0.8650963597430407}
+{"step": 63, "lrm": 0.8650963597430407}
+{"step": 64, "reward": 0.02734375, "sequence_length": 162.73828125}
+{"step": 64, "reward": 0.02734375, "sequence_length": 162.73828125}
+{"step": 64, "reward": 0.02734375, "sequence_length": 162.73828125}
+{"step": 64, "lrm": 0.8629550321199143}
+{"step": 64, "lrm": 0.8629550321199143}
+{"step": 64, "lrm": 0.8629550321199143}
+{"step": 65, "reward": 0.03515625, "sequence_length": 157.8125}
+{"step": 65, "reward": 0.03515625, "sequence_length": 157.8125}
+{"step": 65, "reward": 0.03515625, "sequence_length": 157.8125}
+{"step": 65, "lrm": 0.8608137044967881}
+{"step": 65, "lrm": 0.8608137044967881}
+{"step": 65, "lrm": 0.8608137044967881}
+{"step": 66, "reward": 0.0859375, "sequence_length": 147.8203125}
+{"step": 66, "reward": 0.0859375, "sequence_length": 147.8203125}
+{"step": 66, "reward": 0.0859375, "sequence_length": 147.8203125}
+{"step": 66, "lrm": 0.8586723768736617}
+{"step": 66, "lrm": 0.8586723768736617}
+{"step": 66, "lrm": 0.8586723768736617}
+{"step": 67, "reward": 0.06640625, "sequence_length": 158.04296875}
+{"step": 67, "reward": 0.06640625, "sequence_length": 158.04296875}
+{"step": 67, "reward": 0.06640625, "sequence_length": 158.04296875}
+{"step": 67, "lrm": 0.8565310492505354}
+{"step": 67, "lrm": 0.8565310492505354}
+{"step": 67, "lrm": 0.8565310492505354}
+{"step": 68, "reward": 0.0625, "sequence_length": 160.515625}
+{"step": 68, "reward": 0.0625, "sequence_length": 160.515625}
+{"step": 68, "reward": 0.0625, "sequence_length": 160.515625}
+{"step": 68, "lrm": 0.854389721627409}
+{"step": 68, "lrm": 0.854389721627409}
+{"step": 68, "lrm": 0.854389721627409}
+{"step": 69, "reward": 0.03515625, "sequence_length": 151.30859375}
+{"step": 69, "reward": 0.03515625, "sequence_length": 151.30859375}
+{"step": 69, "reward": 0.03515625, "sequence_length": 151.30859375}
+{"step": 69, "lrm": 0.8522483940042827}
+{"step": 69, "lrm": 0.8522483940042827}
+{"step": 69, "lrm": 0.8522483940042827}
+{"step": 70, "reward": 0.05859375, "sequence_length": 149.33203125}
+{"step": 70, "reward": 0.05859375, "sequence_length": 149.33203125}
+{"step": 70, "reward": 0.05859375, "sequence_length": 149.33203125}
+{"step": 70, "lrm": 0.8501070663811563}
+{"step": 70, "lrm": 0.8501070663811563}
+{"step": 70, "lrm": 0.8501070663811563}
+{"step": 71, "reward": 0.06640625, "sequence_length": 146.4765625}
+{"step": 71, "reward": 0.06640625, "sequence_length": 146.4765625}
+{"step": 71, "reward": 0.06640625, "sequence_length": 146.4765625}
+{"step": 71, "lrm": 0.8479657387580299}
+{"step": 71, "lrm": 0.8479657387580299}
+{"step": 71, "lrm": 0.8479657387580299}
+{"step": 72, "reward": 0.01953125, "sequence_length": 145.609375}
+{"step": 72, "reward": 0.01953125, "sequence_length": 145.609375}
+{"step": 72, "reward": 0.01953125, "sequence_length": 145.609375}
+{"step": 72, "lrm": 0.8458244111349036}
+{"step": 72, "lrm": 0.8458244111349036}
+{"step": 72, "lrm": 0.8458244111349036}
+{"step": 73, "reward": 0.07421875, "sequence_length": 165.57421875}
+{"step": 73, "reward": 0.07421875, "sequence_length": 165.57421875}
+{"step": 73, "reward": 0.07421875, "sequence_length": 165.57421875}
+{"step": 73, "lrm": 0.8436830835117773}
+{"step": 73, "lrm": 0.8436830835117773}
+{"step": 73, "lrm": 0.8436830835117773}
+{"step": 74, "reward": 0.046875, "sequence_length": 156.06640625}
+{"step": 74, "reward": 0.046875, "sequence_length": 156.06640625}
+{"step": 74, "reward": 0.046875, "sequence_length": 156.06640625}
+{"step": 74, "lrm": 0.841541755888651}
+{"step": 74, "lrm": 0.841541755888651}
+{"step": 74, "lrm": 0.841541755888651}
+{"step": 75, "reward": 0.06640625, "sequence_length": 128.8671875}
+{"step": 75, "reward": 0.06640625, "sequence_length": 128.8671875}
+{"step": 75, "reward": 0.06640625, "sequence_length": 128.8671875}
+{"step": 75, "lrm": 0.8394004282655246}
+{"step": 75, "lrm": 0.8394004282655246}
+{"step": 75, "lrm": 0.8394004282655246}
+{"step": 76, "reward": 0.0546875, "sequence_length": 143.7421875}
+{"step": 76, "reward": 0.0546875, "sequence_length": 143.7421875}
+{"step": 76, "reward": 0.0546875, "sequence_length": 143.7421875}
+{"step": 76, "lrm": 0.8372591006423983}
+{"step": 76, "lrm": 0.8372591006423983}
+{"step": 76, "lrm": 0.8372591006423983}
+{"step": 77, "reward": 0.0703125, "sequence_length": 127.72265625}
+{"step": 77, "reward": 0.0703125, "sequence_length": 127.72265625}
+{"step": 77, "reward": 0.0703125, "sequence_length": 127.72265625}
+{"step": 77, "lrm": 0.8351177730192719}
+{"step": 77, "lrm": 0.8351177730192719}
+{"step": 77, "lrm": 0.8351177730192719}
+{"step": 78, "reward": 0.08984375, "sequence_length": 147.68359375}
+{"step": 78, "reward": 0.08984375, "sequence_length": 147.68359375}
+{"step": 78, "reward": 0.08984375, "sequence_length": 147.68359375}
+{"step": 78, "lrm": 0.8329764453961456}
+{"step": 78, "lrm": 0.8329764453961456}
+{"step": 78, "lrm": 0.8329764453961456}
+{"step": 79, "reward": 0.078125, "sequence_length": 143.3984375}
+{"step": 79, "reward": 0.078125, "sequence_length": 143.3984375}
+{"step": 79, "reward": 0.078125, "sequence_length": 143.3984375}
+{"step": 79, "lrm": 0.8308351177730193}
+{"step": 79, "lrm": 0.8308351177730193}
+{"step": 79, "lrm": 0.8308351177730193}
+{"step": 80, "reward": 0.05078125, "sequence_length": 152.62890625}
+{"step": 80, "reward": 0.05078125, "sequence_length": 152.62890625}
+{"step": 80, "reward": 0.05078125, "sequence_length": 152.62890625}
+{"step": 80, "lrm": 0.828693790149893}
+{"step": 80, "lrm": 0.828693790149893}
+{"step": 80, "lrm": 0.828693790149893}
+{"step": 81, "reward": 0.03515625, "sequence_length": 151.0546875}
+{"step": 81, "reward": 0.03515625, "sequence_length": 151.0546875}
+{"step": 81, "reward": 0.03515625, "sequence_length": 151.0546875}
+{"step": 81, "lrm": 0.8265524625267666}
+{"step": 81, "lrm": 0.8265524625267666}
+{"step": 81, "lrm": 0.8265524625267666}
+{"step": 82, "reward": 0.09375, "sequence_length": 135.9921875}
+{"step": 82, "reward": 0.09375, "sequence_length": 135.9921875}
+{"step": 82, "reward": 0.09375, "sequence_length": 135.9921875}
+{"step": 82, "lrm": 0.8244111349036403}
+{"step": 82, "lrm": 0.8244111349036403}
+{"step": 82, "lrm": 0.8244111349036403}
+{"step": 83, "reward": 0.04296875, "sequence_length": 156.5859375}
+{"step": 83, "reward": 0.04296875, "sequence_length": 156.5859375}
+{"step": 83, "reward": 0.04296875, "sequence_length": 156.5859375}
+{"step": 83, "lrm": 0.8222698072805139}
+{"step": 83, "lrm": 0.8222698072805139}
+{"step": 83, "lrm": 0.8222698072805139}
+{"step": 84, "reward": 0.0546875, "sequence_length": 159.92578125}
+{"step": 84, "reward": 0.0546875, "sequence_length": 159.92578125}
+{"step": 84, "reward": 0.0546875, "sequence_length": 159.92578125}
+{"step": 84, "lrm": 0.8201284796573876}
+{"step": 84, "lrm": 0.8201284796573876}
+{"step": 84, "lrm": 0.8201284796573876}
+{"step": 85, "reward": 0.0703125, "sequence_length": 142.7734375}
+{"step": 85, "reward": 0.0703125, "sequence_length": 142.7734375}
+{"step": 85, "reward": 0.0703125, "sequence_length": 142.7734375}
+{"step": 85, "lrm": 0.8179871520342612}
+{"step": 85, "lrm": 0.8179871520342612}
+{"step": 85, "lrm": 0.8179871520342612}
+{"step": 86, "reward": 0.0625, "sequence_length": 148.9453125}
+{"step": 86, "reward": 0.0625, "sequence_length": 148.9453125}
+{"step": 86, "reward": 0.0625, "sequence_length": 148.9453125}
+{"step": 86, "lrm": 0.8158458244111348}
+{"step": 86, "lrm": 0.8158458244111348}
+{"step": 86, "lrm": 0.8158458244111348}
+{"step": 87, "reward": 0.01953125, "sequence_length": 143.30859375}
+{"step": 87, "reward": 0.01953125, "sequence_length": 143.30859375}
+{"step": 87, "reward": 0.01953125, "sequence_length": 143.30859375}
+{"step": 87, "lrm": 0.8137044967880086}
+{"step": 87, "lrm": 0.8137044967880086}
+{"step": 87, "lrm": 0.8137044967880086}
+{"step": 88, "reward": 0.046875, "sequence_length": 146.6796875}
+{"step": 88, "reward": 0.046875, "sequence_length": 146.6796875}
+{"step": 88, "reward": 0.046875, "sequence_length": 146.6796875}
+{"step": 88, "lrm": 0.8115631691648822}
+{"step": 88, "lrm": 0.8115631691648822}
+{"step": 88, "lrm": 0.8115631691648822}
+{"step": 89, "reward": 0.0703125, "sequence_length": 153.77734375}
+{"step": 89, "reward": 0.0703125, "sequence_length": 153.77734375}
+{"step": 89, "reward": 0.0703125, "sequence_length": 153.77734375}
+{"step": 89, "lrm": 0.8094218415417559}
+{"step": 89, "lrm": 0.8094218415417559}
+{"step": 89, "lrm": 0.8094218415417559}
+{"step": 90, "reward": 0.07421875, "sequence_length": 142.48046875}
+{"step": 90, "reward": 0.07421875, "sequence_length": 142.48046875}
+{"step": 90, "reward": 0.07421875, "sequence_length": 142.48046875}
+{"step": 90, "lrm": 0.8072805139186295}
+{"step": 90, "lrm": 0.8072805139186295}
+{"step": 90, "lrm": 0.8072805139186295}
+{"step": 91, "reward": 0.0546875, "sequence_length": 147.4609375}
+{"step": 91, "reward": 0.0546875, "sequence_length": 147.4609375}
+{"step": 91, "reward": 0.0546875, "sequence_length": 147.4609375}
+{"step": 91, "lrm": 0.8051391862955032}
+{"step": 91, "lrm": 0.8051391862955032}
+{"step": 91, "lrm": 0.8051391862955032}
+{"step": 92, "reward": 0.10546875, "sequence_length": 150.9140625}
+{"step": 92, "reward": 0.10546875, "sequence_length": 150.9140625}
+{"step": 92, "reward": 0.10546875, "sequence_length": 150.9140625}
+{"step": 92, "lrm": 0.8029978586723769}
+{"step": 92, "lrm": 0.8029978586723769}
+{"step": 92, "lrm": 0.8029978586723769}
+{"step": 93, "reward": 0.05078125, "sequence_length": 147.0703125}
+{"step": 93, "reward": 0.05078125, "sequence_length": 147.0703125}
+{"step": 93, "reward": 0.05078125, "sequence_length": 147.0703125}
+{"step": 93, "lrm": 0.8008565310492506}
+{"step": 93, "lrm": 0.8008565310492506}
+{"step": 93, "lrm": 0.8008565310492506}
+{"step": 94, "reward": 0.07421875, "sequence_length": 155.65625}
+{"step": 94, "reward": 0.07421875, "sequence_length": 155.65625}
+{"step": 94, "reward": 0.07421875, "sequence_length": 155.65625}
+{"step": 94, "lrm": 0.7987152034261242}
+{"step": 94, "lrm": 0.7987152034261242}
+{"step": 94, "lrm": 0.7987152034261242}
+{"step": 95, "reward": 0.0546875, "sequence_length": 147.5859375}
+{"step": 95, "reward": 0.0546875, "sequence_length": 147.5859375}
+{"step": 95, "reward": 0.0546875, "sequence_length": 147.5859375}
+{"step": 95, "lrm": 0.7965738758029979}
+{"step": 95, "lrm": 0.7965738758029979}
+{"step": 95, "lrm": 0.7965738758029979}
+{"step": 96, "reward": 0.11328125, "sequence_length": 155.41796875}
+{"step": 96, "reward": 0.11328125, "sequence_length": 155.41796875}
+{"step": 96, "reward": 0.11328125, "sequence_length": 155.41796875}
+{"step": 96, "lrm": 0.7944325481798715}
+{"step": 96, "lrm": 0.7944325481798715}
+{"step": 96, "lrm": 0.7944325481798715}
+{"step": 97, "reward": 0.109375, "sequence_length": 144.046875}
+{"step": 97, "reward": 0.109375, "sequence_length": 144.046875}
+{"step": 97, "reward": 0.109375, "sequence_length": 144.046875}
+{"step": 97, "lrm": 0.7922912205567452}
+{"step": 97, "lrm": 0.7922912205567452}
+{"step": 97, "lrm": 0.7922912205567452}
+{"step": 98, "reward": 0.15234375, "sequence_length": 158.44921875}
+{"step": 98, "reward": 0.15234375, "sequence_length": 158.44921875}
+{"step": 98, "reward": 0.15234375, "sequence_length": 158.44921875}
+{"step": 98, "lrm": 0.7901498929336188}
+{"step": 98, "lrm": 0.7901498929336188}
+{"step": 98, "lrm": 0.7901498929336188}
+{"step": 99, "reward": 0.09765625, "sequence_length": 160.8984375}
+{"step": 99, "reward": 0.09765625, "sequence_length": 160.8984375}
+{"step": 99, "reward": 0.09765625, "sequence_length": 160.8984375}
+{"step": 99, "lrm": 0.7880085653104925}
+{"step": 99, "lrm": 0.7880085653104925}
+{"step": 99, "lrm": 0.7880085653104925}
+{"step": 100, "reward": 0.09765625, "sequence_length": 156.640625}
+{"step": 100, "reward": 0.09765625, "sequence_length": 156.640625}
+{"step": 100, "reward": 0.09765625, "sequence_length": 156.640625}
+{"step": 100, "lrm": 0.7858672376873661}
+{"step": 100, "lrm": 0.7858672376873661}
+{"step": 100, "lrm": 0.7858672376873661}
+{"step": 101, "reward": 0.0390625, "sequence_length": 153.921875}
+{"step": 101, "reward": 0.0390625, "sequence_length": 153.921875}
+{"step": 101, "reward": 0.0390625, "sequence_length": 153.921875}
+{"step": 101, "lrm": 0.7837259100642399}
+{"step": 101, "lrm": 0.7837259100642399}
+{"step": 101, "lrm": 0.7837259100642399}
+{"step": 102, "reward": 0.03125, "sequence_length": 155.9765625}
+{"step": 102, "reward": 0.03125, "sequence_length": 155.9765625}
+{"step": 102, "reward": 0.03125, "sequence_length": 155.9765625}
+{"step": 102, "lrm": 0.7815845824411135}
+{"step": 102, "lrm": 0.7815845824411135}
+{"step": 102, "lrm": 0.7815845824411135}
+{"step": 103, "reward": 0.0546875, "sequence_length": 159.16015625}
+{"step": 103, "reward": 0.0546875, "sequence_length": 159.16015625}
+{"step": 103, "reward": 0.0546875, "sequence_length": 159.16015625}
+{"step": 103, "lrm": 0.7794432548179872}
+{"step": 103, "lrm": 0.7794432548179872}
+{"step": 103, "lrm": 0.7794432548179872}
+{"step": 104, "reward": 0.0546875, "sequence_length": 155.78125}
+{"step": 104, "reward": 0.0546875, "sequence_length": 155.78125}
+{"step": 104, "reward": 0.0546875, "sequence_length": 155.78125}
+{"step": 104, "lrm": 0.7773019271948608}
+{"step": 104, "lrm": 0.7773019271948608}
+{"step": 104, "lrm": 0.7773019271948608}
+{"step": 105, "reward": 0.15234375, "sequence_length": 126.53515625}
+{"step": 105, "reward": 0.15234375, "sequence_length": 126.53515625}
+{"step": 105, "reward": 0.15234375, "sequence_length": 126.53515625}
+{"step": 105, "lrm": 0.7751605995717344}
+{"step": 105, "lrm": 0.7751605995717344}
+{"step": 105, "lrm": 0.7751605995717344}
+{"step": 106, "reward": 0.0234375, "sequence_length": 142.9609375}
+{"step": 106, "reward": 0.0234375, "sequence_length": 142.9609375}
+{"step": 106, "reward": 0.0234375, "sequence_length": 142.9609375}
+{"step": 106, "lrm": 0.7730192719486082}
+{"step": 106, "lrm": 0.7730192719486082}
+{"step": 106, "lrm": 0.7730192719486082}
+{"step": 107, "reward": 0.0703125, "sequence_length": 145.28125}
+{"step": 107, "reward": 0.0703125, "sequence_length": 145.28125}
+{"step": 107, "reward": 0.0703125, "sequence_length": 145.28125}
+{"step": 107, "lrm": 0.7708779443254818}
+{"step": 107, "lrm": 0.7708779443254818}
+{"step": 107, "lrm": 0.7708779443254818}
+{"step": 108, "reward": 0.01171875, "sequence_length": 151.28515625}
+{"step": 108, "reward": 0.01171875, "sequence_length": 151.28515625}
+{"step": 108, "reward": 0.01171875, "sequence_length": 151.28515625}
+{"step": 108, "lrm": 0.7687366167023555}
+{"step": 108, "lrm": 0.7687366167023555}
+{"step": 108, "lrm": 0.7687366167023555}
+{"step": 109, "reward": 0.08984375, "sequence_length": 155.9765625}
+{"step": 109, "reward": 0.08984375, "sequence_length": 155.9765625}
+{"step": 109, "reward": 0.08984375, "sequence_length": 155.9765625}
+{"step": 109, "lrm": 0.7665952890792291}
+{"step": 109, "lrm": 0.7665952890792291}
+{"step": 109, "lrm": 0.7665952890792291}
+{"step": 110, "reward": 0.0703125, "sequence_length": 141.11328125}
+{"step": 110, "reward": 0.0703125, "sequence_length": 141.11328125}
+{"step": 110, "reward": 0.0703125, "sequence_length": 141.11328125}
+{"step": 110, "lrm": 0.7644539614561028}
+{"step": 110, "lrm": 0.7644539614561028}
+{"step": 110, "lrm": 0.7644539614561028}
+{"step": 111, "reward": 0.09765625, "sequence_length": 144.96875}
+{"step": 111, "reward": 0.09765625, "sequence_length": 144.96875}
+{"step": 111, "reward": 0.09765625, "sequence_length": 144.96875}
+{"step": 111, "lrm": 0.7623126338329764}
+{"step": 111, "lrm": 0.7623126338329764}
+{"step": 111, "lrm": 0.7623126338329764}
+{"step": 112, "reward": 0.08984375, "sequence_length": 152.125}
+{"step": 112, "reward": 0.08984375, "sequence_length": 152.125}
+{"step": 112, "reward": 0.08984375, "sequence_length": 152.125}
+{"step": 112, "lrm": 0.7601713062098501}
+{"step": 112, "lrm": 0.7601713062098501}
+{"step": 112, "lrm": 0.7601713062098501}
+{"step": 113, "reward": 0.01171875, "sequence_length": 151.34765625}
+{"step": 113, "reward": 0.01171875, "sequence_length": 151.34765625}
+{"step": 113, "reward": 0.01171875, "sequence_length": 151.34765625}
+{"step": 113, "lrm": 0.7580299785867237}
+{"step": 113, "lrm": 0.7580299785867237}
+{"step": 113, "lrm": 0.7580299785867237}
+{"step": 114, "reward": 0.0234375, "sequence_length": 168.13671875}
+{"step": 114, "reward": 0.0234375, "sequence_length": 168.13671875}
+{"step": 114, "reward": 0.0234375, "sequence_length": 168.13671875}
+{"step": 114, "lrm": 0.7558886509635974}
+{"step": 114, "lrm": 0.7558886509635974}
+{"step": 114, "lrm": 0.7558886509635974}
+{"step": 115, "reward": 0.0859375, "sequence_length": 132.859375}
+{"step": 115, "reward": 0.0859375, "sequence_length": 132.859375}
+{"step": 115, "reward": 0.0859375, "sequence_length": 132.859375}
+{"step": 115, "lrm": 0.7537473233404711}
+{"step": 115, "lrm": 0.7537473233404711}
+{"step": 115, "lrm": 0.7537473233404711}
+{"step": 116, "reward": 0.02734375, "sequence_length": 145.57421875}
+{"step": 116, "reward": 0.02734375, "sequence_length": 145.57421875}
+{"step": 116, "reward": 0.02734375, "sequence_length": 145.57421875}
+{"step": 116, "lrm": 0.7516059957173448}
+{"step": 116, "lrm": 0.7516059957173448}
+{"step": 116, "lrm": 0.7516059957173448}
+{"step": 117, "reward": 0.08203125, "sequence_length": 140.16796875}
+{"step": 117, "reward": 0.08203125, "sequence_length": 140.16796875}
+{"step": 117, "reward": 0.08203125, "sequence_length": 140.16796875}
+{"step": 117, "lrm": 0.7494646680942184}
+{"step": 117, "lrm": 0.7494646680942184}
+{"step": 117, "lrm": 0.7494646680942184}
+{"step": 118, "reward": 0.109375, "sequence_length": 143.66796875}
+{"step": 118, "reward": 0.109375, "sequence_length": 143.66796875}
+{"step": 118, "reward": 0.109375, "sequence_length": 143.66796875}
+{"step": 118, "lrm": 0.7473233404710921}
+{"step": 118, "lrm": 0.7473233404710921}
+{"step": 118, "lrm": 0.7473233404710921}
+{"step": 119, "reward": 0.05859375, "sequence_length": 137.88671875}
+{"step": 119, "reward": 0.05859375, "sequence_length": 137.88671875}
+{"step": 119, "reward": 0.05859375, "sequence_length": 137.88671875}
+{"step": 119, "lrm": 0.7451820128479658}
+{"step": 119, "lrm": 0.7451820128479658}
+{"step": 119, "lrm": 0.7451820128479658}
+{"step": 120, "pass@1": 0.03999999910593033, "pass@2": 0.06749999523162842, "pass@3": 0.08999999612569809, "pass@4": 0.11749999970197678, "pass@5": 0.14000000059604645, "pass@6": 0.16249999403953552, "pass@7": 0.1850000023841858, "pass@8": 0.19749999046325684}
+{"step": 120, "pass@1": 0.03999999910593033, "pass@2": 0.06749999523162842, "pass@3": 0.08999999612569809, "pass@4": 0.11749999970197678, "pass@5": 0.14000000059604645, "pass@6": 0.16249999403953552, "pass@7": 0.1850000023841858, "pass@8": 0.19749999046325684}
+{"step": 120, "pass@1": 0.03999999910593033, "pass@2": 0.06749999523162842, "pass@3": 0.08999999612569809, "pass@4": 0.11749999970197678, "pass@5": 0.14000000059604645, "pass@6": 0.16249999403953552, "pass@7": 0.1850000023841858, "pass@8": 0.19749999046325684}
+{"step": 120, "reward": 0.15625, "sequence_length": 141.7265625}
+{"step": 120, "reward": 0.15625, "sequence_length": 141.7265625}
+{"step": 120, "reward": 0.15625, "sequence_length": 141.7265625}
+{"step": 120, "lrm": 0.7430406852248395}
+{"step": 120, "lrm": 0.7430406852248395}
+{"step": 120, "lrm": 0.7430406852248395}
+{"step": 121, "reward": 0.046875, "sequence_length": 146.2890625}
+{"step": 121, "reward": 0.046875, "sequence_length": 146.2890625}
+{"step": 121, "reward": 0.046875, "sequence_length": 146.2890625}
+{"step": 121, "lrm": 0.7408993576017131}
+{"step": 121, "lrm": 0.7408993576017131}
+{"step": 121, "lrm": 0.7408993576017131}
+{"step": 122, "reward": 0.05078125, "sequence_length": 140.8984375}
+{"step": 122, "reward": 0.05078125, "sequence_length": 140.8984375}
+{"step": 122, "reward": 0.05078125, "sequence_length": 140.8984375}
+{"step": 122, "lrm": 0.7387580299785867}
+{"step": 122, "lrm": 0.7387580299785867}
+{"step": 122, "lrm": 0.7387580299785867}
+{"step": 123, "reward": 0.07421875, "sequence_length": 132.4375}
+{"step": 123, "reward": 0.07421875, "sequence_length": 132.4375}
+{"step": 123, "reward": 0.07421875, "sequence_length": 132.4375}
+{"step": 123, "lrm": 0.7366167023554604}
+{"step": 123, "lrm": 0.7366167023554604}
+{"step": 123, "lrm": 0.7366167023554604}
+{"step": 124, "reward": 0.01953125, "sequence_length": 148.01171875}
+{"step": 124, "reward": 0.01953125, "sequence_length": 148.01171875}
+{"step": 124, "reward": 0.01953125, "sequence_length": 148.01171875}
+{"step": 124, "lrm": 0.734475374732334}
+{"step": 124, "lrm": 0.734475374732334}
+{"step": 124, "lrm": 0.734475374732334}
+{"step": 125, "reward": 0.08984375, "sequence_length": 128.640625}
+{"step": 125, "reward": 0.08984375, "sequence_length": 128.640625}
+{"step": 125, "reward": 0.08984375, "sequence_length": 128.640625}
+{"step": 125, "lrm": 0.7323340471092077}
+{"step": 125, "lrm": 0.7323340471092077}
+{"step": 125, "lrm": 0.7323340471092077}
+{"step": 126, "reward": 0.0546875, "sequence_length": 160.76953125}
+{"step": 126, "reward": 0.0546875, "sequence_length": 160.76953125}
+{"step": 126, "reward": 0.0546875, "sequence_length": 160.76953125}
+{"step": 126, "lrm": 0.7301927194860813}
+{"step": 126, "lrm": 0.7301927194860813}
+{"step": 126, "lrm": 0.7301927194860813}
+{"step": 127, "reward": 0.0625, "sequence_length": 144.34375}
+{"step": 127, "reward": 0.0625, "sequence_length": 144.34375}
+{"step": 127, "reward": 0.0625, "sequence_length": 144.34375}
+{"step": 127, "lrm": 0.728051391862955}
+{"step": 127, "lrm": 0.728051391862955}
+{"step": 127, "lrm": 0.728051391862955}
+{"step": 128, "reward": 0.05078125, "sequence_length": 138.8671875}
+{"step": 128, "reward": 0.05078125, "sequence_length": 138.8671875}
+{"step": 128, "reward": 0.05078125, "sequence_length": 138.8671875}
+{"step": 128, "lrm": 0.7259100642398286}
+{"step": 128, "lrm": 0.7259100642398286}
+{"step": 128, "lrm": 0.7259100642398286}
+{"step": 129, "reward": 0.0390625, "sequence_length": 142.171875}
+{"step": 129, "reward": 0.0390625, "sequence_length": 142.171875}
+{"step": 129, "reward": 0.0390625, "sequence_length": 142.171875}
+{"step": 129, "lrm": 0.7237687366167024}
+{"step": 129, "lrm": 0.7237687366167024}
+{"step": 129, "lrm": 0.7237687366167024}
+{"step": 130, "reward": 0.0078125, "sequence_length": 142.62890625}
+{"step": 130, "reward": 0.0078125, "sequence_length": 142.62890625}
+{"step": 130, "reward": 0.0078125, "sequence_length": 142.62890625}
+{"step": 130, "lrm": 0.721627408993576}
+{"step": 130, "lrm": 0.721627408993576}
+{"step": 130, "lrm": 0.721627408993576}
+{"step": 131, "reward": 0.05859375, "sequence_length": 138.57421875}
+{"step": 131, "reward": 0.05859375, "sequence_length": 138.57421875}
+{"step": 131, "reward": 0.05859375, "sequence_length": 138.57421875}
+{"step": 131, "lrm": 0.7194860813704497}
+{"step": 131, "lrm": 0.7194860813704497}
+{"step": 131, "lrm": 0.7194860813704497}
+{"step": 132, "reward": 0.08203125, "sequence_length": 135.55078125}
+{"step": 132, "reward": 0.08203125, "sequence_length": 135.55078125}
+{"step": 132, "reward": 0.08203125, "sequence_length": 135.55078125}
+{"step": 132, "lrm": 0.7173447537473233}
+{"step": 132, "lrm": 0.7173447537473233}
+{"step": 132, "lrm": 0.7173447537473233}
+{"step": 133, "reward": 0.03515625, "sequence_length": 140.55859375}
+{"step": 133, "reward": 0.03515625, "sequence_length": 140.55859375}
+{"step": 133, "reward": 0.03515625, "sequence_length": 140.55859375}
+{"step": 133, "lrm": 0.7152034261241971}
+{"step": 133, "lrm": 0.7152034261241971}
+{"step": 133, "lrm": 0.7152034261241971}
+{"step": 134, "reward": 0.109375, "sequence_length": 127.97265625}
+{"step": 134, "reward": 0.109375, "sequence_length": 127.97265625}
+{"step": 134, "reward": 0.109375, "sequence_length": 127.97265625}
+{"step": 134, "lrm": 0.7130620985010707}
+{"step": 134, "lrm": 0.7130620985010707}
+{"step": 134, "lrm": 0.7130620985010707}
+{"step": 135, "reward": 0.11328125, "sequence_length": 129.91015625}
+{"step": 135, "reward": 0.11328125, "sequence_length": 129.91015625}
+{"step": 135, "reward": 0.11328125, "sequence_length": 129.91015625}
+{"step": 135, "lrm": 0.7109207708779444}
+{"step": 135, "lrm": 0.7109207708779444}
+{"step": 135, "lrm": 0.7109207708779444}
+{"step": 136, "reward": 0.03515625, "sequence_length": 123.94140625}
+{"step": 136, "reward": 0.03515625, "sequence_length": 123.94140625}
+{"step": 136, "reward": 0.03515625, "sequence_length": 123.94140625}
+{"step": 136, "lrm": 0.708779443254818}
+{"step": 136, "lrm": 0.708779443254818}
+{"step": 136, "lrm": 0.708779443254818}
+{"step": 137, "reward": 0.0390625, "sequence_length": 134.625}
+{"step": 137, "reward": 0.0390625, "sequence_length": 134.625}
+{"step": 137, "reward": 0.0390625, "sequence_length": 134.625}
+{"step": 137, "lrm": 0.7066381156316917}
+{"step": 137, "lrm": 0.7066381156316917}
+{"step": 137, "lrm": 0.7066381156316917}
+{"step": 138, "reward": 0.03515625, "sequence_length": 138.26953125}
+{"step": 138, "reward": 0.03515625, "sequence_length": 138.26953125}
+{"step": 138, "reward": 0.03515625, "sequence_length": 138.26953125}
+{"step": 138, "lrm": 0.7044967880085653}
+{"step": 138, "lrm": 0.7044967880085653}
+{"step": 138, "lrm": 0.7044967880085653}
+{"step": 139, "reward": 0.0703125, "sequence_length": 134.26953125}
+{"step": 139, "reward": 0.0703125, "sequence_length": 134.26953125}
+{"step": 139, "reward": 0.0703125, "sequence_length": 134.26953125}
+{"step": 139, "lrm": 0.702355460385439}
+{"step": 139, "lrm": 0.702355460385439}
+{"step": 139, "lrm": 0.702355460385439}
+{"step": 140, "reward": 0.05859375, "sequence_length": 141.15625}
+{"step": 140, "reward": 0.05859375, "sequence_length": 141.15625}
+{"step": 140, "reward": 0.05859375, "sequence_length": 141.15625}
+{"step": 140, "lrm": 0.7002141327623126}
+{"step": 140, "lrm": 0.7002141327623126}
+{"step": 140, "lrm": 0.7002141327623126}
+{"step": 141, "reward": 0.07421875, "sequence_length": 126.96484375}
+{"step": 141, "reward": 0.07421875, "sequence_length": 126.96484375}
+{"step": 141, "reward": 0.07421875, "sequence_length": 126.96484375}
+{"step": 141, "lrm": 0.6980728051391862}
+{"step": 141, "lrm": 0.6980728051391862}
+{"step": 141, "lrm": 0.6980728051391862}
+{"step": 142, "reward": 0.1640625, "sequence_length": 126.80859375}
+{"step": 142, "reward": 0.1640625, "sequence_length": 126.80859375}
+{"step": 142, "reward": 0.1640625, "sequence_length": 126.80859375}
+{"step": 142, "lrm": 0.6959314775160599}
+{"step": 142, "lrm": 0.6959314775160599}
+{"step": 142, "lrm": 0.6959314775160599}
+{"step": 143, "reward": 0.03125, "sequence_length": 155.2734375}
+{"step": 143, "reward": 0.03125, "sequence_length": 155.2734375}
+{"step": 143, "reward": 0.03125, "sequence_length": 155.2734375}
+{"step": 143, "lrm": 0.6937901498929336}
+{"step": 143, "lrm": 0.6937901498929336}
+{"step": 143, "lrm": 0.6937901498929336}
+{"step": 144, "reward": 0.06640625, "sequence_length": 132.05078125}
+{"step": 144, "reward": 0.06640625, "sequence_length": 132.05078125}
+{"step": 144, "reward": 0.06640625, "sequence_length": 132.05078125}
+{"step": 144, "lrm": 0.6916488222698073}
+{"step": 144, "lrm": 0.6916488222698073}
+{"step": 144, "lrm": 0.6916488222698073}
+{"step": 145, "reward": 0.078125, "sequence_length": 125.95703125}
+{"step": 145, "reward": 0.078125, "sequence_length": 125.95703125}
+{"step": 145, "reward": 0.078125, "sequence_length": 125.95703125}
+{"step": 145, "lrm": 0.6895074946466809}
+{"step": 145, "lrm": 0.6895074946466809}
+{"step": 145, "lrm": 0.6895074946466809}
+{"step": 146, "reward": 0.04296875, "sequence_length": 148.6484375}
+{"step": 146, "reward": 0.04296875, "sequence_length": 148.6484375}
+{"step": 146, "reward": 0.04296875, "sequence_length": 148.6484375}
+{"step": 146, "lrm": 0.6873661670235547}
+{"step": 146, "lrm": 0.6873661670235547}
+{"step": 146, "lrm": 0.6873661670235547}
+{"step": 147, "reward": 0.02734375, "sequence_length": 145.875}
+{"step": 147, "reward": 0.02734375, "sequence_length": 145.875}
+{"step": 147, "reward": 0.02734375, "sequence_length": 145.875}
+{"step": 147, "lrm": 0.6852248394004283}
+{"step": 147, "lrm": 0.6852248394004283}
+{"step": 147, "lrm": 0.6852248394004283}
+{"step": 148, "reward": 0.140625, "sequence_length": 126.3046875}
+{"step": 148, "reward": 0.140625, "sequence_length": 126.3046875}
+{"step": 148, "reward": 0.140625, "sequence_length": 126.3046875}
+{"step": 148, "lrm": 0.683083511777302}
+{"step": 148, "lrm": 0.683083511777302}
+{"step": 148, "lrm": 0.683083511777302}
+{"step": 149, "reward": 0.0546875, "sequence_length": 126.01953125}
+{"step": 149, "reward": 0.0546875, "sequence_length": 126.01953125}
+{"step": 149, "reward": 0.0546875, "sequence_length": 126.01953125}
+{"step": 149, "lrm": 0.6809421841541756}
+{"step": 149, "lrm": 0.6809421841541756}
+{"step": 149, "lrm": 0.6809421841541756}
+{"step": 150, "reward": 0.1171875, "sequence_length": 138.15625}
+{"step": 150, "reward": 0.1171875, "sequence_length": 138.15625}
+{"step": 150, "reward": 0.1171875, "sequence_length": 138.15625}
+{"step": 150, "lrm": 0.6788008565310493}
+{"step": 150, "lrm": 0.6788008565310493}
+{"step": 150, "lrm": 0.6788008565310493}
+{"step": 151, "reward": 0.140625, "sequence_length": 124.3515625}
+{"step": 151, "reward": 0.140625, "sequence_length": 124.3515625}
+{"step": 151, "reward": 0.140625, "sequence_length": 124.3515625}
+{"step": 151, "lrm": 0.6766595289079229}
+{"step": 151, "lrm": 0.6766595289079229}
+{"step": 151, "lrm": 0.6766595289079229}
+{"step": 152, "reward": 0.046875, "sequence_length": 130.234375}
+{"step": 152, "reward": 0.046875, "sequence_length": 130.234375}
+{"step": 152, "reward": 0.046875, "sequence_length": 130.234375}
+{"step": 152, "lrm": 0.6745182012847966}
+{"step": 152, "lrm": 0.6745182012847966}
+{"step": 152, "lrm": 0.6745182012847966}
+{"step": 153, "reward": 0.0546875, "sequence_length": 132.6171875}
+{"step": 153, "reward": 0.0546875, "sequence_length": 132.6171875}
+{"step": 153, "reward": 0.0546875, "sequence_length": 132.6171875}
+{"step": 153, "lrm": 0.6723768736616702}
+{"step": 153, "lrm": 0.6723768736616702}
+{"step": 153, "lrm": 0.6723768736616702}
+{"step": 154, "reward": 0.0703125, "sequence_length": 141.73046875}
+{"step": 154, "reward": 0.0703125, "sequence_length": 141.73046875}
+{"step": 154, "reward": 0.0703125, "sequence_length": 141.73046875}
+{"step": 154, "lrm": 0.6702355460385439}
+{"step": 154, "lrm": 0.6702355460385439}
+{"step": 154, "lrm": 0.6702355460385439}
+{"step": 155, "reward": 0.03125, "sequence_length": 123.82421875}
+{"step": 155, "reward": 0.03125, "sequence_length": 123.82421875}
+{"step": 155, "reward": 0.03125, "sequence_length": 123.82421875}
+{"step": 155, "lrm": 0.6680942184154175}
+{"step": 155, "lrm": 0.6680942184154175}
+{"step": 155, "lrm": 0.6680942184154175}
+{"step": 156, "reward": 0.01953125, "sequence_length": 138.9921875}
+{"step": 156, "reward": 0.01953125, "sequence_length": 138.9921875}
+{"step": 156, "reward": 0.01953125, "sequence_length": 138.9921875}
+{"step": 156, "lrm": 0.6659528907922911}
+{"step": 156, "lrm": 0.6659528907922911}
+{"step": 156, "lrm": 0.6659528907922911}
+{"step": 157, "reward": 0.0546875, "sequence_length": 130.44140625}
+{"step": 157, "reward": 0.0546875, "sequence_length": 130.44140625}
+{"step": 157, "reward": 0.0546875, "sequence_length": 130.44140625}
+{"step": 157, "lrm": 0.6638115631691649}
+{"step": 157, "lrm": 0.6638115631691649}
+{"step": 157, "lrm": 0.6638115631691649}
+{"step": 158, "reward": 0.05859375, "sequence_length": 138.5390625}
+{"step": 158, "reward": 0.05859375, "sequence_length": 138.5390625}
+{"step": 158, "reward": 0.05859375, "sequence_length": 138.5390625}
+{"step": 158, "lrm": 0.6616702355460385}
+{"step": 158, "lrm": 0.6616702355460385}
+{"step": 158, "lrm": 0.6616702355460385}
+{"step": 159, "reward": 0.0625, "sequence_length": 147.86328125}
+{"step": 159, "reward": 0.0625, "sequence_length": 147.86328125}
+{"step": 159, "reward": 0.0625, "sequence_length": 147.86328125}
+{"step": 159, "lrm": 0.6595289079229122}
+{"step": 159, "lrm": 0.6595289079229122}
+{"step": 159, "lrm": 0.6595289079229122}
+{"step": 160, "reward": 0.1328125, "sequence_length": 127.828125}
+{"step": 160, "reward": 0.1328125, "sequence_length": 127.828125}
+{"step": 160, "reward": 0.1328125, "sequence_length": 127.828125}
+{"step": 160, "lrm": 0.657387580299786}
+{"step": 160, "lrm": 0.657387580299786}
+{"step": 160, "lrm": 0.657387580299786}
+{"step": 161, "reward": 0.0703125, "sequence_length": 124.28515625}
+{"step": 161, "reward": 0.0703125, "sequence_length": 124.28515625}
+{"step": 161, "reward": 0.0703125, "sequence_length": 124.28515625}
+{"step": 161, "lrm": 0.6552462526766596}
+{"step": 161, "lrm": 0.6552462526766596}
+{"step": 161, "lrm": 0.6552462526766596}
+{"step": 162, "reward": 0.0859375, "sequence_length": 142.37890625}
+{"step": 162, "reward": 0.0859375, "sequence_length": 142.37890625}
+{"step": 162, "reward": 0.0859375, "sequence_length": 142.37890625}
+{"step": 162, "lrm": 0.6531049250535332}
+{"step": 162, "lrm": 0.6531049250535332}
+{"step": 162, "lrm": 0.6531049250535332}
+{"step": 163, "reward": 0.0859375, "sequence_length": 141.0859375}
+{"step": 163, "reward": 0.0859375, "sequence_length": 141.0859375}
+{"step": 163, "reward": 0.0859375, "sequence_length": 141.0859375}
+{"step": 163, "lrm": 0.6509635974304069}
+{"step": 163, "lrm": 0.6509635974304069}
+{"step": 163, "lrm": 0.6509635974304069}
+{"step": 164, "reward": 0.10546875, "sequence_length": 133.359375}
+{"step": 164, "reward": 0.10546875, "sequence_length": 133.359375}
+{"step": 164, "reward": 0.10546875, "sequence_length": 133.359375}
+{"step": 164, "lrm": 0.6488222698072805}
+{"step": 164, "lrm": 0.6488222698072805}
+{"step": 164, "lrm": 0.6488222698072805}
+{"step": 165, "reward": 0.0546875, "sequence_length": 143.43359375}
+{"step": 165, "reward": 0.0546875, "sequence_length": 143.43359375}
+{"step": 165, "reward": 0.0546875, "sequence_length": 143.43359375}
+{"step": 165, "lrm": 0.6466809421841542}
+{"step": 165, "lrm": 0.6466809421841542}
+{"step": 165, "lrm": 0.6466809421841542}
+{"step": 166, "reward": 0.08984375, "sequence_length": 139.671875}
+{"step": 166, "reward": 0.08984375, "sequence_length": 139.671875}
+{"step": 166, "reward": 0.08984375, "sequence_length": 139.671875}
+{"step": 166, "lrm": 0.6445396145610278}
+{"step": 166, "lrm": 0.6445396145610278}
+{"step": 166, "lrm": 0.6445396145610278}
+{"step": 167, "reward": 0.0390625, "sequence_length": 138.96484375}
+{"step": 167, "reward": 0.0390625, "sequence_length": 138.96484375}
+{"step": 167, "reward": 0.0390625, "sequence_length": 138.96484375}
+{"step": 167, "lrm": 0.6423982869379015}
+{"step": 167, "lrm": 0.6423982869379015}
+{"step": 167, "lrm": 0.6423982869379015}
+{"step": 168, "reward": 0.04296875, "sequence_length": 138.03515625}
+{"step": 168, "reward": 0.04296875, "sequence_length": 138.03515625}
+{"step": 168, "reward": 0.04296875, "sequence_length": 138.03515625}
+{"step": 168, "lrm": 0.6402569593147751}
+{"step": 168, "lrm": 0.6402569593147751}
+{"step": 168, "lrm": 0.6402569593147751}
+{"step": 169, "reward": 0.0703125, "sequence_length": 136.90234375}
+{"step": 169, "reward": 0.0703125, "sequence_length": 136.90234375}
+{"step": 169, "reward": 0.0703125, "sequence_length": 136.90234375}
+{"step": 169, "lrm": 0.6381156316916488}
+{"step": 169, "lrm": 0.6381156316916488}
+{"step": 169, "lrm": 0.6381156316916488}
+{"step": 170, "reward": 0.01171875, "sequence_length": 136.76171875}
+{"step": 170, "reward": 0.01171875, "sequence_length": 136.76171875}
+{"step": 170, "reward": 0.01171875, "sequence_length": 136.76171875}
+{"step": 170, "lrm": 0.6359743040685225}
+{"step": 170, "lrm": 0.6359743040685225}
+{"step": 170, "lrm": 0.6359743040685225}
+{"step": 171, "reward": 0.0546875, "sequence_length": 136.00390625}
+{"step": 171, "reward": 0.0546875, "sequence_length": 136.00390625}
+{"step": 171, "reward": 0.0546875, "sequence_length": 136.00390625}
+{"step": 171, "lrm": 0.6338329764453962}
+{"step": 171, "lrm": 0.6338329764453962}
+{"step": 171, "lrm": 0.6338329764453962}
+{"step": 172, "reward": 0.03125, "sequence_length": 137.6953125}
+{"step": 172, "reward": 0.03125, "sequence_length": 137.6953125}
+{"step": 172, "reward": 0.03125, "sequence_length": 137.6953125}
+{"step": 172, "lrm": 0.6316916488222698}
+{"step": 172, "lrm": 0.6316916488222698}
+{"step": 172, "lrm": 0.6316916488222698}
+{"step": 173, "reward": 0.0390625, "sequence_length": 136.19140625}
+{"step": 173, "reward": 0.0390625, "sequence_length": 136.19140625}
+{"step": 173, "reward": 0.0390625, "sequence_length": 136.19140625}
+{"step": 173, "lrm": 0.6295503211991434}
+{"step": 173, "lrm": 0.6295503211991434}
+{"step": 173, "lrm": 0.6295503211991434}
+{"step": 174, "reward": 0.10546875, "sequence_length": 135.53125}
+{"step": 174, "reward": 0.10546875, "sequence_length": 135.53125}
+{"step": 174, "reward": 0.10546875, "sequence_length": 135.53125}
+{"step": 174, "lrm": 0.6274089935760172}
+{"step": 174, "lrm": 0.6274089935760172}
+{"step": 174, "lrm": 0.6274089935760172}
+{"step": 175, "reward": 0.078125, "sequence_length": 129.4765625}
+{"step": 175, "reward": 0.078125, "sequence_length": 129.4765625}
+{"step": 175, "reward": 0.078125, "sequence_length": 129.4765625}
+{"step": 175, "lrm": 0.6252676659528908}
+{"step": 175, "lrm": 0.6252676659528908}
+{"step": 175, "lrm": 0.6252676659528908}
+{"step": 176, "reward": 0.125, "sequence_length": 132.83984375}
+{"step": 176, "reward": 0.125, "sequence_length": 132.83984375}
+{"step": 176, "reward": 0.125, "sequence_length": 132.83984375}
+{"step": 176, "lrm": 0.6231263383297645}
+{"step": 176, "lrm": 0.6231263383297645}
+{"step": 176, "lrm": 0.6231263383297645}
+{"step": 177, "reward": 0.0703125, "sequence_length": 129.16796875}
+{"step": 177, "reward": 0.0703125, "sequence_length": 129.16796875}
+{"step": 177, "reward": 0.0703125, "sequence_length": 129.16796875}
+{"step": 177, "lrm": 0.6209850107066381}
+{"step": 177, "lrm": 0.6209850107066381}
+{"step": 177, "lrm": 0.6209850107066381}
+{"step": 178, "reward": 0.1015625, "sequence_length": 136.59765625}
+{"step": 178, "reward": 0.1015625, "sequence_length": 136.59765625}
+{"step": 178, "reward": 0.1015625, "sequence_length": 136.59765625}
+{"step": 178, "lrm": 0.6188436830835118}
+{"step": 178, "lrm": 0.6188436830835118}
+{"step": 178, "lrm": 0.6188436830835118}
+{"step": 179, "reward": 0.08203125, "sequence_length": 129.92578125}
+{"step": 179, "reward": 0.08203125, "sequence_length": 129.92578125}
+{"step": 179, "reward": 0.08203125, "sequence_length": 129.92578125}
+{"step": 179, "lrm": 0.6167023554603854}
+{"step": 179, "lrm": 0.6167023554603854}
+{"step": 179, "lrm": 0.6167023554603854}
+{"step": 180, "pass@1": 0.044999998062849045, "pass@2": 0.07499999552965164, "pass@3": 0.10749999433755875, "pass@4": 0.125, "pass@5": 0.14749999344348907, "pass@6": 0.1824999898672104, "pass@7": 0.19749999046325684, "pass@8": 0.20999999344348907}
+{"step": 180, "pass@1": 0.044999998062849045, "pass@2": 0.07499999552965164, "pass@3": 0.10749999433755875, "pass@4": 0.125, "pass@5": 0.14749999344348907, "pass@6": 0.1824999898672104, "pass@7": 0.19749999046325684, "pass@8": 0.20999999344348907}
+{"step": 180, "pass@1": 0.044999998062849045, "pass@2": 0.07499999552965164, "pass@3": 0.10749999433755875, "pass@4": 0.125, "pass@5": 0.14749999344348907, "pass@6": 0.1824999898672104, "pass@7": 0.19749999046325684, "pass@8": 0.20999999344348907}
+{"step": 180, "reward": 0.08203125, "sequence_length": 152.09375}
+{"step": 180, "reward": 0.08203125, "sequence_length": 152.09375}
+{"step": 180, "reward": 0.08203125, "sequence_length": 152.09375}
+{"step": 180, "lrm": 0.6145610278372591}
+{"step": 180, "lrm": 0.6145610278372591}
+{"step": 180, "lrm": 0.6145610278372591}
+{"step": 181, "reward": 0.0390625, "sequence_length": 130.625}
+{"step": 181, "reward": 0.0390625, "sequence_length": 130.625}
+{"step": 181, "reward": 0.0390625, "sequence_length": 130.625}
+{"step": 181, "lrm": 0.6124197002141327}
+{"step": 181, "lrm": 0.6124197002141327}
+{"step": 181, "lrm": 0.6124197002141327}
+{"step": 182, "reward": 0.0390625, "sequence_length": 138.109375}
+{"step": 182, "reward": 0.0390625, "sequence_length": 138.109375}
+{"step": 182, "reward": 0.0390625, "sequence_length": 138.109375}
+{"step": 182, "lrm": 0.6102783725910064}
+{"step": 182, "lrm": 0.6102783725910064}
+{"step": 182, "lrm": 0.6102783725910064}
+{"step": 183, "reward": 0.09765625, "sequence_length": 144.5859375}
+{"step": 183, "reward": 0.09765625, "sequence_length": 144.5859375}
+{"step": 183, "reward": 0.09765625, "sequence_length": 144.5859375}
+{"step": 183, "lrm": 0.60813704496788}
+{"step": 183, "lrm": 0.60813704496788}
+{"step": 183, "lrm": 0.60813704496788}
+{"step": 184, "reward": 0.0625, "sequence_length": 143.53125}
+{"step": 184, "reward": 0.0625, "sequence_length": 143.53125}
+{"step": 184, "reward": 0.0625, "sequence_length": 143.53125}
+{"step": 184, "lrm": 0.6059957173447538}
+{"step": 184, "lrm": 0.6059957173447538}
+{"step": 184, "lrm": 0.6059957173447538}
+{"step": 185, "reward": 0.05859375, "sequence_length": 129.59765625}
+{"step": 185, "reward": 0.05859375, "sequence_length": 129.59765625}
+{"step": 185, "reward": 0.05859375, "sequence_length": 129.59765625}
+{"step": 185, "lrm": 0.6038543897216274}
+{"step": 185, "lrm": 0.6038543897216274}
+{"step": 185, "lrm": 0.6038543897216274}
+{"step": 186, "reward": 0.1015625, "sequence_length": 140.1328125}
+{"step": 186, "reward": 0.1015625, "sequence_length": 140.1328125}
+{"step": 186, "reward": 0.1015625, "sequence_length": 140.1328125}
+{"step": 186, "lrm": 0.6017130620985011}
+{"step": 186, "lrm": 0.6017130620985011}
+{"step": 186, "lrm": 0.6017130620985011}
+{"step": 187, "reward": 0.1015625, "sequence_length": 137.5}
+{"step": 187, "reward": 0.1015625, "sequence_length": 137.5}
+{"step": 187, "reward": 0.1015625, "sequence_length": 137.5}
+{"step": 187, "lrm": 0.5995717344753747}
+{"step": 187, "lrm": 0.5995717344753747}
+{"step": 187, "lrm": 0.5995717344753747}
+{"step": 188, "reward": 0.12890625, "sequence_length": 136.39453125}
+{"step": 188, "reward": 0.12890625, "sequence_length": 136.39453125}
+{"step": 188, "reward": 0.12890625, "sequence_length": 136.39453125}
+{"step": 188, "lrm": 0.5974304068522485}
+{"step": 188, "lrm": 0.5974304068522485}
+{"step": 188, "lrm": 0.5974304068522485}
+{"step": 189, "reward": 0.10546875, "sequence_length": 136.66796875}
+{"step": 189, "reward": 0.10546875, "sequence_length": 136.66796875}
+{"step": 189, "reward": 0.10546875, "sequence_length": 136.66796875}
+{"step": 189, "lrm": 0.5952890792291221}
+{"step": 189, "lrm": 0.5952890792291221}
+{"step": 189, "lrm": 0.5952890792291221}
+{"step": 190, "reward": 0.10546875, "sequence_length": 135.8828125}
+{"step": 190, "reward": 0.10546875, "sequence_length": 135.8828125}
+{"step": 190, "reward": 0.10546875, "sequence_length": 135.8828125}
+{"step": 190, "lrm": 0.5931477516059958}
+{"step": 190, "lrm": 0.5931477516059958}
+{"step": 190, "lrm": 0.5931477516059958}
+{"step": 191, "reward": 0.09375, "sequence_length": 146.95703125}
+{"step": 191, "reward": 0.09375, "sequence_length": 146.95703125}
+{"step": 191, "reward": 0.09375, "sequence_length": 146.95703125}
+{"step": 191, "lrm": 0.5910064239828694}
+{"step": 191, "lrm": 0.5910064239828694}
+{"step": 191, "lrm": 0.5910064239828694}
+{"step": 192, "reward": 0.0625, "sequence_length": 140.41796875}
+{"step": 192, "reward": 0.0625, "sequence_length": 140.41796875}
+{"step": 192, "reward": 0.0625, "sequence_length": 140.41796875}
+{"step": 192, "lrm": 0.588865096359743}
+{"step": 192, "lrm": 0.588865096359743}
+{"step": 192, "lrm": 0.588865096359743}
+{"step": 193, "reward": 0.046875, "sequence_length": 139.6640625}
+{"step": 193, "reward": 0.046875, "sequence_length": 139.6640625}
+{"step": 193, "reward": 0.046875, "sequence_length": 139.6640625}
+{"step": 193, "lrm": 0.5867237687366167}
+{"step": 193, "lrm": 0.5867237687366167}
+{"step": 193, "lrm": 0.5867237687366167}
+{"step": 194, "reward": 0.08984375, "sequence_length": 138.96875}
+{"step": 194, "reward": 0.08984375, "sequence_length": 138.96875}
+{"step": 194, "reward": 0.08984375, "sequence_length": 138.96875}
+{"step": 194, "lrm": 0.5845824411134903}
+{"step": 194, "lrm": 0.5845824411134903}
+{"step": 194, "lrm": 0.5845824411134903}
+{"step": 195, "reward": 0.04296875, "sequence_length": 136.0859375}
+{"step": 195, "reward": 0.04296875, "sequence_length": 136.0859375}
+{"step": 195, "reward": 0.04296875, "sequence_length": 136.0859375}
+{"step": 195, "lrm": 0.582441113490364}
+{"step": 195, "lrm": 0.582441113490364}
+{"step": 195, "lrm": 0.582441113490364}
+{"step": 196, "reward": 0.06640625, "sequence_length": 136.390625}
+{"step": 196, "reward": 0.06640625, "sequence_length": 136.390625}
+{"step": 196, "reward": 0.06640625, "sequence_length": 136.390625}
+{"step": 196, "lrm": 0.5802997858672376}
+{"step": 196, "lrm": 0.5802997858672376}
+{"step": 196, "lrm": 0.5802997858672376}
+{"step": 197, "reward": 0.15625, "sequence_length": 122.51171875}
+{"step": 197, "reward": 0.15625, "sequence_length": 122.51171875}
+{"step": 197, "reward": 0.15625, "sequence_length": 122.51171875}
+{"step": 197, "lrm": 0.5781584582441113}
+{"step": 197, "lrm": 0.5781584582441113}
+{"step": 197, "lrm": 0.5781584582441113}
+{"step": 198, "reward": 0.12890625, "sequence_length": 148.5}
+{"step": 198, "reward": 0.12890625, "sequence_length": 148.5}
+{"step": 198, "reward": 0.12890625, "sequence_length": 148.5}
+{"step": 198, "lrm": 0.576017130620985}
+{"step": 198, "lrm": 0.576017130620985}
+{"step": 198, "lrm": 0.576017130620985}
+{"step": 199, "reward": 0.140625, "sequence_length": 129.3046875}
+{"step": 199, "reward": 0.140625, "sequence_length": 129.3046875}
+{"step": 199, "reward": 0.140625, "sequence_length": 129.3046875}
+{"step": 199, "lrm": 0.5738758029978587}
+{"step": 199, "lrm": 0.5738758029978587}
+{"step": 199, "lrm": 0.5738758029978587}
+{"step": 200, "reward": 0.1328125, "sequence_length": 129.78125}
+{"step": 200, "reward": 0.1328125, "sequence_length": 129.78125}
+{"step": 200, "reward": 0.1328125, "sequence_length": 129.78125}
+{"step": 200, "lrm": 0.5717344753747323}
+{"step": 200, "lrm": 0.5717344753747323}
+{"step": 200, "lrm": 0.5717344753747323}
+{"step": 201, "reward": 0.06640625, "sequence_length": 129.75390625}
+{"step": 201, "reward": 0.06640625, "sequence_length": 129.75390625}
+{"step": 201, "reward": 0.06640625, "sequence_length": 129.75390625}
+{"step": 201, "lrm": 0.5695931477516061}
+{"step": 201, "lrm": 0.5695931477516061}
+{"step": 201, "lrm": 0.5695931477516061}
+{"step": 202, "reward": 0.078125, "sequence_length": 124.4296875}
+{"step": 202, "reward": 0.078125, "sequence_length": 124.4296875}
+{"step": 202, "reward": 0.078125, "sequence_length": 124.4296875}
+{"step": 202, "lrm": 0.5674518201284797}
+{"step": 202, "lrm": 0.5674518201284797}
+{"step": 202, "lrm": 0.5674518201284797}
+{"step": 203, "reward": 0.09765625, "sequence_length": 130.72265625}
+{"step": 203, "reward": 0.09765625, "sequence_length": 130.72265625}
+{"step": 203, "reward": 0.09765625, "sequence_length": 130.72265625}
+{"step": 203, "lrm": 0.5653104925053534}
+{"step": 203, "lrm": 0.5653104925053534}
+{"step": 203, "lrm": 0.5653104925053534}
+{"step": 204, "reward": 0.03125, "sequence_length": 145.45703125}
+{"step": 204, "reward": 0.03125, "sequence_length": 145.45703125}
+{"step": 204, "reward": 0.03125, "sequence_length": 145.45703125}
+{"step": 204, "lrm": 0.563169164882227}
+{"step": 204, "lrm": 0.563169164882227}
+{"step": 204, "lrm": 0.563169164882227}
+{"step": 205, "reward": 0.125, "sequence_length": 124.13671875}
+{"step": 205, "reward": 0.125, "sequence_length": 124.13671875}
+{"step": 205, "reward": 0.125, "sequence_length": 124.13671875}
+{"step": 205, "lrm": 0.5610278372591007}
+{"step": 205, "lrm": 0.5610278372591007}
+{"step": 205, "lrm": 0.5610278372591007}
+{"step": 206, "reward": 0.0546875, "sequence_length": 135.2421875}
+{"step": 206, "reward": 0.0546875, "sequence_length": 135.2421875}
+{"step": 206, "reward": 0.0546875, "sequence_length": 135.2421875}
+{"step": 206, "lrm": 0.5588865096359743}
+{"step": 206, "lrm": 0.5588865096359743}
+{"step": 206, "lrm": 0.5588865096359743}
+{"step": 207, "reward": 0.14453125, "sequence_length": 129.11328125}
+{"step": 207, "reward": 0.14453125, "sequence_length": 129.11328125}
+{"step": 207, "reward": 0.14453125, "sequence_length": 129.11328125}
+{"step": 207, "lrm": 0.556745182012848}
+{"step": 207, "lrm": 0.556745182012848}
+{"step": 207, "lrm": 0.556745182012848}
+{"step": 208, "reward": 0.06640625, "sequence_length": 136.64453125}
+{"step": 208, "reward": 0.06640625, "sequence_length": 136.64453125}
+{"step": 208, "reward": 0.06640625, "sequence_length": 136.64453125}
+{"step": 208, "lrm": 0.5546038543897216}
+{"step": 208, "lrm": 0.5546038543897216}
+{"step": 208, "lrm": 0.5546038543897216}
+{"step": 209, "reward": 0.0625, "sequence_length": 134.48828125}
+{"step": 209, "reward": 0.0625, "sequence_length": 134.48828125}
+{"step": 209, "reward": 0.0625, "sequence_length": 134.48828125}
+{"step": 209, "lrm": 0.5524625267665952}
+{"step": 209, "lrm": 0.5524625267665952}
+{"step": 209, "lrm": 0.5524625267665952}
+{"step": 210, "reward": 0.1015625, "sequence_length": 126.6640625}
+{"step": 210, "reward": 0.1015625, "sequence_length": 126.6640625}
+{"step": 210, "reward": 0.1015625, "sequence_length": 126.6640625}
+{"step": 210, "lrm": 0.5503211991434689}
+{"step": 210, "lrm": 0.5503211991434689}
+{"step": 210, "lrm": 0.5503211991434689}
+{"step": 211, "reward": 0.12890625, "sequence_length": 130.1015625}
+{"step": 211, "reward": 0.12890625, "sequence_length": 130.1015625}
+{"step": 211, "reward": 0.12890625, "sequence_length": 130.1015625}
+{"step": 211, "lrm": 0.5481798715203425}
+{"step": 211, "lrm": 0.5481798715203425}
+{"step": 211, "lrm": 0.5481798715203425}
+{"step": 212, "reward": 0.0390625, "sequence_length": 148.55078125}
+{"step": 212, "reward": 0.0390625, "sequence_length": 148.55078125}
+{"step": 212, "reward": 0.0390625, "sequence_length": 148.55078125}
+{"step": 212, "lrm": 0.5460385438972163}
+{"step": 212, "lrm": 0.5460385438972163}
+{"step": 212, "lrm": 0.5460385438972163}
+{"step": 213, "reward": 0.0625, "sequence_length": 129.73046875}
+{"step": 213, "reward": 0.0625, "sequence_length": 129.73046875}
+{"step": 213, "reward": 0.0625, "sequence_length": 129.73046875}
+{"step": 213, "lrm": 0.5438972162740899}
+{"step": 213, "lrm": 0.5438972162740899}
+{"step": 213, "lrm": 0.5438972162740899}
+{"step": 214, "reward": 0.07421875, "sequence_length": 130.0390625}
+{"step": 214, "reward": 0.07421875, "sequence_length": 130.0390625}
+{"step": 214, "reward": 0.07421875, "sequence_length": 130.0390625}
+{"step": 214, "lrm": 0.5417558886509636}
+{"step": 214, "lrm": 0.5417558886509636}
+{"step": 214, "lrm": 0.5417558886509636}
+{"step": 215, "reward": 0.046875, "sequence_length": 130.79296875}
+{"step": 215, "reward": 0.046875, "sequence_length": 130.79296875}
+{"step": 215, "reward": 0.046875, "sequence_length": 130.79296875}
+{"step": 215, "lrm": 0.5396145610278373}
+{"step": 215, "lrm": 0.5396145610278373}
+{"step": 215, "lrm": 0.5396145610278373}
+{"step": 216, "reward": 0.09375, "sequence_length": 131.02734375}
+{"step": 216, "reward": 0.09375, "sequence_length": 131.02734375}
+{"step": 216, "reward": 0.09375, "sequence_length": 131.02734375}
+{"step": 216, "lrm": 0.537473233404711}
+{"step": 216, "lrm": 0.537473233404711}
+{"step": 216, "lrm": 0.537473233404711}
+{"step": 217, "reward": 0.11328125, "sequence_length": 130.7890625}
+{"step": 217, "reward": 0.11328125, "sequence_length": 130.7890625}
+{"step": 217, "reward": 0.11328125, "sequence_length": 130.7890625}
+{"step": 217, "lrm": 0.5353319057815846}
+{"step": 217, "lrm": 0.5353319057815846}
+{"step": 217, "lrm": 0.5353319057815846}
+{"step": 218, "reward": 0.0625, "sequence_length": 133.29296875}
+{"step": 218, "reward": 0.0625, "sequence_length": 133.29296875}
+{"step": 218, "reward": 0.0625, "sequence_length": 133.29296875}
+{"step": 218, "lrm": 0.5331905781584583}
+{"step": 218, "lrm": 0.5331905781584583}
+{"step": 218, "lrm": 0.5331905781584583}
+{"step": 219, "reward": 0.078125, "sequence_length": 131.19140625}
+{"step": 219, "reward": 0.078125, "sequence_length": 131.19140625}
+{"step": 219, "reward": 0.078125, "sequence_length": 131.19140625}
+{"step": 219, "lrm": 0.5310492505353319}
+{"step": 219, "lrm": 0.5310492505353319}
+{"step": 219, "lrm": 0.5310492505353319}
+{"step": 220, "reward": 0.01953125, "sequence_length": 142.8203125}
+{"step": 220, "reward": 0.01953125, "sequence_length": 142.8203125}
+{"step": 220, "reward": 0.01953125, "sequence_length": 142.8203125}
+{"step": 220, "lrm": 0.5289079229122056}
+{"step": 220, "lrm": 0.5289079229122056}
+{"step": 220, "lrm": 0.5289079229122056}
+{"step": 221, "reward": 0.0390625, "sequence_length": 130.2578125}
+{"step": 221, "reward": 0.0390625, "sequence_length": 130.2578125}
+{"step": 221, "reward": 0.0390625, "sequence_length": 130.2578125}
+{"step": 221, "lrm": 0.5267665952890792}
+{"step": 221, "lrm": 0.5267665952890792}
+{"step": 221, "lrm": 0.5267665952890792}
+{"step": 222, "reward": 0.12109375, "sequence_length": 127.75390625}
+{"step": 222, "reward": 0.12109375, "sequence_length": 127.75390625}
+{"step": 222, "reward": 0.12109375, "sequence_length": 127.75390625}
+{"step": 222, "lrm": 0.5246252676659529}
+{"step": 222, "lrm": 0.5246252676659529}
+{"step": 222, "lrm": 0.5246252676659529}
+{"step": 223, "reward": 0.0546875, "sequence_length": 140.953125}
+{"step": 223, "reward": 0.0546875, "sequence_length": 140.953125}
+{"step": 223, "reward": 0.0546875, "sequence_length": 140.953125}
+{"step": 223, "lrm": 0.5224839400428265}
+{"step": 223, "lrm": 0.5224839400428265}
+{"step": 223, "lrm": 0.5224839400428265}
+{"step": 224, "reward": 0.01953125, "sequence_length": 145.1953125}
+{"step": 224, "reward": 0.01953125, "sequence_length": 145.1953125}
+{"step": 224, "reward": 0.01953125, "sequence_length": 145.1953125}
+{"step": 224, "lrm": 0.5203426124197001}
+{"step": 224, "lrm": 0.5203426124197001}
+{"step": 224, "lrm": 0.5203426124197001}
+{"step": 225, "reward": 0.06640625, "sequence_length": 129.390625}
+{"step": 225, "reward": 0.06640625, "sequence_length": 129.390625}
+{"step": 225, "reward": 0.06640625, "sequence_length": 129.390625}
+{"step": 225, "lrm": 0.5182012847965739}
+{"step": 225, "lrm": 0.5182012847965739}
+{"step": 225, "lrm": 0.5182012847965739}
+{"step": 226, "reward": 0.05859375, "sequence_length": 131.89453125}
+{"step": 226, "reward": 0.05859375, "sequence_length": 131.89453125}
+{"step": 226, "reward": 0.05859375, "sequence_length": 131.89453125}
+{"step": 226, "lrm": 0.5160599571734475}
+{"step": 226, "lrm": 0.5160599571734475}
+{"step": 226, "lrm": 0.5160599571734475}
+{"step": 227, "reward": 0.109375, "sequence_length": 145.46875}
+{"step": 227, "reward": 0.109375, "sequence_length": 145.46875}
+{"step": 227, "reward": 0.109375, "sequence_length": 145.46875}
+{"step": 227, "lrm": 0.5139186295503212}
+{"step": 227, "lrm": 0.5139186295503212}
+{"step": 227, "lrm": 0.5139186295503212}
+{"step": 228, "reward": 0.0703125, "sequence_length": 124.8125}
+{"step": 228, "reward": 0.0703125, "sequence_length": 124.8125}
+{"step": 228, "reward": 0.0703125, "sequence_length": 124.8125}
+{"step": 228, "lrm": 0.5117773019271948}
+{"step": 228, "lrm": 0.5117773019271948}
+{"step": 228, "lrm": 0.5117773019271948}
+{"step": 229, "reward": 0.02734375, "sequence_length": 136.75}
+{"step": 229, "reward": 0.02734375, "sequence_length": 136.75}
+{"step": 229, "reward": 0.02734375, "sequence_length": 136.75}
+{"step": 229, "lrm": 0.5096359743040686}
+{"step": 229, "lrm": 0.5096359743040686}
+{"step": 229, "lrm": 0.5096359743040686}
+{"step": 230, "reward": 0.08984375, "sequence_length": 132.16015625}
+{"step": 230, "reward": 0.08984375, "sequence_length": 132.16015625}
+{"step": 230, "reward": 0.08984375, "sequence_length": 132.16015625}
+{"step": 230, "lrm": 0.5074946466809422}
+{"step": 230, "lrm": 0.5074946466809422}
+{"step": 230, "lrm": 0.5074946466809422}
+{"step": 231, "reward": 0.0625, "sequence_length": 128.7578125}
+{"step": 231, "reward": 0.0625, "sequence_length": 128.7578125}
+{"step": 231, "reward": 0.0625, "sequence_length": 128.7578125}
+{"step": 231, "lrm": 0.5053533190578159}
+{"step": 231, "lrm": 0.5053533190578159}
+{"step": 231, "lrm": 0.5053533190578159}
+{"step": 232, "reward": 0.0546875, "sequence_length": 150.29296875}
+{"step": 232, "reward": 0.0546875, "sequence_length": 150.29296875}
+{"step": 232, "reward": 0.0546875, "sequence_length": 150.29296875}
+{"step": 232, "lrm": 0.5032119914346895}
+{"step": 232, "lrm": 0.5032119914346895}
+{"step": 232, "lrm": 0.5032119914346895}
+{"step": 233, "reward": 0.03125, "sequence_length": 141.27734375}
+{"step": 233, "reward": 0.03125, "sequence_length": 141.27734375}
+{"step": 233, "reward": 0.03125, "sequence_length": 141.27734375}
+{"step": 233, "lrm": 0.5010706638115632}
+{"step": 233, "lrm": 0.5010706638115632}
+{"step": 233, "lrm": 0.5010706638115632}
+{"step": 234, "reward": 0.10546875, "sequence_length": 136.3125}
+{"step": 234, "reward": 0.10546875, "sequence_length": 136.3125}
+{"step": 234, "reward": 0.10546875, "sequence_length": 136.3125}
+{"step": 234, "lrm": 0.4989293361884368}
+{"step": 234, "lrm": 0.4989293361884368}
+{"step": 234, "lrm": 0.4989293361884368}
+{"step": 235, "reward": 0.14453125, "sequence_length": 132.4375}
+{"step": 235, "reward": 0.14453125, "sequence_length": 132.4375}
+{"step": 235, "reward": 0.14453125, "sequence_length": 132.4375}
+{"step": 235, "lrm": 0.49678800856531047}
+{"step": 235, "lrm": 0.49678800856531047}
+{"step": 235, "lrm": 0.49678800856531047}
+{"step": 236, "reward": 0.0546875, "sequence_length": 131.09765625}
+{"step": 236, "reward": 0.0546875, "sequence_length": 131.09765625}
+{"step": 236, "reward": 0.0546875, "sequence_length": 131.09765625}
+{"step": 236, "lrm": 0.4946466809421841}
+{"step": 236, "lrm": 0.4946466809421841}
+{"step": 236, "lrm": 0.4946466809421841}
+{"step": 237, "reward": 0.16796875, "sequence_length": 127.265625}
+{"step": 237, "reward": 0.16796875, "sequence_length": 127.265625}
+{"step": 237, "reward": 0.16796875, "sequence_length": 127.265625}
+{"step": 237, "lrm": 0.49250535331905787}
+{"step": 237, "lrm": 0.49250535331905787}
+{"step": 237, "lrm": 0.49250535331905787}
+{"step": 238, "reward": 0.08984375, "sequence_length": 138.21875}
+{"step": 238, "reward": 0.08984375, "sequence_length": 138.21875}
+{"step": 238, "reward": 0.08984375, "sequence_length": 138.21875}
+{"step": 238, "lrm": 0.4903640256959315}
+{"step": 238, "lrm": 0.4903640256959315}
+{"step": 238, "lrm": 0.4903640256959315}
+{"step": 239, "reward": 0.11328125, "sequence_length": 136.87890625}
+{"step": 239, "reward": 0.11328125, "sequence_length": 136.87890625}
+{"step": 239, "reward": 0.11328125, "sequence_length": 136.87890625}
+{"step": 239, "lrm": 0.48822269807280516}
+{"step": 239, "lrm": 0.48822269807280516}
+{"step": 239, "lrm": 0.48822269807280516}
+{"step": 240, "pass@1": 0.04999999701976776, "pass@2": 0.08999999612569809, "pass@3": 0.11249999701976776, "pass@4": 0.13249999284744263, "pass@5": 0.14499999582767487, "pass@6": 0.16499999165534973, "pass@7": 0.17499999701976776, "pass@8": 0.1899999976158142}
+{"step": 240, "pass@1": 0.04999999701976776, "pass@2": 0.08999999612569809, "pass@3": 0.11249999701976776, "pass@4": 0.13249999284744263, "pass@5": 0.14499999582767487, "pass@6": 0.16499999165534973, "pass@7": 0.17499999701976776, "pass@8": 0.1899999976158142}
+{"step": 240, "pass@1": 0.04999999701976776, "pass@2": 0.08999999612569809, "pass@3": 0.11249999701976776, "pass@4": 0.13249999284744263, "pass@5": 0.14499999582767487, "pass@6": 0.16499999165534973, "pass@7": 0.17499999701976776, "pass@8": 0.1899999976158142}
+{"step": 240, "reward": 0.11328125, "sequence_length": 125.71484375}
+{"step": 240, "reward": 0.11328125, "sequence_length": 125.71484375}
+{"step": 240, "reward": 0.11328125, "sequence_length": 125.71484375}
+{"step": 240, "lrm": 0.4860813704496788}
+{"step": 240, "lrm": 0.4860813704496788}
+{"step": 240, "lrm": 0.4860813704496788}
+{"step": 241, "reward": 0.09765625, "sequence_length": 120.609375}
+{"step": 241, "reward": 0.09765625, "sequence_length": 120.609375}
+{"step": 241, "reward": 0.09765625, "sequence_length": 120.609375}
+{"step": 241, "lrm": 0.48394004282655245}
+{"step": 241, "lrm": 0.48394004282655245}
+{"step": 241, "lrm": 0.48394004282655245}
+{"step": 242, "reward": 0.109375, "sequence_length": 130.46484375}
+{"step": 242, "reward": 0.109375, "sequence_length": 130.46484375}
+{"step": 242, "reward": 0.109375, "sequence_length": 130.46484375}
+{"step": 242, "lrm": 0.4817987152034261}
+{"step": 242, "lrm": 0.4817987152034261}
+{"step": 242, "lrm": 0.4817987152034261}
+{"step": 243, "reward": 0.015625, "sequence_length": 136.07421875}
+{"step": 243, "reward": 0.015625, "sequence_length": 136.07421875}
+{"step": 243, "reward": 0.015625, "sequence_length": 136.07421875}
+{"step": 243, "lrm": 0.47965738758029974}
+{"step": 243, "lrm": 0.47965738758029974}
+{"step": 243, "lrm": 0.47965738758029974}
+{"step": 244, "reward": 0.015625, "sequence_length": 138.73046875}
+{"step": 244, "reward": 0.015625, "sequence_length": 138.73046875}
+{"step": 244, "reward": 0.015625, "sequence_length": 138.73046875}
+{"step": 244, "lrm": 0.4775160599571735}
+{"step": 244, "lrm": 0.4775160599571735}
+{"step": 244, "lrm": 0.4775160599571735}
+{"step": 245, "reward": 0.08984375, "sequence_length": 142.89453125}
+{"step": 245, "reward": 0.08984375, "sequence_length": 142.89453125}
+{"step": 245, "reward": 0.08984375, "sequence_length": 142.89453125}
+{"step": 245, "lrm": 0.47537473233404715}
+{"step": 245, "lrm": 0.47537473233404715}
+{"step": 245, "lrm": 0.47537473233404715}
+{"step": 246, "reward": 0.09375, "sequence_length": 132.15625}
+{"step": 246, "reward": 0.09375, "sequence_length": 132.15625}
+{"step": 246, "reward": 0.09375, "sequence_length": 132.15625}
+{"step": 246, "lrm": 0.4732334047109208}
+{"step": 246, "lrm": 0.4732334047109208}
+{"step": 246, "lrm": 0.4732334047109208}
+{"step": 247, "reward": 0.1015625, "sequence_length": 129.140625}
+{"step": 247, "reward": 0.1015625, "sequence_length": 129.140625}
+{"step": 247, "reward": 0.1015625, "sequence_length": 129.140625}
+{"step": 247, "lrm": 0.47109207708779444}
+{"step": 247, "lrm": 0.47109207708779444}
+{"step": 247, "lrm": 0.47109207708779444}
+{"step": 248, "reward": 0.109375, "sequence_length": 144.40234375}
+{"step": 248, "reward": 0.109375, "sequence_length": 144.40234375}
+{"step": 248, "reward": 0.109375, "sequence_length": 144.40234375}
+{"step": 248, "lrm": 0.4689507494646681}
+{"step": 248, "lrm": 0.4689507494646681}
+{"step": 248, "lrm": 0.4689507494646681}
+{"step": 249, "reward": 0.05859375, "sequence_length": 136.1875}
+{"step": 249, "reward": 0.05859375, "sequence_length": 136.1875}
+{"step": 249, "reward": 0.05859375, "sequence_length": 136.1875}
+{"step": 249, "lrm": 0.4668094218415417}
+{"step": 249, "lrm": 0.4668094218415417}
+{"step": 249, "lrm": 0.4668094218415417}
+{"step": 250, "reward": 0.09375, "sequence_length": 139.125}
+{"step": 250, "reward": 0.09375, "sequence_length": 139.125}
+{"step": 250, "reward": 0.09375, "sequence_length": 139.125}
+{"step": 250, "lrm": 0.4646680942184154}
+{"step": 250, "lrm": 0.4646680942184154}
+{"step": 250, "lrm": 0.4646680942184154}
+{"step": 251, "reward": 0.0703125, "sequence_length": 133.91015625}
+{"step": 251, "reward": 0.0703125, "sequence_length": 133.91015625}
+{"step": 251, "reward": 0.0703125, "sequence_length": 133.91015625}
+{"step": 251, "lrm": 0.46252676659528913}
+{"step": 251, "lrm": 0.46252676659528913}
+{"step": 251, "lrm": 0.46252676659528913}
+{"step": 252, "reward": 0.046875, "sequence_length": 136.85546875}
+{"step": 252, "reward": 0.046875, "sequence_length": 136.85546875}
+{"step": 252, "reward": 0.046875, "sequence_length": 136.85546875}
+{"step": 252, "lrm": 0.4603854389721628}
+{"step": 252, "lrm": 0.4603854389721628}
+{"step": 252, "lrm": 0.4603854389721628}
+{"step": 253, "reward": 0.07421875, "sequence_length": 139.20703125}
+{"step": 253, "reward": 0.07421875, "sequence_length": 139.20703125}
+{"step": 253, "reward": 0.07421875, "sequence_length": 139.20703125}
+{"step": 253, "lrm": 0.4582441113490364}
+{"step": 253, "lrm": 0.4582441113490364}
+{"step": 253, "lrm": 0.4582441113490364}
+{"step": 254, "reward": 0.140625, "sequence_length": 129.0390625}
+{"step": 254, "reward": 0.140625, "sequence_length": 129.0390625}
+{"step": 254, "reward": 0.140625, "sequence_length": 129.0390625}
+{"step": 254, "lrm": 0.45610278372591007}
+{"step": 254, "lrm": 0.45610278372591007}
+{"step": 254, "lrm": 0.45610278372591007}
+{"step": 255, "reward": 0.0546875, "sequence_length": 128.1875}
+{"step": 255, "reward": 0.0546875, "sequence_length": 128.1875}
+{"step": 255, "reward": 0.0546875, "sequence_length": 128.1875}
+{"step": 255, "lrm": 0.4539614561027837}
+{"step": 255, "lrm": 0.4539614561027837}
+{"step": 255, "lrm": 0.4539614561027837}
+{"step": 256, "reward": 0.109375, "sequence_length": 131.10546875}
+{"step": 256, "reward": 0.109375, "sequence_length": 131.10546875}
+{"step": 256, "reward": 0.109375, "sequence_length": 131.10546875}
+{"step": 256, "lrm": 0.45182012847965736}
+{"step": 256, "lrm": 0.45182012847965736}
+{"step": 256, "lrm": 0.45182012847965736}
+{"step": 257, "reward": 0.00390625, "sequence_length": 136.296875}
+{"step": 257, "reward": 0.00390625, "sequence_length": 136.296875}
+{"step": 257, "reward": 0.00390625, "sequence_length": 136.296875}
+{"step": 257, "lrm": 0.449678800856531}
+{"step": 257, "lrm": 0.449678800856531}
+{"step": 257, "lrm": 0.449678800856531}
+{"step": 258, "reward": 0.06640625, "sequence_length": 133.27734375}
+{"step": 258, "reward": 0.06640625, "sequence_length": 133.27734375}
+{"step": 258, "reward": 0.06640625, "sequence_length": 133.27734375}
+{"step": 258, "lrm": 0.44753747323340476}
+{"step": 258, "lrm": 0.44753747323340476}
+{"step": 258, "lrm": 0.44753747323340476}
+{"step": 259, "reward": 0.09375, "sequence_length": 135.34375}
+{"step": 259, "reward": 0.09375, "sequence_length": 135.34375}
+{"step": 259, "reward": 0.09375, "sequence_length": 135.34375}
+{"step": 259, "lrm": 0.4453961456102784}
+{"step": 259, "lrm": 0.4453961456102784}
+{"step": 259, "lrm": 0.4453961456102784}
+{"step": 260, "reward": 0.12890625, "sequence_length": 125.4140625}
+{"step": 260, "reward": 0.12890625, "sequence_length": 125.4140625}
+{"step": 260, "reward": 0.12890625, "sequence_length": 125.4140625}
+{"step": 260, "lrm": 0.44325481798715205}
+{"step": 260, "lrm": 0.44325481798715205}
+{"step": 260, "lrm": 0.44325481798715205}
+{"step": 261, "reward": 0.05859375, "sequence_length": 138.95703125}
+{"step": 261, "reward": 0.05859375, "sequence_length": 138.95703125}
+{"step": 261, "reward": 0.05859375, "sequence_length": 138.95703125}
+{"step": 261, "lrm": 0.4411134903640257}
+{"step": 261, "lrm": 0.4411134903640257}
+{"step": 261, "lrm": 0.4411134903640257}
+{"step": 262, "reward": 0.00390625, "sequence_length": 150.61328125}
+{"step": 262, "reward": 0.00390625, "sequence_length": 150.61328125}
+{"step": 262, "reward": 0.00390625, "sequence_length": 150.61328125}
+{"step": 262, "lrm": 0.43897216274089934}
+{"step": 262, "lrm": 0.43897216274089934}
+{"step": 262, "lrm": 0.43897216274089934}
+{"step": 263, "reward": 0.14453125, "sequence_length": 131.17578125}
+{"step": 263, "reward": 0.14453125, "sequence_length": 131.17578125}
+{"step": 263, "reward": 0.14453125, "sequence_length": 131.17578125}
+{"step": 263, "lrm": 0.436830835117773}
+{"step": 263, "lrm": 0.436830835117773}
+{"step": 263, "lrm": 0.436830835117773}
+{"step": 264, "reward": 0.05078125, "sequence_length": 136.328125}
+{"step": 264, "reward": 0.05078125, "sequence_length": 136.328125}
+{"step": 264, "reward": 0.05078125, "sequence_length": 136.328125}
+{"step": 264, "lrm": 0.43468950749464663}
+{"step": 264, "lrm": 0.43468950749464663}
+{"step": 264, "lrm": 0.43468950749464663}
+{"step": 265, "reward": 0.03125, "sequence_length": 129.44921875}
+{"step": 265, "reward": 0.03125, "sequence_length": 129.44921875}
+{"step": 265, "reward": 0.03125, "sequence_length": 129.44921875}
+{"step": 265, "lrm": 0.4325481798715204}
+{"step": 265, "lrm": 0.4325481798715204}
+{"step": 265, "lrm": 0.4325481798715204}
+{"step": 266, "reward": 0.0, "sequence_length": 145.8203125}
+{"step": 266, "reward": 0.0, "sequence_length": 145.8203125}
+{"step": 266, "reward": 0.0, "sequence_length": 145.8203125}
+{"step": 266, "lrm": 0.43040685224839403}
+{"step": 266, "lrm": 0.43040685224839403}
+{"step": 266, "lrm": 0.43040685224839403}
+{"step": 267, "reward": 0.05078125, "sequence_length": 140.03515625}
+{"step": 267, "reward": 0.05078125, "sequence_length": 140.03515625}
+{"step": 267, "reward": 0.05078125, "sequence_length": 140.03515625}
+{"step": 267, "lrm": 0.4282655246252677}
+{"step": 267, "lrm": 0.4282655246252677}
+{"step": 267, "lrm": 0.4282655246252677}
+{"step": 268, "reward": 0.046875, "sequence_length": 148.18359375}
+{"step": 268, "reward": 0.046875, "sequence_length": 148.18359375}
+{"step": 268, "reward": 0.046875, "sequence_length": 148.18359375}
+{"step": 268, "lrm": 0.4261241970021413}
+{"step": 268, "lrm": 0.4261241970021413}
+{"step": 268, "lrm": 0.4261241970021413}
+{"step": 269, "reward": 0.09375, "sequence_length": 134.30859375}
+{"step": 269, "reward": 0.09375, "sequence_length": 134.30859375}
+{"step": 269, "reward": 0.09375, "sequence_length": 134.30859375}
+{"step": 269, "lrm": 0.42398286937901497}
+{"step": 269, "lrm": 0.42398286937901497}
+{"step": 269, "lrm": 0.42398286937901497}
+{"step": 270, "reward": 0.046875, "sequence_length": 151.4140625}
+{"step": 270, "reward": 0.046875, "sequence_length": 151.4140625}
+{"step": 270, "reward": 0.046875, "sequence_length": 151.4140625}
+{"step": 270, "lrm": 0.4218415417558886}
+{"step": 270, "lrm": 0.4218415417558886}
+{"step": 270, "lrm": 0.4218415417558886}
+{"step": 271, "reward": 0.015625, "sequence_length": 127.9453125}
+{"step": 271, "reward": 0.015625, "sequence_length": 127.9453125}
+{"step": 271, "reward": 0.015625, "sequence_length": 127.9453125}
+{"step": 271, "lrm": 0.41970021413276226}
+{"step": 271, "lrm": 0.41970021413276226}
+{"step": 271, "lrm": 0.41970021413276226}
+{"step": 272, "reward": 0.03515625, "sequence_length": 150.08203125}
+{"step": 272, "reward": 0.03515625, "sequence_length": 150.08203125}
+{"step": 272, "reward": 0.03515625, "sequence_length": 150.08203125}
+{"step": 272, "lrm": 0.417558886509636}
+{"step": 272, "lrm": 0.417558886509636}
+{"step": 272, "lrm": 0.417558886509636}
+{"step": 273, "reward": 0.06640625, "sequence_length": 138.4375}
+{"step": 273, "reward": 0.06640625, "sequence_length": 138.4375}
+{"step": 273, "reward": 0.06640625, "sequence_length": 138.4375}
+{"step": 273, "lrm": 0.41541755888650966}
+{"step": 273, "lrm": 0.41541755888650966}
+{"step": 273, "lrm": 0.41541755888650966}
+{"step": 274, "reward": 0.03125, "sequence_length": 138.58984375}
+{"step": 274, "reward": 0.03125, "sequence_length": 138.58984375}
+{"step": 274, "reward": 0.03125, "sequence_length": 138.58984375}
+{"step": 274, "lrm": 0.4132762312633833}
+{"step": 274, "lrm": 0.4132762312633833}
+{"step": 274, "lrm": 0.4132762312633833}
+{"step": 275, "reward": 0.0390625, "sequence_length": 141.23046875}
+{"step": 275, "reward": 0.0390625, "sequence_length": 141.23046875}
+{"step": 275, "reward": 0.0390625, "sequence_length": 141.23046875}
+{"step": 275, "lrm": 0.41113490364025695}
+{"step": 275, "lrm": 0.41113490364025695}
+{"step": 275, "lrm": 0.41113490364025695}
+{"step": 276, "reward": 0.03515625, "sequence_length": 145.28515625}
+{"step": 276, "reward": 0.03515625, "sequence_length": 145.28515625}
+{"step": 276, "reward": 0.03515625, "sequence_length": 145.28515625}
+{"step": 276, "lrm": 0.4089935760171306}
+{"step": 276, "lrm": 0.4089935760171306}
+{"step": 276, "lrm": 0.4089935760171306}
+{"step": 277, "reward": 0.05078125, "sequence_length": 146.8515625}
+{"step": 277, "reward": 0.05078125, "sequence_length": 146.8515625}
+{"step": 277, "reward": 0.05078125, "sequence_length": 146.8515625}
+{"step": 277, "lrm": 0.40685224839400425}
+{"step": 277, "lrm": 0.40685224839400425}
+{"step": 277, "lrm": 0.40685224839400425}
+{"step": 278, "reward": 0.0078125, "sequence_length": 132.33984375}
+{"step": 278, "reward": 0.0078125, "sequence_length": 132.33984375}
+{"step": 278, "reward": 0.0078125, "sequence_length": 132.33984375}
+{"step": 278, "lrm": 0.4047109207708779}
+{"step": 278, "lrm": 0.4047109207708779}
+{"step": 278, "lrm": 0.4047109207708779}
+{"step": 279, "reward": 0.01953125, "sequence_length": 145.26953125}
+{"step": 279, "reward": 0.01953125, "sequence_length": 145.26953125}
+{"step": 279, "reward": 0.01953125, "sequence_length": 145.26953125}
+{"step": 279, "lrm": 0.40256959314775165}
+{"step": 279, "lrm": 0.40256959314775165}
+{"step": 279, "lrm": 0.40256959314775165}
+{"step": 280, "reward": 0.046875, "sequence_length": 139.96484375}
+{"step": 280, "reward": 0.046875, "sequence_length": 139.96484375}
+{"step": 280, "reward": 0.046875, "sequence_length": 139.96484375}
+{"step": 280, "lrm": 0.4004282655246253}
+{"step": 280, "lrm": 0.4004282655246253}
+{"step": 280, "lrm": 0.4004282655246253}
+{"step": 281, "reward": 0.0, "sequence_length": 152.45703125}
+{"step": 281, "reward": 0.0, "sequence_length": 152.45703125}
+{"step": 281, "reward": 0.0, "sequence_length": 152.45703125}
+{"step": 281, "lrm": 0.39828693790149894}
+{"step": 281, "lrm": 0.39828693790149894}
+{"step": 281, "lrm": 0.39828693790149894}
+{"step": 282, "reward": 0.05078125, "sequence_length": 139.73828125}
+{"step": 282, "reward": 0.05078125, "sequence_length": 139.73828125}
+{"step": 282, "reward": 0.05078125, "sequence_length": 139.73828125}
+{"step": 282, "lrm": 0.3961456102783726}
+{"step": 282, "lrm": 0.3961456102783726}
+{"step": 282, "lrm": 0.3961456102783726}
+{"step": 283, "reward": 0.07421875, "sequence_length": 128.34765625}
+{"step": 283, "reward": 0.07421875, "sequence_length": 128.34765625}
+{"step": 283, "reward": 0.07421875, "sequence_length": 128.34765625}
+{"step": 283, "lrm": 0.39400428265524623}
+{"step": 283, "lrm": 0.39400428265524623}
+{"step": 283, "lrm": 0.39400428265524623}
+{"step": 284, "reward": 0.0234375, "sequence_length": 149.71484375}
+{"step": 284, "reward": 0.0234375, "sequence_length": 149.71484375}
+{"step": 284, "reward": 0.0234375, "sequence_length": 149.71484375}
+{"step": 284, "lrm": 0.3918629550321199}
+{"step": 284, "lrm": 0.3918629550321199}
+{"step": 284, "lrm": 0.3918629550321199}
+{"step": 285, "reward": 0.01953125, "sequence_length": 133.8359375}
+{"step": 285, "reward": 0.01953125, "sequence_length": 133.8359375}
+{"step": 285, "reward": 0.01953125, "sequence_length": 133.8359375}
+{"step": 285, "lrm": 0.3897216274089935}
+{"step": 285, "lrm": 0.3897216274089935}
+{"step": 285, "lrm": 0.3897216274089935}
+{"step": 286, "reward": 0.05078125, "sequence_length": 153.3828125}
+{"step": 286, "reward": 0.05078125, "sequence_length": 153.3828125}
+{"step": 286, "reward": 0.05078125, "sequence_length": 153.3828125}
+{"step": 286, "lrm": 0.3875802997858673}
+{"step": 286, "lrm": 0.3875802997858673}
+{"step": 286, "lrm": 0.3875802997858673}
+{"step": 287, "reward": 0.04296875, "sequence_length": 139.1875}
+{"step": 287, "reward": 0.04296875, "sequence_length": 139.1875}
+{"step": 287, "reward": 0.04296875, "sequence_length": 139.1875}
+{"step": 287, "lrm": 0.3854389721627409}
+{"step": 287, "lrm": 0.3854389721627409}
+{"step": 287, "lrm": 0.3854389721627409}
+{"step": 288, "reward": 0.03515625, "sequence_length": 144.05859375}
+{"step": 288, "reward": 0.03515625, "sequence_length": 144.05859375}
+{"step": 288, "reward": 0.03515625, "sequence_length": 144.05859375}
+{"step": 288, "lrm": 0.38329764453961457}
+{"step": 288, "lrm": 0.38329764453961457}
+{"step": 288, "lrm": 0.38329764453961457}
+{"step": 289, "reward": 0.0703125, "sequence_length": 143.26953125}
+{"step": 289, "reward": 0.0703125, "sequence_length": 143.26953125}
+{"step": 289, "reward": 0.0703125, "sequence_length": 143.26953125}
+{"step": 289, "lrm": 0.3811563169164882}
+{"step": 289, "lrm": 0.3811563169164882}
+{"step": 289, "lrm": 0.3811563169164882}
+{"step": 290, "reward": 0.1328125, "sequence_length": 149.66796875}
+{"step": 290, "reward": 0.1328125, "sequence_length": 149.66796875}
+{"step": 290, "reward": 0.1328125, "sequence_length": 149.66796875}
+{"step": 290, "lrm": 0.37901498929336186}
+{"step": 290, "lrm": 0.37901498929336186}
+{"step": 290, "lrm": 0.37901498929336186}
+{"step": 291, "reward": 0.01171875, "sequence_length": 144.50390625}
+{"step": 291, "reward": 0.01171875, "sequence_length": 144.50390625}
+{"step": 291, "reward": 0.01171875, "sequence_length": 144.50390625}
+{"step": 291, "lrm": 0.3768736616702355}
+{"step": 291, "lrm": 0.3768736616702355}
+{"step": 291, "lrm": 0.3768736616702355}
+{"step": 292, "reward": 0.06640625, "sequence_length": 143.83203125}
+{"step": 292, "reward": 0.06640625, "sequence_length": 143.83203125}
+{"step": 292, "reward": 0.06640625, "sequence_length": 143.83203125}
+{"step": 292, "lrm": 0.37473233404710926}
+{"step": 292, "lrm": 0.37473233404710926}
+{"step": 292, "lrm": 0.37473233404710926}
+{"step": 293, "reward": 0.02734375, "sequence_length": 137.4921875}
+{"step": 293, "reward": 0.02734375, "sequence_length": 137.4921875}
+{"step": 293, "reward": 0.02734375, "sequence_length": 137.4921875}
+{"step": 293, "lrm": 0.3725910064239829}
+{"step": 293, "lrm": 0.3725910064239829}
+{"step": 293, "lrm": 0.3725910064239829}
+{"step": 294, "reward": 0.046875, "sequence_length": 152.1171875}
+{"step": 294, "reward": 0.046875, "sequence_length": 152.1171875}
+{"step": 294, "reward": 0.046875, "sequence_length": 152.1171875}
+{"step": 294, "lrm": 0.37044967880085655}
+{"step": 294, "lrm": 0.37044967880085655}
+{"step": 294, "lrm": 0.37044967880085655}
+{"step": 295, "reward": 0.0078125, "sequence_length": 158.796875}
+{"step": 295, "reward": 0.0078125, "sequence_length": 158.796875}
+{"step": 295, "reward": 0.0078125, "sequence_length": 158.796875}
+{"step": 295, "lrm": 0.3683083511777302}
+{"step": 295, "lrm": 0.3683083511777302}
+{"step": 295, "lrm": 0.3683083511777302}
+{"step": 296, "reward": 0.03125, "sequence_length": 139.13671875}
+{"step": 296, "reward": 0.03125, "sequence_length": 139.13671875}
+{"step": 296, "reward": 0.03125, "sequence_length": 139.13671875}
+{"step": 296, "lrm": 0.36616702355460384}
+{"step": 296, "lrm": 0.36616702355460384}
+{"step": 296, "lrm": 0.36616702355460384}
+{"step": 297, "reward": 0.07421875, "sequence_length": 143.40625}
+{"step": 297, "reward": 0.07421875, "sequence_length": 143.40625}
+{"step": 297, "reward": 0.07421875, "sequence_length": 143.40625}
+{"step": 297, "lrm": 0.3640256959314775}
+{"step": 297, "lrm": 0.3640256959314775}
+{"step": 297, "lrm": 0.3640256959314775}
+{"step": 298, "reward": 0.01953125, "sequence_length": 129.5703125}
+{"step": 298, "reward": 0.01953125, "sequence_length": 129.5703125}
+{"step": 298, "reward": 0.01953125, "sequence_length": 129.5703125}
+{"step": 298, "lrm": 0.36188436830835113}
+{"step": 298, "lrm": 0.36188436830835113}
+{"step": 298, "lrm": 0.36188436830835113}
+{"step": 299, "reward": 0.0546875, "sequence_length": 137.140625}
+{"step": 299, "reward": 0.0546875, "sequence_length": 137.140625}
+{"step": 299, "reward": 0.0546875, "sequence_length": 137.140625}
+{"step": 299, "lrm": 0.3597430406852249}
+{"step": 299, "lrm": 0.3597430406852249}
+{"step": 299, "lrm": 0.3597430406852249}
+{"step": 300, "pass@1": 0.02499999850988388, "pass@2": 0.044999998062849045, "pass@3": 0.0625, "pass@4": 0.07000000029802322, "pass@5": 0.07750000059604645, "pass@6": 0.08999999612569809, "pass@7": 0.0949999988079071, "pass@8": 0.09999999403953552}
+{"step": 300, "pass@1": 0.02499999850988388, "pass@2": 0.044999998062849045, "pass@3": 0.0625, "pass@4": 0.07000000029802322, "pass@5": 0.07750000059604645, "pass@6": 0.08999999612569809, "pass@7": 0.0949999988079071, "pass@8": 0.09999999403953552}
+{"step": 300, "pass@1": 0.02499999850988388, "pass@2": 0.044999998062849045, "pass@3": 0.0625, "pass@4": 0.07000000029802322, "pass@5": 0.07750000059604645, "pass@6": 0.08999999612569809, "pass@7": 0.0949999988079071, "pass@8": 0.09999999403953552}
+{"step": 300, "reward": 0.015625, "sequence_length": 144.2890625}
+{"step": 300, "reward": 0.015625, "sequence_length": 144.2890625}
+{"step": 300, "reward": 0.015625, "sequence_length": 144.2890625}
+{"step": 300, "lrm": 0.35760171306209854}
+{"step": 300, "lrm": 0.35760171306209854}
+{"step": 300, "lrm": 0.35760171306209854}
+{"step": 301, "reward": 0.03125, "sequence_length": 139.1328125}
+{"step": 301, "reward": 0.03125, "sequence_length": 139.1328125}
+{"step": 301, "reward": 0.03125, "sequence_length": 139.1328125}
+{"step": 301, "lrm": 0.3554603854389722}
+{"step": 301, "lrm": 0.3554603854389722}
+{"step": 301, "lrm": 0.3554603854389722}
+{"step": 302, "reward": 0.01953125, "sequence_length": 139.4453125}
+{"step": 302, "reward": 0.01953125, "sequence_length": 139.4453125}
+{"step": 302, "reward": 0.01953125, "sequence_length": 139.4453125}
+{"step": 302, "lrm": 0.3533190578158458}
+{"step": 302, "lrm": 0.3533190578158458}
+{"step": 302, "lrm": 0.3533190578158458}
+{"step": 303, "reward": 0.015625, "sequence_length": 150.83984375}
+{"step": 303, "reward": 0.015625, "sequence_length": 150.83984375}
+{"step": 303, "reward": 0.015625, "sequence_length": 150.83984375}
+{"step": 303, "lrm": 0.3511777301927195}
+{"step": 303, "lrm": 0.3511777301927195}
+{"step": 303, "lrm": 0.3511777301927195}
+{"step": 304, "reward": 0.0390625, "sequence_length": 130.796875}
+{"step": 304, "reward": 0.0390625, "sequence_length": 130.796875}
+{"step": 304, "reward": 0.0390625, "sequence_length": 130.796875}
+{"step": 304, "lrm": 0.3490364025695931}
+{"step": 304, "lrm": 0.3490364025695931}
+{"step": 304, "lrm": 0.3490364025695931}
+{"step": 305, "reward": 0.01953125, "sequence_length": 143.37109375}
+{"step": 305, "reward": 0.01953125, "sequence_length": 143.37109375}
+{"step": 305, "reward": 0.01953125, "sequence_length": 143.37109375}
+{"step": 305, "lrm": 0.34689507494646676}
+{"step": 305, "lrm": 0.34689507494646676}
+{"step": 305, "lrm": 0.34689507494646676}
+{"step": 306, "reward": 0.01953125, "sequence_length": 132.34765625}
+{"step": 306, "reward": 0.01953125, "sequence_length": 132.34765625}
+{"step": 306, "reward": 0.01953125, "sequence_length": 132.34765625}
+{"step": 306, "lrm": 0.3447537473233405}
+{"step": 306, "lrm": 0.3447537473233405}
+{"step": 306, "lrm": 0.3447537473233405}
+{"step": 307, "reward": 0.01953125, "sequence_length": 141.375}
+{"step": 307, "reward": 0.01953125, "sequence_length": 141.375}
+{"step": 307, "reward": 0.01953125, "sequence_length": 141.375}
+{"step": 307, "lrm": 0.34261241970021417}
+{"step": 307, "lrm": 0.34261241970021417}
+{"step": 307, "lrm": 0.34261241970021417}
+{"step": 308, "reward": 0.0, "sequence_length": 139.56640625}
+{"step": 308, "reward": 0.0, "sequence_length": 139.56640625}
+{"step": 308, "reward": 0.0, "sequence_length": 139.56640625}
+{"step": 308, "lrm": 0.3404710920770878}
+{"step": 308, "lrm": 0.3404710920770878}
+{"step": 308, "lrm": 0.3404710920770878}
+{"step": 309, "reward": 0.00390625, "sequence_length": 139.359375}
+{"step": 309, "reward": 0.00390625, "sequence_length": 139.359375}
+{"step": 309, "reward": 0.00390625, "sequence_length": 139.359375}
+{"step": 309, "lrm": 0.33832976445396146}
+{"step": 309, "lrm": 0.33832976445396146}
+{"step": 309, "lrm": 0.33832976445396146}
+{"step": 310, "reward": 0.0234375, "sequence_length": 134.29296875}
+{"step": 310, "reward": 0.0234375, "sequence_length": 134.29296875}
+{"step": 310, "reward": 0.0234375, "sequence_length": 134.29296875}
+{"step": 310, "lrm": 0.3361884368308351}
+{"step": 310, "lrm": 0.3361884368308351}
+{"step": 310, "lrm": 0.3361884368308351}
+{"step": 311, "reward": 0.03125, "sequence_length": 125.3125}
+{"step": 311, "reward": 0.03125, "sequence_length": 125.3125}
+{"step": 311, "reward": 0.03125, "sequence_length": 125.3125}
+{"step": 311, "lrm": 0.33404710920770875}
+{"step": 311, "lrm": 0.33404710920770875}
+{"step": 311, "lrm": 0.33404710920770875}
+{"step": 312, "reward": 0.00390625, "sequence_length": 132.6640625}
+{"step": 312, "reward": 0.00390625, "sequence_length": 132.6640625}
+{"step": 312, "reward": 0.00390625, "sequence_length": 132.6640625}
+{"step": 312, "lrm": 0.3319057815845824}
+{"step": 312, "lrm": 0.3319057815845824}
+{"step": 312, "lrm": 0.3319057815845824}
+{"step": 313, "reward": 0.00390625, "sequence_length": 133.72265625}
+{"step": 313, "reward": 0.00390625, "sequence_length": 133.72265625}
+{"step": 313, "reward": 0.00390625, "sequence_length": 133.72265625}
+{"step": 313, "lrm": 0.32976445396145615}
+{"step": 313, "lrm": 0.32976445396145615}
+{"step": 313, "lrm": 0.32976445396145615}
+{"step": 314, "reward": 0.015625, "sequence_length": 135.3203125}
+{"step": 314, "reward": 0.015625, "sequence_length": 135.3203125}
+{"step": 314, "reward": 0.015625, "sequence_length": 135.3203125}
+{"step": 314, "lrm": 0.3276231263383298}
+{"step": 314, "lrm": 0.3276231263383298}
+{"step": 314, "lrm": 0.3276231263383298}
+{"step": 315, "reward": 0.01953125, "sequence_length": 151.7109375}
+{"step": 315, "reward": 0.01953125, "sequence_length": 151.7109375}
+{"step": 315, "reward": 0.01953125, "sequence_length": 151.7109375}
+{"step": 315, "lrm": 0.32548179871520344}
+{"step": 315, "lrm": 0.32548179871520344}
+{"step": 315, "lrm": 0.32548179871520344}
+{"step": 316, "reward": 0.01171875, "sequence_length": 120.57421875}
+{"step": 316, "reward": 0.01171875, "sequence_length": 120.57421875}
+{"step": 316, "reward": 0.01171875, "sequence_length": 120.57421875}
+{"step": 316, "lrm": 0.3233404710920771}
+{"step": 316, "lrm": 0.3233404710920771}
+{"step": 316, "lrm": 0.3233404710920771}
+{"step": 317, "reward": 0.04296875, "sequence_length": 139.46875}
+{"step": 317, "reward": 0.04296875, "sequence_length": 139.46875}
+{"step": 317, "reward": 0.04296875, "sequence_length": 139.46875}
+{"step": 317, "lrm": 0.32119914346895073}
+{"step": 317, "lrm": 0.32119914346895073}
+{"step": 317, "lrm": 0.32119914346895073}
+{"step": 318, "reward": 0.00390625, "sequence_length": 144.56640625}
+{"step": 318, "reward": 0.00390625, "sequence_length": 144.56640625}
+{"step": 318, "reward": 0.00390625, "sequence_length": 144.56640625}
+{"step": 318, "lrm": 0.3190578158458244}
+{"step": 318, "lrm": 0.3190578158458244}
+{"step": 318, "lrm": 0.3190578158458244}
+{"step": 319, "reward": 0.01953125, "sequence_length": 123.55859375}
+{"step": 319, "reward": 0.01953125, "sequence_length": 123.55859375}
+{"step": 319, "reward": 0.01953125, "sequence_length": 123.55859375}
+{"step": 319, "lrm": 0.316916488222698}
+{"step": 319, "lrm": 0.316916488222698}
+{"step": 319, "lrm": 0.316916488222698}
+{"step": 320, "reward": 0.01953125, "sequence_length": 142.46875}
+{"step": 320, "reward": 0.01953125, "sequence_length": 142.46875}
+{"step": 320, "reward": 0.01953125, "sequence_length": 142.46875}
+{"step": 320, "lrm": 0.3147751605995718}
+{"step": 320, "lrm": 0.3147751605995718}
+{"step": 320, "lrm": 0.3147751605995718}
+{"step": 321, "reward": 0.01171875, "sequence_length": 143.078125}
+{"step": 321, "reward": 0.01171875, "sequence_length": 143.078125}
+{"step": 321, "reward": 0.01171875, "sequence_length": 143.078125}
+{"step": 321, "lrm": 0.3126338329764454}
+{"step": 321, "lrm": 0.3126338329764454}
+{"step": 321, "lrm": 0.3126338329764454}
+{"step": 322, "reward": 0.0390625, "sequence_length": 127.20703125}
+{"step": 322, "reward": 0.0390625, "sequence_length": 127.20703125}
+{"step": 322, "reward": 0.0390625, "sequence_length": 127.20703125}
+{"step": 322, "lrm": 0.31049250535331907}
+{"step": 322, "lrm": 0.31049250535331907}
+{"step": 322, "lrm": 0.31049250535331907}
+{"step": 323, "reward": 0.015625, "sequence_length": 137.37890625}
+{"step": 323, "reward": 0.015625, "sequence_length": 137.37890625}
+{"step": 323, "reward": 0.015625, "sequence_length": 137.37890625}
+{"step": 323, "lrm": 0.3083511777301927}
+{"step": 323, "lrm": 0.3083511777301927}
+{"step": 323, "lrm": 0.3083511777301927}
+{"step": 324, "reward": 0.0234375, "sequence_length": 124.203125}
+{"step": 324, "reward": 0.0234375, "sequence_length": 124.203125}
+{"step": 324, "reward": 0.0234375, "sequence_length": 124.203125}
+{"step": 324, "lrm": 0.30620985010706636}
+{"step": 324, "lrm": 0.30620985010706636}
+{"step": 324, "lrm": 0.30620985010706636}
+{"step": 325, "reward": 0.0, "sequence_length": 133.94921875}
+{"step": 325, "reward": 0.0, "sequence_length": 133.94921875}
+{"step": 325, "reward": 0.0, "sequence_length": 133.94921875}
+{"step": 325, "lrm": 0.30406852248394}
+{"step": 325, "lrm": 0.30406852248394}
+{"step": 325, "lrm": 0.30406852248394}
+{"step": 326, "reward": 0.02734375, "sequence_length": 140.75390625}
+{"step": 326, "reward": 0.02734375, "sequence_length": 140.75390625}
+{"step": 326, "reward": 0.02734375, "sequence_length": 140.75390625}
+{"step": 326, "lrm": 0.30192719486081365}
+{"step": 326, "lrm": 0.30192719486081365}
+{"step": 326, "lrm": 0.30192719486081365}
+{"step": 327, "reward": 0.00390625, "sequence_length": 136.59765625}
+{"step": 327, "reward": 0.00390625, "sequence_length": 136.59765625}
+{"step": 327, "reward": 0.00390625, "sequence_length": 136.59765625}
+{"step": 327, "lrm": 0.2997858672376874}
+{"step": 327, "lrm": 0.2997858672376874}
+{"step": 327, "lrm": 0.2997858672376874}
+{"step": 328, "reward": 0.015625, "sequence_length": 137.21484375}
+{"step": 328, "reward": 0.015625, "sequence_length": 137.21484375}
+{"step": 328, "reward": 0.015625, "sequence_length": 137.21484375}
+{"step": 328, "lrm": 0.29764453961456105}
+{"step": 328, "lrm": 0.29764453961456105}
+{"step": 328, "lrm": 0.29764453961456105}
+{"step": 329, "reward": 0.01171875, "sequence_length": 128.61328125}
+{"step": 329, "reward": 0.01171875, "sequence_length": 128.61328125}
+{"step": 329, "reward": 0.01171875, "sequence_length": 128.61328125}
+{"step": 329, "lrm": 0.2955032119914347}
+{"step": 329, "lrm": 0.2955032119914347}
+{"step": 329, "lrm": 0.2955032119914347}
+{"step": 330, "reward": 0.01171875, "sequence_length": 129.01953125}
+{"step": 330, "reward": 0.01171875, "sequence_length": 129.01953125}
+{"step": 330, "reward": 0.01171875, "sequence_length": 129.01953125}
+{"step": 330, "lrm": 0.29336188436830835}
+{"step": 330, "lrm": 0.29336188436830835}
+{"step": 330, "lrm": 0.29336188436830835}
+{"step": 331, "reward": 0.01171875, "sequence_length": 132.43359375}
+{"step": 331, "reward": 0.01171875, "sequence_length": 132.43359375}
+{"step": 331, "reward": 0.01171875, "sequence_length": 132.43359375}
+{"step": 331, "lrm": 0.291220556745182}
+{"step": 331, "lrm": 0.291220556745182}
+{"step": 331, "lrm": 0.291220556745182}
+{"step": 332, "reward": 0.0, "sequence_length": 126.875}
+{"step": 332, "reward": 0.0, "sequence_length": 126.875}
+{"step": 332, "reward": 0.0, "sequence_length": 126.875}
+{"step": 332, "lrm": 0.28907922912205564}
+{"step": 332, "lrm": 0.28907922912205564}
+{"step": 332, "lrm": 0.28907922912205564}
+{"step": 333, "reward": 0.0, "sequence_length": 125.26953125}
+{"step": 333, "reward": 0.0, "sequence_length": 125.26953125}
+{"step": 333, "reward": 0.0, "sequence_length": 125.26953125}
+{"step": 333, "lrm": 0.2869379014989293}
+{"step": 333, "lrm": 0.2869379014989293}
+{"step": 333, "lrm": 0.2869379014989293}
+{"step": 334, "reward": 0.0078125, "sequence_length": 121.10546875}
+{"step": 334, "reward": 0.0078125, "sequence_length": 121.10546875}
+{"step": 334, "reward": 0.0078125, "sequence_length": 121.10546875}
+{"step": 334, "lrm": 0.28479657387580304}
+{"step": 334, "lrm": 0.28479657387580304}
+{"step": 334, "lrm": 0.28479657387580304}
+{"step": 335, "reward": 0.00390625, "sequence_length": 145.734375}
+{"step": 335, "reward": 0.00390625, "sequence_length": 145.734375}
+{"step": 335, "reward": 0.00390625, "sequence_length": 145.734375}
+{"step": 335, "lrm": 0.2826552462526767}
+{"step": 335, "lrm": 0.2826552462526767}
+{"step": 335, "lrm": 0.2826552462526767}
+{"step": 336, "reward": 0.046875, "sequence_length": 128.61328125}
+{"step": 336, "reward": 0.046875, "sequence_length": 128.61328125}
+{"step": 336, "reward": 0.046875, "sequence_length": 128.61328125}
+{"step": 336, "lrm": 0.28051391862955033}
+{"step": 336, "lrm": 0.28051391862955033}
+{"step": 336, "lrm": 0.28051391862955033}
+{"step": 337, "reward": 0.02734375, "sequence_length": 128.98046875}
+{"step": 337, "reward": 0.02734375, "sequence_length": 128.98046875}
+{"step": 337, "reward": 0.02734375, "sequence_length": 128.98046875}
+{"step": 337, "lrm": 0.278372591006424}
+{"step": 337, "lrm": 0.278372591006424}
+{"step": 337, "lrm": 0.278372591006424}
+{"step": 338, "reward": 0.03515625, "sequence_length": 134.2421875}
+{"step": 338, "reward": 0.03515625, "sequence_length": 134.2421875}
+{"step": 338, "reward": 0.03515625, "sequence_length": 134.2421875}
+{"step": 338, "lrm": 0.2762312633832976}
+{"step": 338, "lrm": 0.2762312633832976}
+{"step": 338, "lrm": 0.2762312633832976}
+{"step": 339, "reward": 0.0234375, "sequence_length": 129.2578125}
+{"step": 339, "reward": 0.0234375, "sequence_length": 129.2578125}
+{"step": 339, "reward": 0.0234375, "sequence_length": 129.2578125}
+{"step": 339, "lrm": 0.27408993576017127}
+{"step": 339, "lrm": 0.27408993576017127}
+{"step": 339, "lrm": 0.27408993576017127}
+{"step": 340, "reward": 0.015625, "sequence_length": 127.86328125}
+{"step": 340, "reward": 0.015625, "sequence_length": 127.86328125}
+{"step": 340, "reward": 0.015625, "sequence_length": 127.86328125}
+{"step": 340, "lrm": 0.271948608137045}
+{"step": 340, "lrm": 0.271948608137045}
+{"step": 340, "lrm": 0.271948608137045}
+{"step": 341, "reward": 0.04296875, "sequence_length": 126.5390625}
+{"step": 341, "reward": 0.04296875, "sequence_length": 126.5390625}
+{"step": 341, "reward": 0.04296875, "sequence_length": 126.5390625}
+{"step": 341, "lrm": 0.26980728051391867}
+{"step": 341, "lrm": 0.26980728051391867}
+{"step": 341, "lrm": 0.26980728051391867}
+{"step": 342, "reward": 0.0625, "sequence_length": 139.31640625}
+{"step": 342, "reward": 0.0625, "sequence_length": 139.31640625}
+{"step": 342, "reward": 0.0625, "sequence_length": 139.31640625}
+{"step": 342, "lrm": 0.2676659528907923}
+{"step": 342, "lrm": 0.2676659528907923}
+{"step": 342, "lrm": 0.2676659528907923}
+{"step": 343, "reward": 0.015625, "sequence_length": 134.05078125}
+{"step": 343, "reward": 0.015625, "sequence_length": 134.05078125}
+{"step": 343, "reward": 0.015625, "sequence_length": 134.05078125}
+{"step": 343, "lrm": 0.26552462526766596}
+{"step": 343, "lrm": 0.26552462526766596}
+{"step": 343, "lrm": 0.26552462526766596}
+{"step": 344, "reward": 0.02734375, "sequence_length": 130.84375}
+{"step": 344, "reward": 0.02734375, "sequence_length": 130.84375}
+{"step": 344, "reward": 0.02734375, "sequence_length": 130.84375}
+{"step": 344, "lrm": 0.2633832976445396}
+{"step": 344, "lrm": 0.2633832976445396}
+{"step": 344, "lrm": 0.2633832976445396}
+{"step": 345, "reward": 0.02734375, "sequence_length": 133.29296875}
+{"step": 345, "reward": 0.02734375, "sequence_length": 133.29296875}
+{"step": 345, "reward": 0.02734375, "sequence_length": 133.29296875}
+{"step": 345, "lrm": 0.26124197002141325}
+{"step": 345, "lrm": 0.26124197002141325}
+{"step": 345, "lrm": 0.26124197002141325}
+{"step": 346, "reward": 0.015625, "sequence_length": 118.6875}
+{"step": 346, "reward": 0.015625, "sequence_length": 118.6875}
+{"step": 346, "reward": 0.015625, "sequence_length": 118.6875}
+{"step": 346, "lrm": 0.2591006423982869}
+{"step": 346, "lrm": 0.2591006423982869}
+{"step": 346, "lrm": 0.2591006423982869}
+{"step": 347, "reward": 0.01171875, "sequence_length": 133.25}
+{"step": 347, "reward": 0.01171875, "sequence_length": 133.25}
+{"step": 347, "reward": 0.01171875, "sequence_length": 133.25}
+{"step": 347, "lrm": 0.25695931477516065}
+{"step": 347, "lrm": 0.25695931477516065}
+{"step": 347, "lrm": 0.25695931477516065}
+{"step": 348, "reward": 0.0390625, "sequence_length": 126.12890625}
+{"step": 348, "reward": 0.0390625, "sequence_length": 126.12890625}
+{"step": 348, "reward": 0.0390625, "sequence_length": 126.12890625}
+{"step": 348, "lrm": 0.2548179871520343}
+{"step": 348, "lrm": 0.2548179871520343}
+{"step": 348, "lrm": 0.2548179871520343}
+{"step": 349, "reward": 0.015625, "sequence_length": 138.6171875}
+{"step": 349, "reward": 0.015625, "sequence_length": 138.6171875}
+{"step": 349, "reward": 0.015625, "sequence_length": 138.6171875}
+{"step": 349, "lrm": 0.25267665952890794}
+{"step": 349, "lrm": 0.25267665952890794}
+{"step": 349, "lrm": 0.25267665952890794}
+{"step": 350, "reward": 0.015625, "sequence_length": 133.82421875}
+{"step": 350, "reward": 0.015625, "sequence_length": 133.82421875}
+{"step": 350, "reward": 0.015625, "sequence_length": 133.82421875}
+{"step": 350, "lrm": 0.2505353319057816}
+{"step": 350, "lrm": 0.2505353319057816}
+{"step": 350, "lrm": 0.2505353319057816}
+{"step": 351, "reward": 0.015625, "sequence_length": 122.01171875}
+{"step": 351, "reward": 0.015625, "sequence_length": 122.01171875}
+{"step": 351, "reward": 0.015625, "sequence_length": 122.01171875}
+{"step": 351, "lrm": 0.24839400428265523}
+{"step": 351, "lrm": 0.24839400428265523}
+{"step": 351, "lrm": 0.24839400428265523}
+{"step": 352, "reward": 0.015625, "sequence_length": 130.49609375}
+{"step": 352, "reward": 0.015625, "sequence_length": 130.49609375}
+{"step": 352, "reward": 0.015625, "sequence_length": 130.49609375}
+{"step": 352, "lrm": 0.24625267665952888}
+{"step": 352, "lrm": 0.24625267665952888}
+{"step": 352, "lrm": 0.24625267665952888}
+{"step": 353, "reward": 0.01171875, "sequence_length": 128.4609375}
+{"step": 353, "reward": 0.01171875, "sequence_length": 128.4609375}
+{"step": 353, "reward": 0.01171875, "sequence_length": 128.4609375}
+{"step": 353, "lrm": 0.24411134903640253}
+{"step": 353, "lrm": 0.24411134903640253}
+{"step": 353, "lrm": 0.24411134903640253}
+{"step": 354, "reward": 0.01171875, "sequence_length": 122.1796875}
+{"step": 354, "reward": 0.01171875, "sequence_length": 122.1796875}
+{"step": 354, "reward": 0.01171875, "sequence_length": 122.1796875}
+{"step": 354, "lrm": 0.24197002141327628}
+{"step": 354, "lrm": 0.24197002141327628}
+{"step": 354, "lrm": 0.24197002141327628}
+{"step": 355, "reward": 0.015625, "sequence_length": 119.87890625}
+{"step": 355, "reward": 0.015625, "sequence_length": 119.87890625}
+{"step": 355, "reward": 0.015625, "sequence_length": 119.87890625}
+{"step": 355, "lrm": 0.23982869379014993}
+{"step": 355, "lrm": 0.23982869379014993}
+{"step": 355, "lrm": 0.23982869379014993}
+{"step": 356, "reward": 0.0078125, "sequence_length": 126.9921875}
+{"step": 356, "reward": 0.0078125, "sequence_length": 126.9921875}
+{"step": 356, "reward": 0.0078125, "sequence_length": 126.9921875}
+{"step": 356, "lrm": 0.23768736616702357}
+{"step": 356, "lrm": 0.23768736616702357}
+{"step": 356, "lrm": 0.23768736616702357}
+{"step": 357, "reward": 0.03125, "sequence_length": 113.2265625}
+{"step": 357, "reward": 0.03125, "sequence_length": 113.2265625}
+{"step": 357, "reward": 0.03125, "sequence_length": 113.2265625}
+{"step": 357, "lrm": 0.23554603854389722}
+{"step": 357, "lrm": 0.23554603854389722}
+{"step": 357, "lrm": 0.23554603854389722}
+{"step": 358, "reward": 0.015625, "sequence_length": 126.9609375}
+{"step": 358, "reward": 0.015625, "sequence_length": 126.9609375}
+{"step": 358, "reward": 0.015625, "sequence_length": 126.9609375}
+{"step": 358, "lrm": 0.23340471092077086}
+{"step": 358, "lrm": 0.23340471092077086}
+{"step": 358, "lrm": 0.23340471092077086}
+{"step": 359, "reward": 0.00390625, "sequence_length": 122.87890625}
+{"step": 359, "reward": 0.00390625, "sequence_length": 122.87890625}
+{"step": 359, "reward": 0.00390625, "sequence_length": 122.87890625}
+{"step": 359, "lrm": 0.2312633832976445}
+{"step": 359, "lrm": 0.2312633832976445}
+{"step": 359, "lrm": 0.2312633832976445}
+{"step": 360, "pass@1": 0.009999999776482582, "pass@2": 0.019999999552965164, "pass@3": 0.03749999776482582, "pass@4": 0.054999999701976776, "pass@5": 0.057499997317790985, "pass@6": 0.0625, "pass@7": 0.06499999761581421, "pass@8": 0.07249999791383743}
+{"step": 360, "pass@1": 0.009999999776482582, "pass@2": 0.019999999552965164, "pass@3": 0.03749999776482582, "pass@4": 0.054999999701976776, "pass@5": 0.057499997317790985, "pass@6": 0.0625, "pass@7": 0.06499999761581421, "pass@8": 0.07249999791383743}
+{"step": 360, "pass@1": 0.009999999776482582, "pass@2": 0.019999999552965164, "pass@3": 0.03749999776482582, "pass@4": 0.054999999701976776, "pass@5": 0.057499997317790985, "pass@6": 0.0625, "pass@7": 0.06499999761581421, "pass@8": 0.07249999791383743}
+{"step": 360, "reward": 0.03125, "sequence_length": 122.25390625}
+{"step": 360, "reward": 0.03125, "sequence_length": 122.25390625}
+{"step": 360, "reward": 0.03125, "sequence_length": 122.25390625}
+{"step": 360, "lrm": 0.22912205567451815}
+{"step": 360, "lrm": 0.22912205567451815}
+{"step": 360, "lrm": 0.22912205567451815}
+{"step": 361, "reward": 0.03125, "sequence_length": 125.71875}
+{"step": 361, "reward": 0.03125, "sequence_length": 125.71875}
+{"step": 361, "reward": 0.03125, "sequence_length": 125.71875}
+{"step": 361, "lrm": 0.2269807280513919}
+{"step": 361, "lrm": 0.2269807280513919}
+{"step": 361, "lrm": 0.2269807280513919}
+{"step": 362, "reward": 0.01953125, "sequence_length": 115.0625}
+{"step": 362, "reward": 0.01953125, "sequence_length": 115.0625}
+{"step": 362, "reward": 0.01953125, "sequence_length": 115.0625}
+{"step": 362, "lrm": 0.22483940042826556}
+{"step": 362, "lrm": 0.22483940042826556}
+{"step": 362, "lrm": 0.22483940042826556}
+{"step": 363, "reward": 0.0234375, "sequence_length": 125.98046875}
+{"step": 363, "reward": 0.0234375, "sequence_length": 125.98046875}
+{"step": 363, "reward": 0.0234375, "sequence_length": 125.98046875}
+{"step": 363, "lrm": 0.2226980728051392}
+{"step": 363, "lrm": 0.2226980728051392}
+{"step": 363, "lrm": 0.2226980728051392}
+{"step": 364, "reward": 0.0078125, "sequence_length": 117.37109375}
+{"step": 364, "reward": 0.0078125, "sequence_length": 117.37109375}
+{"step": 364, "reward": 0.0078125, "sequence_length": 117.37109375}
+{"step": 364, "lrm": 0.22055674518201285}
+{"step": 364, "lrm": 0.22055674518201285}
+{"step": 364, "lrm": 0.22055674518201285}
+{"step": 365, "reward": 0.0234375, "sequence_length": 127.6640625}
+{"step": 365, "reward": 0.0234375, "sequence_length": 127.6640625}
+{"step": 365, "reward": 0.0234375, "sequence_length": 127.6640625}
+{"step": 365, "lrm": 0.2184154175588865}
+{"step": 365, "lrm": 0.2184154175588865}
+{"step": 365, "lrm": 0.2184154175588865}
+{"step": 366, "reward": 0.00390625, "sequence_length": 123.33984375}
+{"step": 366, "reward": 0.00390625, "sequence_length": 123.33984375}
+{"step": 366, "reward": 0.00390625, "sequence_length": 123.33984375}
+{"step": 366, "lrm": 0.21627408993576014}
+{"step": 366, "lrm": 0.21627408993576014}
+{"step": 366, "lrm": 0.21627408993576014}
+{"step": 367, "reward": 0.0234375, "sequence_length": 136.12890625}
+{"step": 367, "reward": 0.0234375, "sequence_length": 136.12890625}
+{"step": 367, "reward": 0.0234375, "sequence_length": 136.12890625}
+{"step": 367, "lrm": 0.21413276231263378}
+{"step": 367, "lrm": 0.21413276231263378}
+{"step": 367, "lrm": 0.21413276231263378}
+{"step": 368, "reward": 0.0234375, "sequence_length": 125.44921875}
+{"step": 368, "reward": 0.0234375, "sequence_length": 125.44921875}
+{"step": 368, "reward": 0.0234375, "sequence_length": 125.44921875}
+{"step": 368, "lrm": 0.21199143468950754}
+{"step": 368, "lrm": 0.21199143468950754}
+{"step": 368, "lrm": 0.21199143468950754}
+{"step": 369, "reward": 0.0, "sequence_length": 115.9765625}
+{"step": 369, "reward": 0.0, "sequence_length": 115.9765625}
+{"step": 369, "reward": 0.0, "sequence_length": 115.9765625}
+{"step": 369, "lrm": 0.2098501070663812}
+{"step": 369, "lrm": 0.2098501070663812}
+{"step": 369, "lrm": 0.2098501070663812}
+{"step": 370, "reward": 0.01953125, "sequence_length": 127.203125}
+{"step": 370, "reward": 0.01953125, "sequence_length": 127.203125}
+{"step": 370, "reward": 0.01953125, "sequence_length": 127.203125}
+{"step": 370, "lrm": 0.20770877944325483}
+{"step": 370, "lrm": 0.20770877944325483}
+{"step": 370, "lrm": 0.20770877944325483}
+{"step": 371, "reward": 0.0078125, "sequence_length": 126.90625}
+{"step": 371, "reward": 0.0078125, "sequence_length": 126.90625}
+{"step": 371, "reward": 0.0078125, "sequence_length": 126.90625}
+{"step": 371, "lrm": 0.20556745182012848}
+{"step": 371, "lrm": 0.20556745182012848}
+{"step": 371, "lrm": 0.20556745182012848}
+{"step": 372, "reward": 0.0078125, "sequence_length": 123.86328125}
+{"step": 372, "reward": 0.0078125, "sequence_length": 123.86328125}
+{"step": 372, "reward": 0.0078125, "sequence_length": 123.86328125}
+{"step": 372, "lrm": 0.20342612419700212}
+{"step": 372, "lrm": 0.20342612419700212}
+{"step": 372, "lrm": 0.20342612419700212}
+{"step": 373, "reward": 0.01171875, "sequence_length": 117.61328125}
+{"step": 373, "reward": 0.01171875, "sequence_length": 117.61328125}
+{"step": 373, "reward": 0.01171875, "sequence_length": 117.61328125}
+{"step": 373, "lrm": 0.20128479657387577}
+{"step": 373, "lrm": 0.20128479657387577}
+{"step": 373, "lrm": 0.20128479657387577}
+{"step": 374, "reward": 0.01171875, "sequence_length": 109.5546875}
+{"step": 374, "reward": 0.01171875, "sequence_length": 109.5546875}
+{"step": 374, "reward": 0.01171875, "sequence_length": 109.5546875}
+{"step": 374, "lrm": 0.1991434689507494}
+{"step": 374, "lrm": 0.1991434689507494}
+{"step": 374, "lrm": 0.1991434689507494}
+{"step": 375, "reward": 0.05859375, "sequence_length": 116.109375}
+{"step": 375, "reward": 0.05859375, "sequence_length": 116.109375}
+{"step": 375, "reward": 0.05859375, "sequence_length": 116.109375}
+{"step": 375, "lrm": 0.19700214132762317}
+{"step": 375, "lrm": 0.19700214132762317}
+{"step": 375, "lrm": 0.19700214132762317}
+{"step": 376, "reward": 0.01171875, "sequence_length": 112.25390625}
+{"step": 376, "reward": 0.01171875, "sequence_length": 112.25390625}
+{"step": 376, "reward": 0.01171875, "sequence_length": 112.25390625}
+{"step": 376, "lrm": 0.19486081370449682}
+{"step": 376, "lrm": 0.19486081370449682}
+{"step": 376, "lrm": 0.19486081370449682}
+{"step": 377, "reward": 0.00390625, "sequence_length": 120.2734375}
+{"step": 377, "reward": 0.00390625, "sequence_length": 120.2734375}
+{"step": 377, "reward": 0.00390625, "sequence_length": 120.2734375}
+{"step": 377, "lrm": 0.19271948608137046}
+{"step": 377, "lrm": 0.19271948608137046}
+{"step": 377, "lrm": 0.19271948608137046}
+{"step": 378, "reward": 0.015625, "sequence_length": 121.1015625}
+{"step": 378, "reward": 0.015625, "sequence_length": 121.1015625}
+{"step": 378, "reward": 0.015625, "sequence_length": 121.1015625}
+{"step": 378, "lrm": 0.1905781584582441}
+{"step": 378, "lrm": 0.1905781584582441}
+{"step": 378, "lrm": 0.1905781584582441}
+{"step": 379, "reward": 0.02734375, "sequence_length": 118.61328125}
+{"step": 379, "reward": 0.02734375, "sequence_length": 118.61328125}
+{"step": 379, "reward": 0.02734375, "sequence_length": 118.61328125}
+{"step": 379, "lrm": 0.18843683083511775}
+{"step": 379, "lrm": 0.18843683083511775}
+{"step": 379, "lrm": 0.18843683083511775}
+{"step": 380, "reward": 0.00390625, "sequence_length": 105.93359375}
+{"step": 380, "reward": 0.00390625, "sequence_length": 105.93359375}
+{"step": 380, "reward": 0.00390625, "sequence_length": 105.93359375}
+{"step": 380, "lrm": 0.1862955032119914}
+{"step": 380, "lrm": 0.1862955032119914}
+{"step": 380, "lrm": 0.1862955032119914}
+{"step": 381, "reward": 0.01171875, "sequence_length": 108.00390625}
+{"step": 381, "reward": 0.01171875, "sequence_length": 108.00390625}
+{"step": 381, "reward": 0.01171875, "sequence_length": 108.00390625}
+{"step": 381, "lrm": 0.18415417558886504}
+{"step": 381, "lrm": 0.18415417558886504}
+{"step": 381, "lrm": 0.18415417558886504}
+{"step": 382, "reward": 0.015625, "sequence_length": 126.484375}
+{"step": 382, "reward": 0.015625, "sequence_length": 126.484375}
+{"step": 382, "reward": 0.015625, "sequence_length": 126.484375}
+{"step": 382, "lrm": 0.1820128479657388}
+{"step": 382, "lrm": 0.1820128479657388}
+{"step": 382, "lrm": 0.1820128479657388}
+{"step": 383, "reward": 0.02734375, "sequence_length": 116.94140625}
+{"step": 383, "reward": 0.02734375, "sequence_length": 116.94140625}
+{"step": 383, "reward": 0.02734375, "sequence_length": 116.94140625}
+{"step": 383, "lrm": 0.17987152034261245}
+{"step": 383, "lrm": 0.17987152034261245}
+{"step": 383, "lrm": 0.17987152034261245}
+{"step": 384, "reward": 0.0234375, "sequence_length": 114.703125}
+{"step": 384, "reward": 0.0234375, "sequence_length": 114.703125}
+{"step": 384, "reward": 0.0234375, "sequence_length": 114.703125}
+{"step": 384, "lrm": 0.1777301927194861}
+{"step": 384, "lrm": 0.1777301927194861}
+{"step": 384, "lrm": 0.1777301927194861}
+{"step": 385, "reward": 0.02734375, "sequence_length": 123.4140625}
+{"step": 385, "reward": 0.02734375, "sequence_length": 123.4140625}
+{"step": 385, "reward": 0.02734375, "sequence_length": 123.4140625}
+{"step": 385, "lrm": 0.17558886509635974}
+{"step": 385, "lrm": 0.17558886509635974}
+{"step": 385, "lrm": 0.17558886509635974}
+{"step": 386, "reward": 0.00390625, "sequence_length": 129.19921875}
+{"step": 386, "reward": 0.00390625, "sequence_length": 129.19921875}
+{"step": 386, "reward": 0.00390625, "sequence_length": 129.19921875}
+{"step": 386, "lrm": 0.17344753747323338}
+{"step": 386, "lrm": 0.17344753747323338}
+{"step": 386, "lrm": 0.17344753747323338}
+{"step": 387, "reward": 0.0078125, "sequence_length": 117.60546875}
+{"step": 387, "reward": 0.0078125, "sequence_length": 117.60546875}
+{"step": 387, "reward": 0.0078125, "sequence_length": 117.60546875}
+{"step": 387, "lrm": 0.17130620985010703}
+{"step": 387, "lrm": 0.17130620985010703}
+{"step": 387, "lrm": 0.17130620985010703}
+{"step": 388, "reward": 0.02734375, "sequence_length": 111.23828125}
+{"step": 388, "reward": 0.02734375, "sequence_length": 111.23828125}
+{"step": 388, "reward": 0.02734375, "sequence_length": 111.23828125}
+{"step": 388, "lrm": 0.16916488222698067}
+{"step": 388, "lrm": 0.16916488222698067}
+{"step": 388, "lrm": 0.16916488222698067}
+{"step": 389, "reward": 0.01953125, "sequence_length": 108.1796875}
+{"step": 389, "reward": 0.01953125, "sequence_length": 108.1796875}
+{"step": 389, "reward": 0.01953125, "sequence_length": 108.1796875}
+{"step": 389, "lrm": 0.16702355460385443}
+{"step": 389, "lrm": 0.16702355460385443}
+{"step": 389, "lrm": 0.16702355460385443}
+{"step": 390, "reward": 0.015625, "sequence_length": 119.22265625}
+{"step": 390, "reward": 0.015625, "sequence_length": 119.22265625}
+{"step": 390, "reward": 0.015625, "sequence_length": 119.22265625}
+{"step": 390, "lrm": 0.16488222698072807}
+{"step": 390, "lrm": 0.16488222698072807}
+{"step": 390, "lrm": 0.16488222698072807}
+{"step": 391, "reward": 0.015625, "sequence_length": 109.125}
+{"step": 391, "reward": 0.015625, "sequence_length": 109.125}
+{"step": 391, "reward": 0.015625, "sequence_length": 109.125}
+{"step": 391, "lrm": 0.16274089935760172}
+{"step": 391, "lrm": 0.16274089935760172}
+{"step": 391, "lrm": 0.16274089935760172}
+{"step": 392, "reward": 0.03515625, "sequence_length": 117.6796875}
+{"step": 392, "reward": 0.03515625, "sequence_length": 117.6796875}
+{"step": 392, "reward": 0.03515625, "sequence_length": 117.6796875}
+{"step": 392, "lrm": 0.16059957173447537}
+{"step": 392, "lrm": 0.16059957173447537}
+{"step": 392, "lrm": 0.16059957173447537}
+{"step": 393, "reward": 0.0, "sequence_length": 126.26953125}
+{"step": 393, "reward": 0.0, "sequence_length": 126.26953125}
+{"step": 393, "reward": 0.0, "sequence_length": 126.26953125}
+{"step": 393, "lrm": 0.158458244111349}
+{"step": 393, "lrm": 0.158458244111349}
+{"step": 393, "lrm": 0.158458244111349}
+{"step": 394, "reward": 0.0078125, "sequence_length": 117.9765625}
+{"step": 394, "reward": 0.0078125, "sequence_length": 117.9765625}
+{"step": 394, "reward": 0.0078125, "sequence_length": 117.9765625}
+{"step": 394, "lrm": 0.15631691648822266}
+{"step": 394, "lrm": 0.15631691648822266}
+{"step": 394, "lrm": 0.15631691648822266}
+{"step": 395, "reward": 0.00390625, "sequence_length": 141.78125}
+{"step": 395, "reward": 0.00390625, "sequence_length": 141.78125}
+{"step": 395, "reward": 0.00390625, "sequence_length": 141.78125}
+{"step": 395, "lrm": 0.1541755888650964}
+{"step": 395, "lrm": 0.1541755888650964}
+{"step": 395, "lrm": 0.1541755888650964}
+{"step": 396, "reward": 0.015625, "sequence_length": 105.96875}
+{"step": 396, "reward": 0.015625, "sequence_length": 105.96875}
+{"step": 396, "reward": 0.015625, "sequence_length": 105.96875}
+{"step": 396, "lrm": 0.15203426124197006}
+{"step": 396, "lrm": 0.15203426124197006}
+{"step": 396, "lrm": 0.15203426124197006}
+{"step": 397, "reward": 0.01953125, "sequence_length": 102.22265625}
+{"step": 397, "reward": 0.01953125, "sequence_length": 102.22265625}
+{"step": 397, "reward": 0.01953125, "sequence_length": 102.22265625}
+{"step": 397, "lrm": 0.1498929336188437}
+{"step": 397, "lrm": 0.1498929336188437}
+{"step": 397, "lrm": 0.1498929336188437}
+{"step": 398, "reward": 0.01171875, "sequence_length": 117.0}
+{"step": 398, "reward": 0.01171875, "sequence_length": 117.0}
+{"step": 398, "reward": 0.01171875, "sequence_length": 117.0}
+{"step": 398, "lrm": 0.14775160599571735}
+{"step": 398, "lrm": 0.14775160599571735}
+{"step": 398, "lrm": 0.14775160599571735}
+{"step": 399, "reward": 0.03125, "sequence_length": 120.26171875}
+{"step": 399, "reward": 0.03125, "sequence_length": 120.26171875}
+{"step": 399, "reward": 0.03125, "sequence_length": 120.26171875}
+{"step": 399, "lrm": 0.145610278372591}
+{"step": 399, "lrm": 0.145610278372591}
+{"step": 399, "lrm": 0.145610278372591}
+{"step": 400, "reward": 0.01171875, "sequence_length": 110.0625}
+{"step": 400, "reward": 0.01171875, "sequence_length": 110.0625}
+{"step": 400, "reward": 0.01171875, "sequence_length": 110.0625}
+{"step": 400, "lrm": 0.14346895074946464}
+{"step": 400, "lrm": 0.14346895074946464}
+{"step": 400, "lrm": 0.14346895074946464}
+{"step": 401, "reward": 0.03515625, "sequence_length": 105.18359375}
+{"step": 401, "reward": 0.03515625, "sequence_length": 105.18359375}
+{"step": 401, "reward": 0.03515625, "sequence_length": 105.18359375}
+{"step": 401, "lrm": 0.1413276231263383}
+{"step": 401, "lrm": 0.1413276231263383}
+{"step": 401, "lrm": 0.1413276231263383}
+{"step": 402, "reward": 0.046875, "sequence_length": 112.04296875}
+{"step": 402, "reward": 0.046875, "sequence_length": 112.04296875}
+{"step": 402, "reward": 0.046875, "sequence_length": 112.04296875}
+{"step": 402, "lrm": 0.13918629550321204}
+{"step": 402, "lrm": 0.13918629550321204}
+{"step": 402, "lrm": 0.13918629550321204}
+{"step": 403, "reward": 0.0078125, "sequence_length": 119.45703125}
+{"step": 403, "reward": 0.0078125, "sequence_length": 119.45703125}
+{"step": 403, "reward": 0.0078125, "sequence_length": 119.45703125}
+{"step": 403, "lrm": 0.1370449678800857}
+{"step": 403, "lrm": 0.1370449678800857}
+{"step": 403, "lrm": 0.1370449678800857}
+{"step": 404, "reward": 0.015625, "sequence_length": 115.0859375}
+{"step": 404, "reward": 0.015625, "sequence_length": 115.0859375}
+{"step": 404, "reward": 0.015625, "sequence_length": 115.0859375}
+{"step": 404, "lrm": 0.13490364025695933}
+{"step": 404, "lrm": 0.13490364025695933}
+{"step": 404, "lrm": 0.13490364025695933}
+{"step": 405, "reward": 0.0078125, "sequence_length": 110.91796875}
+{"step": 405, "reward": 0.0078125, "sequence_length": 110.91796875}
+{"step": 405, "reward": 0.0078125, "sequence_length": 110.91796875}
+{"step": 405, "lrm": 0.13276231263383298}
+{"step": 405, "lrm": 0.13276231263383298}
+{"step": 405, "lrm": 0.13276231263383298}
+{"step": 406, "reward": 0.0078125, "sequence_length": 113.78515625}
+{"step": 406, "reward": 0.0078125, "sequence_length": 113.78515625}
+{"step": 406, "reward": 0.0078125, "sequence_length": 113.78515625}
+{"step": 406, "lrm": 0.13062098501070663}
+{"step": 406, "lrm": 0.13062098501070663}
+{"step": 406, "lrm": 0.13062098501070663}
+{"step": 407, "reward": 0.00390625, "sequence_length": 106.71484375}
+{"step": 407, "reward": 0.00390625, "sequence_length": 106.71484375}
+{"step": 407, "reward": 0.00390625, "sequence_length": 106.71484375}
+{"step": 407, "lrm": 0.12847965738758027}
+{"step": 407, "lrm": 0.12847965738758027}
+{"step": 407, "lrm": 0.12847965738758027}
+{"step": 408, "reward": 0.01953125, "sequence_length": 108.02734375}
+{"step": 408, "reward": 0.01953125, "sequence_length": 108.02734375}
+{"step": 408, "reward": 0.01953125, "sequence_length": 108.02734375}
+{"step": 408, "lrm": 0.12633832976445392}
+{"step": 408, "lrm": 0.12633832976445392}
+{"step": 408, "lrm": 0.12633832976445392}
+{"step": 409, "reward": 0.0078125, "sequence_length": 107.2890625}
+{"step": 409, "reward": 0.0078125, "sequence_length": 107.2890625}
+{"step": 409, "reward": 0.0078125, "sequence_length": 107.2890625}
+{"step": 409, "lrm": 0.12419700214132767}
+{"step": 409, "lrm": 0.12419700214132767}
+{"step": 409, "lrm": 0.12419700214132767}
+{"step": 410, "reward": 0.0, "sequence_length": 116.2421875}
+{"step": 410, "reward": 0.0, "sequence_length": 116.2421875}
+{"step": 410, "reward": 0.0, "sequence_length": 116.2421875}
+{"step": 410, "lrm": 0.12205567451820132}
+{"step": 410, "lrm": 0.12205567451820132}
+{"step": 410, "lrm": 0.12205567451820132}
+{"step": 411, "reward": 0.0234375, "sequence_length": 112.578125}
+{"step": 411, "reward": 0.0234375, "sequence_length": 112.578125}
+{"step": 411, "reward": 0.0234375, "sequence_length": 112.578125}
+{"step": 411, "lrm": 0.11991434689507496}
+{"step": 411, "lrm": 0.11991434689507496}
+{"step": 411, "lrm": 0.11991434689507496}
+{"step": 412, "reward": 0.01171875, "sequence_length": 107.4453125}
+{"step": 412, "reward": 0.01171875, "sequence_length": 107.4453125}
+{"step": 412, "reward": 0.01171875, "sequence_length": 107.4453125}
+{"step": 412, "lrm": 0.11777301927194861}
+{"step": 412, "lrm": 0.11777301927194861}
+{"step": 412, "lrm": 0.11777301927194861}
+{"step": 413, "reward": 0.03515625, "sequence_length": 110.72265625}
+{"step": 413, "reward": 0.03515625, "sequence_length": 110.72265625}
+{"step": 413, "reward": 0.03515625, "sequence_length": 110.72265625}
+{"step": 413, "lrm": 0.11563169164882225}
+{"step": 413, "lrm": 0.11563169164882225}
+{"step": 413, "lrm": 0.11563169164882225}
+{"step": 414, "reward": 0.015625, "sequence_length": 103.41015625}
+{"step": 414, "reward": 0.015625, "sequence_length": 103.41015625}
+{"step": 414, "reward": 0.015625, "sequence_length": 103.41015625}
+{"step": 414, "lrm": 0.1134903640256959}
+{"step": 414, "lrm": 0.1134903640256959}
+{"step": 414, "lrm": 0.1134903640256959}
+{"step": 415, "reward": 0.01953125, "sequence_length": 110.35546875}
+{"step": 415, "reward": 0.01953125, "sequence_length": 110.35546875}
+{"step": 415, "reward": 0.01953125, "sequence_length": 110.35546875}
+{"step": 415, "lrm": 0.11134903640256955}
+{"step": 415, "lrm": 0.11134903640256955}
+{"step": 415, "lrm": 0.11134903640256955}
+{"step": 416, "reward": 0.05859375, "sequence_length": 115.765625}
+{"step": 416, "reward": 0.05859375, "sequence_length": 115.765625}
+{"step": 416, "reward": 0.05859375, "sequence_length": 115.765625}
+{"step": 416, "lrm": 0.1092077087794433}
+{"step": 416, "lrm": 0.1092077087794433}
+{"step": 416, "lrm": 0.1092077087794433}
+{"step": 417, "reward": 0.0078125, "sequence_length": 107.19921875}
+{"step": 417, "reward": 0.0078125, "sequence_length": 107.19921875}
+{"step": 417, "reward": 0.0078125, "sequence_length": 107.19921875}
+{"step": 417, "lrm": 0.10706638115631695}
+{"step": 417, "lrm": 0.10706638115631695}
+{"step": 417, "lrm": 0.10706638115631695}
+{"step": 418, "reward": 0.0, "sequence_length": 110.4453125}
+{"step": 418, "reward": 0.0, "sequence_length": 110.4453125}
+{"step": 418, "reward": 0.0, "sequence_length": 110.4453125}
+{"step": 418, "lrm": 0.1049250535331906}
+{"step": 418, "lrm": 0.1049250535331906}
+{"step": 418, "lrm": 0.1049250535331906}
+{"step": 419, "reward": 0.00390625, "sequence_length": 118.375}
+{"step": 419, "reward": 0.00390625, "sequence_length": 118.375}
+{"step": 419, "reward": 0.00390625, "sequence_length": 118.375}
+{"step": 419, "lrm": 0.10278372591006424}
+{"step": 419, "lrm": 0.10278372591006424}
+{"step": 419, "lrm": 0.10278372591006424}
+{"step": 420, "pass@1": 0.017500000074505806, "pass@2": 0.022499999031424522, "pass@3": 0.032499998807907104, "pass@4": 0.04999999701976776, "pass@5": 0.05999999865889549, "pass@6": 0.06749999523162842, "pass@7": 0.07249999791383743, "pass@8": 0.07249999791383743}
+{"step": 420, "pass@1": 0.017500000074505806, "pass@2": 0.022499999031424522, "pass@3": 0.032499998807907104, "pass@4": 0.04999999701976776, "pass@5": 0.05999999865889549, "pass@6": 0.06749999523162842, "pass@7": 0.07249999791383743, "pass@8": 0.07249999791383743}
+{"step": 420, "pass@1": 0.017500000074505806, "pass@2": 0.022499999031424522, "pass@3": 0.032499998807907104, "pass@4": 0.04999999701976776, "pass@5": 0.05999999865889549, "pass@6": 0.06749999523162842, "pass@7": 0.07249999791383743, "pass@8": 0.07249999791383743}
+{"step": 420, "reward": 0.0703125, "sequence_length": 110.921875}
+{"step": 420, "reward": 0.0703125, "sequence_length": 110.921875}
+{"step": 420, "reward": 0.0703125, "sequence_length": 110.921875}
+{"step": 420, "lrm": 0.10064239828693788}
+{"step": 420, "lrm": 0.10064239828693788}
+{"step": 420, "lrm": 0.10064239828693788}
+{"step": 421, "reward": 0.01171875, "sequence_length": 114.046875}
+{"step": 421, "reward": 0.01171875, "sequence_length": 114.046875}
+{"step": 421, "reward": 0.01171875, "sequence_length": 114.046875}
+{"step": 421, "lrm": 0.09850107066381153}
+{"step": 421, "lrm": 0.09850107066381153}
+{"step": 421, "lrm": 0.09850107066381153}
+{"step": 422, "reward": 0.01171875, "sequence_length": 107.9453125}
+{"step": 422, "reward": 0.01171875, "sequence_length": 107.9453125}
+{"step": 422, "reward": 0.01171875, "sequence_length": 107.9453125}
+{"step": 422, "lrm": 0.09635974304068518}
+{"step": 422, "lrm": 0.09635974304068518}
+{"step": 422, "lrm": 0.09635974304068518}
+{"step": 423, "reward": 0.03515625, "sequence_length": 114.88671875}
+{"step": 423, "reward": 0.03515625, "sequence_length": 114.88671875}
+{"step": 423, "reward": 0.03515625, "sequence_length": 114.88671875}
+{"step": 423, "lrm": 0.09421841541755893}
+{"step": 423, "lrm": 0.09421841541755893}
+{"step": 423, "lrm": 0.09421841541755893}
+{"step": 424, "reward": 0.01171875, "sequence_length": 114.39453125}
+{"step": 424, "reward": 0.01171875, "sequence_length": 114.39453125}
+{"step": 424, "reward": 0.01171875, "sequence_length": 114.39453125}
+{"step": 424, "lrm": 0.09207708779443258}
+{"step": 424, "lrm": 0.09207708779443258}
+{"step": 424, "lrm": 0.09207708779443258}
+{"step": 425, "reward": 0.02734375, "sequence_length": 113.30078125}
+{"step": 425, "reward": 0.02734375, "sequence_length": 113.30078125}
+{"step": 425, "reward": 0.02734375, "sequence_length": 113.30078125}
+{"step": 425, "lrm": 0.08993576017130622}
+{"step": 425, "lrm": 0.08993576017130622}
+{"step": 425, "lrm": 0.08993576017130622}
+{"step": 426, "reward": 0.00390625, "sequence_length": 99.609375}
+{"step": 426, "reward": 0.00390625, "sequence_length": 99.609375}
+{"step": 426, "reward": 0.00390625, "sequence_length": 99.609375}
+{"step": 426, "lrm": 0.08779443254817987}
+{"step": 426, "lrm": 0.08779443254817987}
+{"step": 426, "lrm": 0.08779443254817987}
+{"step": 427, "reward": 0.00390625, "sequence_length": 124.6875}
+{"step": 427, "reward": 0.00390625, "sequence_length": 124.6875}
+{"step": 427, "reward": 0.00390625, "sequence_length": 124.6875}
+{"step": 427, "lrm": 0.08565310492505351}
+{"step": 427, "lrm": 0.08565310492505351}
+{"step": 427, "lrm": 0.08565310492505351}
+{"step": 428, "reward": 0.01953125, "sequence_length": 105.85546875}
+{"step": 428, "reward": 0.01953125, "sequence_length": 105.85546875}
+{"step": 428, "reward": 0.01953125, "sequence_length": 105.85546875}
+{"step": 428, "lrm": 0.08351177730192716}
+{"step": 428, "lrm": 0.08351177730192716}
+{"step": 428, "lrm": 0.08351177730192716}
+{"step": 429, "reward": 0.04296875, "sequence_length": 94.44140625}
+{"step": 429, "reward": 0.04296875, "sequence_length": 94.44140625}
+{"step": 429, "reward": 0.04296875, "sequence_length": 94.44140625}
+{"step": 429, "lrm": 0.0813704496788008}
+{"step": 429, "lrm": 0.0813704496788008}
+{"step": 429, "lrm": 0.0813704496788008}
+{"step": 430, "reward": 0.03125, "sequence_length": 107.13671875}
+{"step": 430, "reward": 0.03125, "sequence_length": 107.13671875}
+{"step": 430, "reward": 0.03125, "sequence_length": 107.13671875}
+{"step": 430, "lrm": 0.07922912205567456}
+{"step": 430, "lrm": 0.07922912205567456}
+{"step": 430, "lrm": 0.07922912205567456}
+{"step": 431, "reward": 0.01171875, "sequence_length": 100.5703125}
+{"step": 431, "reward": 0.01171875, "sequence_length": 100.5703125}
+{"step": 431, "reward": 0.01171875, "sequence_length": 100.5703125}
+{"step": 431, "lrm": 0.0770877944325482}
+{"step": 431, "lrm": 0.0770877944325482}
+{"step": 431, "lrm": 0.0770877944325482}
+{"step": 432, "reward": 0.02734375, "sequence_length": 109.62109375}
+{"step": 432, "reward": 0.02734375, "sequence_length": 109.62109375}
+{"step": 432, "reward": 0.02734375, "sequence_length": 109.62109375}
+{"step": 432, "lrm": 0.07494646680942185}
+{"step": 432, "lrm": 0.07494646680942185}
+{"step": 432, "lrm": 0.07494646680942185}
+{"step": 433, "reward": 0.03125, "sequence_length": 115.41796875}
+{"step": 433, "reward": 0.03125, "sequence_length": 115.41796875}
+{"step": 433, "reward": 0.03125, "sequence_length": 115.41796875}
+{"step": 433, "lrm": 0.0728051391862955}
+{"step": 433, "lrm": 0.0728051391862955}
+{"step": 433, "lrm": 0.0728051391862955}
+{"step": 434, "reward": 0.00390625, "sequence_length": 108.5703125}
+{"step": 434, "reward": 0.00390625, "sequence_length": 108.5703125}
+{"step": 434, "reward": 0.00390625, "sequence_length": 108.5703125}
+{"step": 434, "lrm": 0.07066381156316914}
+{"step": 434, "lrm": 0.07066381156316914}
+{"step": 434, "lrm": 0.07066381156316914}
+{"step": 435, "reward": 0.0, "sequence_length": 127.1953125}
+{"step": 435, "reward": 0.0, "sequence_length": 127.1953125}
+{"step": 435, "reward": 0.0, "sequence_length": 127.1953125}
+{"step": 435, "lrm": 0.06852248394004279}
+{"step": 435, "lrm": 0.06852248394004279}
+{"step": 435, "lrm": 0.06852248394004279}
+{"step": 436, "reward": 0.06640625, "sequence_length": 117.90625}
+{"step": 436, "reward": 0.06640625, "sequence_length": 117.90625}
+{"step": 436, "reward": 0.06640625, "sequence_length": 117.90625}
+{"step": 436, "lrm": 0.06638115631691643}
+{"step": 436, "lrm": 0.06638115631691643}
+{"step": 436, "lrm": 0.06638115631691643}
+{"step": 437, "reward": 0.015625, "sequence_length": 110.35546875}
+{"step": 437, "reward": 0.015625, "sequence_length": 110.35546875}
+{"step": 437, "reward": 0.015625, "sequence_length": 110.35546875}
+{"step": 437, "lrm": 0.06423982869379019}
+{"step": 437, "lrm": 0.06423982869379019}
+{"step": 437, "lrm": 0.06423982869379019}
+{"step": 438, "reward": 0.0234375, "sequence_length": 103.828125}
+{"step": 438, "reward": 0.0234375, "sequence_length": 103.828125}
+{"step": 438, "reward": 0.0234375, "sequence_length": 103.828125}
+{"step": 438, "lrm": 0.062098501070663836}
+{"step": 438, "lrm": 0.062098501070663836}
+{"step": 438, "lrm": 0.062098501070663836}
+{"step": 439, "reward": 0.0078125, "sequence_length": 113.6875}
+{"step": 439, "reward": 0.0078125, "sequence_length": 113.6875}
+{"step": 439, "reward": 0.0078125, "sequence_length": 113.6875}
+{"step": 439, "lrm": 0.05995717344753748}
+{"step": 439, "lrm": 0.05995717344753748}
+{"step": 439, "lrm": 0.05995717344753748}
+{"step": 440, "reward": 0.0234375, "sequence_length": 109.09765625}
+{"step": 440, "reward": 0.0234375, "sequence_length": 109.09765625}
+{"step": 440, "reward": 0.0234375, "sequence_length": 109.09765625}
+{"step": 440, "lrm": 0.05781584582441113}
+{"step": 440, "lrm": 0.05781584582441113}
+{"step": 440, "lrm": 0.05781584582441113}
+{"step": 441, "reward": 0.0078125, "sequence_length": 102.81640625}
+{"step": 441, "reward": 0.0078125, "sequence_length": 102.81640625}
+{"step": 441, "reward": 0.0078125, "sequence_length": 102.81640625}
+{"step": 441, "lrm": 0.05567451820128477}
+{"step": 441, "lrm": 0.05567451820128477}
+{"step": 441, "lrm": 0.05567451820128477}
+{"step": 442, "reward": 0.015625, "sequence_length": 102.8828125}
+{"step": 442, "reward": 0.015625, "sequence_length": 102.8828125}
+{"step": 442, "reward": 0.015625, "sequence_length": 102.8828125}
+{"step": 442, "lrm": 0.05353319057815842}
+{"step": 442, "lrm": 0.05353319057815842}
+{"step": 442, "lrm": 0.05353319057815842}
+{"step": 443, "reward": 0.015625, "sequence_length": 100.76171875}
+{"step": 443, "reward": 0.015625, "sequence_length": 100.76171875}
+{"step": 443, "reward": 0.015625, "sequence_length": 100.76171875}
+{"step": 443, "lrm": 0.051391862955032175}
+{"step": 443, "lrm": 0.051391862955032175}
+{"step": 443, "lrm": 0.051391862955032175}
+{"step": 444, "reward": 0.03125, "sequence_length": 102.05078125}
+{"step": 444, "reward": 0.03125, "sequence_length": 102.05078125}
+{"step": 444, "reward": 0.03125, "sequence_length": 102.05078125}
+{"step": 444, "lrm": 0.04925053533190582}
+{"step": 444, "lrm": 0.04925053533190582}
+{"step": 444, "lrm": 0.04925053533190582}
+{"step": 445, "reward": 0.0625, "sequence_length": 110.71484375}
+{"step": 445, "reward": 0.0625, "sequence_length": 110.71484375}
+{"step": 445, "reward": 0.0625, "sequence_length": 110.71484375}
+{"step": 445, "lrm": 0.047109207708779466}
+{"step": 445, "lrm": 0.047109207708779466}
+{"step": 445, "lrm": 0.047109207708779466}
+{"step": 446, "reward": 0.015625, "sequence_length": 108.98046875}
+{"step": 446, "reward": 0.015625, "sequence_length": 108.98046875}
+{"step": 446, "reward": 0.015625, "sequence_length": 108.98046875}
+{"step": 446, "lrm": 0.04496788008565311}
+{"step": 446, "lrm": 0.04496788008565311}
+{"step": 446, "lrm": 0.04496788008565311}
+{"step": 447, "reward": 0.04296875, "sequence_length": 111.05078125}
+{"step": 447, "reward": 0.04296875, "sequence_length": 111.05078125}
+{"step": 447, "reward": 0.04296875, "sequence_length": 111.05078125}
+{"step": 447, "lrm": 0.04282655246252676}
+{"step": 447, "lrm": 0.04282655246252676}
+{"step": 447, "lrm": 0.04282655246252676}
+{"step": 448, "reward": 0.03125, "sequence_length": 105.2890625}
+{"step": 448, "reward": 0.03125, "sequence_length": 105.2890625}
+{"step": 448, "reward": 0.03125, "sequence_length": 105.2890625}
+{"step": 448, "lrm": 0.0406852248394004}
+{"step": 448, "lrm": 0.0406852248394004}
+{"step": 448, "lrm": 0.0406852248394004}
+{"step": 449, "reward": 0.0234375, "sequence_length": 107.22265625}
+{"step": 449, "reward": 0.0234375, "sequence_length": 107.22265625}
+{"step": 449, "reward": 0.0234375, "sequence_length": 107.22265625}
+{"step": 449, "lrm": 0.03854389721627405}
+{"step": 449, "lrm": 0.03854389721627405}
+{"step": 449, "lrm": 0.03854389721627405}
+{"step": 450, "reward": 0.0, "sequence_length": 114.9140625}
+{"step": 450, "reward": 0.0, "sequence_length": 114.9140625}
+{"step": 450, "reward": 0.0, "sequence_length": 114.9140625}
+{"step": 450, "lrm": 0.036402569593147804}
+{"step": 450, "lrm": 0.036402569593147804}
+{"step": 450, "lrm": 0.036402569593147804}
+{"step": 451, "reward": 0.03125, "sequence_length": 106.41796875}
+{"step": 451, "reward": 0.03125, "sequence_length": 106.41796875}
+{"step": 451, "reward": 0.03125, "sequence_length": 106.41796875}
+{"step": 451, "lrm": 0.03426124197002145}
+{"step": 451, "lrm": 0.03426124197002145}
+{"step": 451, "lrm": 0.03426124197002145}
+{"step": 452, "reward": 0.01171875, "sequence_length": 115.625}
+{"step": 452, "reward": 0.01171875, "sequence_length": 115.625}
+{"step": 452, "reward": 0.01171875, "sequence_length": 115.625}
+{"step": 452, "lrm": 0.032119914346895095}
+{"step": 452, "lrm": 0.032119914346895095}
+{"step": 452, "lrm": 0.032119914346895095}
+{"step": 453, "reward": 0.01953125, "sequence_length": 108.00390625}
+{"step": 453, "reward": 0.01953125, "sequence_length": 108.00390625}
+{"step": 453, "reward": 0.01953125, "sequence_length": 108.00390625}
+{"step": 453, "lrm": 0.02997858672376874}
+{"step": 453, "lrm": 0.02997858672376874}
+{"step": 453, "lrm": 0.02997858672376874}
+{"step": 454, "reward": 0.0078125, "sequence_length": 110.23046875}
+{"step": 454, "reward": 0.0078125, "sequence_length": 110.23046875}
+{"step": 454, "reward": 0.0078125, "sequence_length": 110.23046875}
+{"step": 454, "lrm": 0.027837259100642386}
+{"step": 454, "lrm": 0.027837259100642386}
+{"step": 454, "lrm": 0.027837259100642386}
+{"step": 455, "reward": 0.01171875, "sequence_length": 111.7734375}
+{"step": 455, "reward": 0.01171875, "sequence_length": 111.7734375}
+{"step": 455, "reward": 0.01171875, "sequence_length": 111.7734375}
+{"step": 455, "lrm": 0.025695931477516032}
+{"step": 455, "lrm": 0.025695931477516032}
+{"step": 455, "lrm": 0.025695931477516032}
+{"step": 456, "reward": 0.0078125, "sequence_length": 114.83203125}
+{"step": 456, "reward": 0.0078125, "sequence_length": 114.83203125}
+{"step": 456, "reward": 0.0078125, "sequence_length": 114.83203125}
+{"step": 456, "lrm": 0.023554603854389677}
+{"step": 456, "lrm": 0.023554603854389677}
+{"step": 456, "lrm": 0.023554603854389677}
+{"step": 457, "reward": 0.07421875, "sequence_length": 93.37109375}
+{"step": 457, "reward": 0.07421875, "sequence_length": 93.37109375}
+{"step": 457, "reward": 0.07421875, "sequence_length": 93.37109375}
+{"step": 457, "lrm": 0.021413276231263434}
+{"step": 457, "lrm": 0.021413276231263434}
+{"step": 457, "lrm": 0.021413276231263434}
+{"step": 458, "reward": 0.03125, "sequence_length": 103.5625}
+{"step": 458, "reward": 0.03125, "sequence_length": 103.5625}
+{"step": 458, "reward": 0.03125, "sequence_length": 103.5625}
+{"step": 458, "lrm": 0.01927194860813708}
+{"step": 458, "lrm": 0.01927194860813708}
+{"step": 458, "lrm": 0.01927194860813708}
+{"step": 459, "reward": 0.015625, "sequence_length": 108.06640625}
+{"step": 459, "reward": 0.015625, "sequence_length": 108.06640625}
+{"step": 459, "reward": 0.015625, "sequence_length": 108.06640625}
+{"step": 459, "lrm": 0.017130620985010725}
+{"step": 459, "lrm": 0.017130620985010725}
+{"step": 459, "lrm": 0.017130620985010725}
+{"step": 460, "reward": 0.0, "sequence_length": 104.58984375}
+{"step": 460, "reward": 0.0, "sequence_length": 104.58984375}
+{"step": 460, "reward": 0.0, "sequence_length": 104.58984375}
+{"step": 460, "lrm": 0.01498929336188437}
+{"step": 460, "lrm": 0.01498929336188437}
+{"step": 460, "lrm": 0.01498929336188437}
+{"step": 461, "reward": 0.015625, "sequence_length": 111.87890625}
+{"step": 461, "reward": 0.015625, "sequence_length": 111.87890625}
+{"step": 461, "reward": 0.015625, "sequence_length": 111.87890625}
+{"step": 461, "lrm": 0.012847965738758016}
+{"step": 461, "lrm": 0.012847965738758016}
+{"step": 461, "lrm": 0.012847965738758016}
+{"step": 462, "reward": 0.07421875, "sequence_length": 104.6796875}
+{"step": 462, "reward": 0.07421875, "sequence_length": 104.6796875}
+{"step": 462, "reward": 0.07421875, "sequence_length": 104.6796875}
+{"step": 462, "lrm": 0.010706638115631661}
+{"step": 462, "lrm": 0.010706638115631661}
+{"step": 462, "lrm": 0.010706638115631661}
+{"step": 463, "reward": 0.00390625, "sequence_length": 109.8125}
+{"step": 463, "reward": 0.00390625, "sequence_length": 109.8125}
+{"step": 463, "reward": 0.00390625, "sequence_length": 109.8125}
+{"step": 463, "lrm": 0.008565310492505307}
+{"step": 463, "lrm": 0.008565310492505307}
+{"step": 463, "lrm": 0.008565310492505307}
+{"step": 464, "reward": 0.0078125, "sequence_length": 114.265625}
+{"step": 464, "reward": 0.0078125, "sequence_length": 114.265625}
+{"step": 464, "reward": 0.0078125, "sequence_length": 114.265625}
+{"step": 464, "lrm": 0.0064239828693790635}
+{"step": 464, "lrm": 0.0064239828693790635}
+{"step": 464, "lrm": 0.0064239828693790635}
+{"step": 465, "reward": 0.0234375, "sequence_length": 108.12109375}
+{"step": 465, "reward": 0.0234375, "sequence_length": 108.12109375}
+{"step": 465, "reward": 0.0234375, "sequence_length": 108.12109375}
+{"step": 465, "lrm": 0.004282655246252709}
+{"step": 465, "lrm": 0.004282655246252709}
+{"step": 465, "lrm": 0.004282655246252709}
+{"step": 466, "reward": 0.0234375, "sequence_length": 108.546875}
+{"step": 466, "reward": 0.0234375, "sequence_length": 108.546875}
+{"step": 466, "reward": 0.0234375, "sequence_length": 108.546875}
+{"step": 466, "lrm": 0.0021413276231263545}
+{"step": 466, "lrm": 0.0021413276231263545}
+{"step": 466, "lrm": 0.0021413276231263545}

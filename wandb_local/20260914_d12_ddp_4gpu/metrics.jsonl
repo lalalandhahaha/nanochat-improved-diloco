@@ -1,0 +1,3 @@
+{"step": 0, "total_training_flops": 0, "total_training_time": 0, "train/loss": 10.397163391113283, "train/lrm": 0.025, "train/dt": 40.4023072719574, "train/tok_per_sec": 12976, "train/mfu": 1.4918789396873706, "train/epoch": "1 pq: 0 rg: 7"}
+{"step": 0, "total_training_flops": 0, "total_training_time": 0, "train/loss": 10.395816802978516, "train/lrm": 0.025, "train/dt": 40.40398192405701, "train/tok_per_sec": 12976, "train/mfu": 1.4918171047374535, "train/epoch": "1 pq: 0 rg: 5"}
+{"step": 0, "total_training_flops": 0, "total_training_time": 0, "train/loss": 10.396153450012207, "train/lrm": 0.025, "train/dt": 40.40460443496704, "train/tok_per_sec": 12975, "train/mfu": 1.4917941204158285, "train/epoch": "1 pq: 0 rg: 6"}

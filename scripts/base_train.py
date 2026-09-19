@@ -760,7 +760,7 @@ while True:
     regularizer = compute_regularizer(
         orig_model,
         power=2,
-        num_iters=1,
+        num_iters=10,
     )
 
     regularizer_loss = lambda_reg * regularizer

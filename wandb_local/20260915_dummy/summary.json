@@ -1,0 +1,16 @@
+{
+  "project": "nanochat",
+  "name": "dummy",
+  "total_logs": 104,
+  "last_log": {
+    "step": 933,
+    "total_training_flops": 371613453665697792,
+    "chatcore_metric": 0.10553903085993958,
+    "chatcore_cat": 0.14812060698878818,
+    "chatcore/ARC-Easy": 0.4212962962962963,
+    "chatcore/ARC-Challenge": 0.3430034129692833,
+    "chatcore/MMLU": 0.31897165645919384,
+    "chatcore/GSM8K": 0.0,
+    "chatcore/HumanEval": 0.08333333333333333
+  }
+}

@@ -40,7 +40,7 @@ parser.add_argument("--model-step", type=int, default=None, help="model step to 
 # Training horizon
 parser.add_argument("--num-epochs", type=int, default=1, help="number of epochs over GSM8K")
 # Batch sizes / sampling
-parser.add_argument("--device-batch-size", type=int, default=8, help="max batch size per forward pass")
+parser.add_argument("--device-batch-size", type=int, default=4, help="max batch size per forward pass")
 parser.add_argument("--examples-per-step", type=int, default=16, help="total examples per optimization step across all ranks")
 parser.add_argument("--num-samples", type=int, default=16, help="number of samples per example/question")
 # Generation

@@ -1,0 +1,35 @@
+{
+  "project": "nanochat-improved-diloco",
+  "name": "dummy",
+  "total_logs": 301,
+  "last_log": {
+    "step": 21400,
+    "total_training_flops": 8523609762535833600,
+    "core_metric": 0.06823854495629615,
+    "eval/core_seconds": 69.57733367290348,
+    "centered_results": {
+      "hellaswag_zeroshot": 0.07466669877370198,
+      "jeopardy": 0.0,
+      "bigbench_qa_wikidata": 0.02800000086426735,
+      "arc_easy": 0.1893333594004313,
+      "arc_challenge": -0.00799997647603353,
+      "copa": -0.020000040531158447,
+      "commonsense_qa": 0.2025000229477882,
+      "piqa": 0.1960000991821289,
+      "openbook_qa": 0.024000008900960285,
+      "lambada_openai": 0.14600001275539398,
+      "hellaswag": 0.05600003401438395,
+      "winograd": 0.04761910438537598,
+      "winogrande": -0.027999937534332275,
+      "bigbench_dyck_languages": 0.004000000189989805,
+      "agi_eval_lsat_ar": 0.07608695328235625,
+      "bigbench_cs_algorithms": 0.42000001668930054,
+      "bigbench_operators": 0.06666667014360428,
+      "bigbench_repeat_copy_logic": 0.0,
+      "squad": 0.030000001192092896,
+      "coqa": 0.052000001072883606,
+      "boolq": -0.2789473721855565,
+      "bigbench_language_identification": 0.22332233197093665
+    }
+  }
+}

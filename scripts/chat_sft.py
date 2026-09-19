@@ -45,7 +45,7 @@ parser.add_argument("--load-optimizer", type=int, default=1, help="warm-start op
 parser.add_argument("--num-iterations", type=int, default=-1, help="number of optimization steps (-1 = full epoch)")
 # Batch sizes (default: inherit from pretrained checkpoint)
 parser.add_argument("--max-seq-len", type=int, default=None, help="max context length (default: inherit from pretrain)")
-parser.add_argument("--device-batch-size", type=int, default=None, help="per-device batch size (default: inherit from pretrain)")
+parser.add_argument("--device-batch-size", type=int, default=4, help="per-device batch size (default: inherit from pretrain)")
 parser.add_argument("--total-batch-size", type=int, default=None, help="total batch size in tokens (default: inherit from pretrain)")
 # Optimization (default: inherit from pretrained checkpoint)
 parser.add_argument("--embedding-lr", type=float, default=None, help="learning rate for embedding parameters (Adam) (default: inherit from pretrain)")
