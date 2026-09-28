@@ -7,7 +7,7 @@
     ##size =d12 4090上跑完了
     # CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts.base_train -- \
     #     --depth=12 \
-    #     --max-seq-len=2048   \
+    #     --max-seq-len=2048 --fp8  \
     #     --device-batch-size=4 \
     #     --total-batch-size=524288 \
     #     --num-iterations=21400 \
@@ -25,33 +25,33 @@
 
 
     ##size =d24 
-    CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts.base_train -- \
+    CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.base_train -- \
         --fp8 \
         --depth=24 \
-        --max-seq-len=2048   \
+        --max-seq-len=2048 --fp8  \
         --device-batch-size=16 \
         --total-batch-size=524288 \
         --num-iterations=21400 \
         --target-param-data-ratio=-1 \
         --use-diloco=0 \
-        --model-tag=d24-ddp-4gpu-0919-h100 \
-        --run=d24_ddp_4gpu_h100
-    CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts.chat_sft \
-        -- --run=d24_ddp_4gpu_sft_h100   \
-        --model-tag=d24-ddp-4gpu-0919-h100 \
+        --model-tag=d24-ddp-2gpu-0919-h100 \
+        --run=d24_ddp_2gpu_h100
+    CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.chat_sft \
+        -- --run=d24_ddp_2gpu_sft_h100   \
+        --model-tag=d24-ddp-2gpu-0919-h100 \
         --device-batch-size=16 \
         --load-optimizer=0
-    CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts.chat_rl \
-        -- --run=d24_ddp_4gpu_rl   \
+    CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.chat_rl \
+        -- --run=d24_ddp_2gpu_rl   \
         --device-batch-size=16 \
-        --model-tag=d24-ddp-4gpu-0919-h100 
+        --model-tag=d24-ddp-2gpu-0919-h100 
 
 
     ##size =d36
-    CUDA_VISIBLE_DEVICES=0,2 torchrun --standalone --nproc_per_node=4  -m scripts.base_train -- \
+    CUDA_VISIBLE_DEVICES=0,2 torchrun --standalone --nproc_per_node=2  -m scripts.base_train -- \
         --fp8 \
         --depth=36 \
-        --max-seq-len=2048   \
+        --max-seq-len=2048 --fp8  \
         --device-batch-size=4 \
         --total-batch-size=524288 \
         --num-iterations=21400 \
@@ -59,22 +59,22 @@
         --use-diloco=0 \
         --model-tag=d36-ddp-4gpu-0919-h100 \
         --run=d36_ddp_4gpu_h100
-    CUDA_VISIBLE_DEVICES=0,2 torchrun --standalone --nproc_per_node=4 -m scripts.chat_sft \
+    CUDA_VISIBLE_DEVICES=0,2 torchrun --standalone --nproc_per_node=2 -m scripts.chat_sft \
         -- --run=d36_ddp_4gpu_sft_h100   \
         --model-tag=d36-ddp-4gpu-0919-h100 \
         --device-batch-size=4 \
         --load-optimizer=0
-   CUDA_VISIBLE_DEVICES=0,2  torchrun --standalone --nproc_per_node=4 -m scripts.chat_rl \
+   CUDA_VISIBLE_DEVICES=0,2  torchrun --standalone --nproc_per_node=2 -m scripts.chat_rl \
         -- --run=d36_ddp_2gpu_rl   \
         --device-batch-size=4 \
         --model-tag=d36-ddp-2gpu-0919-h100 
 
 
     ##size =d48
-    CUDA_VISIBLE_DEVICES=0,2 torchrun --standalone --nproc_per_node=4 -m scripts.base_train -- \
+    CUDA_VISIBLE_DEVICES=0,2 torchrun --standalone --nproc_per_node=2 -m scripts.base_train -- \
         --fp8 \
         --depth=48 \
-        --max-seq-len=2048   \
+        --max-seq-len=2048 --fp8  \
         --device-batch-size=8 \
         --total-batch-size=524288 \
         --num-iterations=21400 \
@@ -82,12 +82,12 @@
         --use-diloco=0 \
         --model-tag=d48-ddp-2gpu-0919-h100 \
         --run=d48_ddp_2gpu_h100
-    CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4-m scripts.chat_sft \
+    CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=2-m scripts.chat_sft \
         -- --run=d48_ddp_2gpu_sft_h100   \
         --model-tag=d48-ddp-2gpu-0919-h100 \
         --device-batch-size=8 \
         --load-optimizer=0
-    CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4-m scripts.chat_rl \
+    CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=2-m scripts.chat_rl \
         -- --run=d48_ddp_2gpu_rl   \
         --device-batch-size=8 \
         --model-tag=d48-ddp-2gpu-0919-h100 
@@ -99,7 +99,7 @@
     ##size =d12 4090上跑完了
     # CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts.base_train -- \
     #     --depth=12 \
-    #     --max-seq-len=2048   \
+    #     --max-seq-len=2048 --fp8  \
     #     --device-batch-size=4 \
     #     --total-batch-size=524288 \
     #     --num-iterations=21400 \
@@ -123,7 +123,7 @@
     CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4-m scripts.base_train -- \
         --fp8 \
         --depth=24 \
-        --max-seq-len=2048   \
+        --max-seq-len=2048 --fp8  \
         --device-batch-size=4 \
         --total-batch-size=524288 \
         --num-iterations=21400 \
@@ -147,7 +147,7 @@
     CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4  -m scripts.base_train -- \
         --fp8 \
         --depth=36 \
-        --max-seq-len=2048   \
+        --max-seq-len=2048 --fp8  \
         --device-batch-size=4 \
         --total-batch-size=524288 \
         --num-iterations=21400 \
@@ -171,7 +171,7 @@
     CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts.base_train -- \
         --fp8 \
         --depth=48 \
-        --max-seq-len=2048   \
+        --max-seq-len=2048 --fp8  \
         --device-batch-size=4 \
         --total-batch-size=524288 \
         --num-iterations=21400 \

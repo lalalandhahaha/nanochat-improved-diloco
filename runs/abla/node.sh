@@ -7,7 +7,7 @@
 # ##node =1
 # CUDA_VISIBLE_DEVICES=0 torchrun --standalone --nproc_per_node=1 -m scripts.base_train -- \
 #     --depth=24 \
-#     --max-seq-len=2048 \
+#     --max-seq-len=2048 --fp8  \
 #     --device-batch-size=2 \
 #     --total-batch-size=524288 \
 #     --num-iterations=21400 \
@@ -27,7 +27,7 @@
 # ##node =2
 # CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.base_train -- \
 #     --depth=24 \
-#     --max-seq-len=2048 \
+#     --max-seq-len=2048 --fp8  \
 #     --device-batch-size=4 \
 #     --total-batch-size=524288 \
 #     --num-iterations=21400 \
@@ -47,7 +47,7 @@
 # ##node =4
 # CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4  -m scripts.base_train -- \
 #     --depth=24 \
-#     --max-seq-len=2048 \
+#     --max-seq-len=2048 --fp8  \
 #     --device-batch-size=4 \
 #     --total-batch-size=524288 \
 #     --num-iterations=21400 \
@@ -67,7 +67,7 @@
 # ##node =8
 # CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --standalone --nproc_per_node=8  -m scripts.base_train -- \
 #     --depth=24 \
-#     --max-seq-len=2048 \
+#     --max-seq-len=2048 --fp8  \
 #     --device-batch-size=4 \
 #     --total-batch-size=524288 \
 #     --num-iterations=21400 \
@@ -90,7 +90,7 @@
 ##node =1 6000pro 0919
 CUDA_VISIBLE_DEVICES=3 torchrun --standalone --nproc_per_node=1 -m scripts.base_train -- \
     --depth=24 \
-    --max-seq-len=2048 \
+    --max-seq-len=2048 --fp8  \
     --device-batch-size=16 \
     --total-batch-size=524288 \
     --num-iterations=21400 \
@@ -113,7 +113,7 @@ CUDA_VISIBLE_DEVICES=3 torchrun --standalone --nproc_per_node=1 -m scripts.chat_
 ##node =2 6000pro 0919
 CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.base_train -- \
     --depth=24 \
-    --max-seq-len=2048 \
+    --max-seq-len=2048 --fp8  \
     --device-batch-size=16 \
     --total-batch-size=524288 \
     --num-iterations=21400 \
@@ -136,7 +136,7 @@ CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.cha
 ##node =4
 CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4  -m scripts.base_train -- \
     --depth=24 \
-    --max-seq-len=2048 \
+    --max-seq-len=2048 --fp8  \
     --device-batch-size=4 \
     --total-batch-size=524288 \
     --num-iterations=21400 \
@@ -159,7 +159,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts
 ##node =8
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --standalone --nproc_per_node=8  -m scripts.base_train -- \
     --depth=24 \
-    --max-seq-len=2048 \
+    --max-seq-len=2048 --fp8  \
     --device-batch-size=4 \
     --total-batch-size=524288 \
     --num-iterations=21400 \
