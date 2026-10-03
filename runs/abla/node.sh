@@ -6,7 +6,7 @@
 # ############################################################ ddp ##############################################
 # ##node =1
 # CUDA_VISIBLE_DEVICES=0 torchrun --standalone --nproc_per_node=1 -m scripts.base_train -- \
-#     --depth=24 \
+#     --depth=24 --eval-svd=0 --save-every=5351 \
 #     --max-seq-len=2048 --fp8  \
 #     --device-batch-size=2 \
 #     --total-batch-size=524288 \
@@ -26,7 +26,7 @@
 
 # ##node =2
 # CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.base_train -- \
-#     --depth=24 \
+#     --depth=24 --eval-svd=0 --save-every=5351 \
 #     --max-seq-len=2048 --fp8  \
 #     --device-batch-size=4 \
 #     --total-batch-size=524288 \
@@ -46,7 +46,7 @@
 
 # ##node =4
 # CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4  -m scripts.base_train -- \
-#     --depth=24 \
+#     --depth=24 --eval-svd=0 --save-every=5351 \
 #     --max-seq-len=2048 --fp8  \
 #     --device-batch-size=4 \
 #     --total-batch-size=524288 \
@@ -66,7 +66,7 @@
 
 # ##node =8
 # CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --standalone --nproc_per_node=8  -m scripts.base_train -- \
-#     --depth=24 \
+#     --depth=24 --eval-svd=0 --save-every=5351 \
 #     --max-seq-len=2048 --fp8  \
 #     --device-batch-size=4 \
 #     --total-batch-size=524288 \
@@ -88,8 +88,8 @@
 
 ############################################################ diloco ##############################################
 ##node =1 6000pro 0919
-CUDA_VISIBLE_DEVICES=3 torchrun --standalone --nproc_per_node=1 -m scripts.base_train -- \
-    --depth=24 \
+CUDA_VISIBLE_DEVICES=0 torchrun --standalone --nproc_per_node=1 -m scripts.base_train -- \
+    --depth=24 --eval-svd=0 --save-every=5351 \
     --max-seq-len=2048 --fp8  \
     --device-batch-size=16 \
     --total-batch-size=524288 \
@@ -99,12 +99,12 @@ CUDA_VISIBLE_DEVICES=3 torchrun --standalone --nproc_per_node=1 -m scripts.base_
     --diloco-H=100 \
     --model-tag=d24-diloco-1gpu-0919-h100 \
     --run=d24_diloco_1gpu_h100 
-CUDA_VISIBLE_DEVICES=3 torchrun --standalone --nproc_per_node=1 -m scripts.chat_sft \
+CUDA_VISIBLE_DEVICES=0 torchrun --standalone --nproc_per_node=1 -m scripts.chat_sft \
     -- --run=d24_diloco_1gpu_sft_h100   \
     --model-tag=d24-diloco-1gpu-0919-h100 \
     --device-batch-size=16 \
     --load-optimizer=0
-CUDA_VISIBLE_DEVICES=3 torchrun --standalone --nproc_per_node=1 -m scripts.chat_rl \
+CUDA_VISIBLE_DEVICES=0 torchrun --standalone --nproc_per_node=1 -m scripts.chat_rl \
     -- --run=d24_diloco_1gpu_rl   \
     --device-batch-size=16 \
     --model-tag=d24-diloco-1gpu-0919-h100
@@ -112,7 +112,7 @@ CUDA_VISIBLE_DEVICES=3 torchrun --standalone --nproc_per_node=1 -m scripts.chat_
 
 ##node =2 6000pro 0919
 CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.base_train -- \
-    --depth=24 \
+    --depth=24 --eval-svd=0 --save-every=5351 \
     --max-seq-len=2048 --fp8  \
     --device-batch-size=16 \
     --total-batch-size=524288 \
@@ -133,9 +133,9 @@ CUDA_VISIBLE_DEVICES=0,3 torchrun --standalone --nproc_per_node=2 -m scripts.cha
     --model-tag=d24-diloco-2gpu-0919-h100 
 
 
-##node =4
+##node =4 a100上
 CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4  -m scripts.base_train -- \
-    --depth=24 \
+    --depth=24 --eval-svd=0 --save-every=5351 \
     --max-seq-len=2048 --fp8  \
     --device-batch-size=4 \
     --total-batch-size=524288 \
@@ -158,7 +158,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts
 
 ##node =8
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --standalone --nproc_per_node=8  -m scripts.base_train -- \
-    --depth=24 \
+    --depth=24 --eval-svd=0 --save-every=5351 \
     --max-seq-len=2048 --fp8  \
     --device-batch-size=4 \
     --total-batch-size=524288 \

@@ -79,7 +79,7 @@ parser.add_argument("--eval-tokens", type=int, default=10*524288, help="number o
 parser.add_argument("--core-metric-every", type=int, default=500, help="evaluate CORE metric every N steps (-1 = disable)")
 parser.add_argument("--core-metric-max-per-task", type=int, default=500, help="examples per task for CORE metric")
 parser.add_argument("--sample-every", type=int, default=1000, help="sample from model every N steps (-1 = disable)")
-parser.add_argument("--save-every", type=int, default=-1, help="save checkpoints every N steps (-1 = only at end)")
+parser.add_argument("--save-every", type=int, default=5351, help="save checkpoints every N steps (-1 = only at end)")
 # Output
 parser.add_argument("--model-tag", type=str, default=None, help="override model tag for checkpoint directory name")
 # DiLoCo distributed training
@@ -95,7 +95,7 @@ parser.add_argument("--diloco-outer-momentum", type=float, default=0.9, help="ou
 # parser.add_argument("--diloco-outer-clip", type=float, default=1.0, help="gradient clipping for outer optimizer")
 
 # lambda_reg setting
-parser.add_argument("--lambda-reg", type=float, default=0.0, help="regularization coefficient for spectral norm regularization")
+parser.add_argument("--lambda-reg", type=float, default=0.0, help="regularization coefficient for lm_head spectral concentration regularization")
 args = parser.parse_args()
 user_config = vars(args).copy()  # for logging
 # -----------------------------------------------------------------------------
@@ -162,49 +162,67 @@ def build_model_meta(depth):
         model_meta = GPT(config)
     return model_meta
 
-def spectral_norm_power_iteration(weight, num_iters=1, eps=1e-6):
+def spectral_norm_power_iteration(weight, num_iters=10, eps=1e-6):
     # W: [out_features, in_features]
     weight_fp32 = weight.float()
-    out_features, in_features = weight_fp32.shape
+    _, in_features = weight_fp32.shape
 
-    v = torch.randn(
-        in_features,
-        device=weight.device,
-        dtype=torch.float32,
-    )
-    v = v / (v.norm() + eps)
-
-    for _ in range(num_iters):
-        u = weight_fp32 @ v
-        u = u / (u.norm() + eps)
-
-        v = weight_fp32.mT @ u
+    # Estimate the singular vectors without building a graph through the iterations.
+    with torch.no_grad():
+        weight_detached = weight_fp32.detach()
+        v = torch.randn(in_features, device=weight.device, dtype=torch.float32)
         v = v / (v.norm() + eps)
 
-    # Approximate sigma_max(W) = u^T W v
+        for _ in range(num_iters):
+            u = weight_detached @ v
+            u = u / (u.norm() + eps)
+
+            v = weight_detached.mT @ u
+            v = v / (v.norm() + eps)
+
+    # Keep u/v fixed, while allowing gradients through W in u^T W v.
     return torch.sum(u * (weight_fp32 @ v))
 
-def compute_regularizer(model, power=2, num_iters=1):
-    regularizer = torch.zeros((), device=model.get_device(), dtype=torch.float32)
+#######################################版本1 加在tranformer上，结果反作用，head和wte的部分变大很多################33
+# def compute_regularizer(model, power=2, num_iters=1):
+#     regularizer = torch.zeros((), device=model.get_device(), dtype=torch.float32)
 
-    for layer in model.transformer.h:
-        for module in (
-            layer.attn.c_q,
-            layer.attn.c_k,
-            layer.attn.c_v,
-            layer.attn.c_proj,
-            layer.mlp.c_fc,
-            layer.mlp.c_proj,
-        ):
-            sigma = spectral_norm_power_iteration(
-                module.weight,
-                num_iters=num_iters,
-            )
-            regularizer = regularizer + (sigma ** power - 1.0) ** 2
+#     for layer in model.transformer.h:
+#         for module in (
+#             layer.attn.c_q,
+#             layer.attn.c_k,
+#             layer.attn.c_v,
+#             layer.attn.c_proj,
+#             layer.mlp.c_fc,
+#             layer.mlp.c_proj,
+#         ):
+#             sigma = spectral_norm_power_iteration(
+#                 module.weight,
+#                 num_iters=num_iters,
+#             )
+#             regularizer = regularizer + (sigma ** power - 1.0) ** 2
 
-    return regularizer
+#     return regularizer
 
+#########################################版本2：用尺度不变的 stable-rank / concentration 惩罚，且作用在 head 上##########
 
+#病灶是秩塌缩，不是绝对大小。直接惩罚 concentration（= σ₁²/‖W‖_F²，就是你表里那个 conc），
+#好处是尺度不变——等比缩放 W 不改变这个比值，所以不会触发「挪尺度到别处」的补偿行为，也不会破坏 head 需要的输出增益。
+
+def spectral_concentration(weight, num_iters=10):
+    # The singular vectors are detached; gradients flow through the weight itself.
+    sigma1 = spectral_norm_power_iteration(weight, num_iters=num_iters)
+    fro2 = (weight.float() ** 2).sum()
+    return sigma1**2 / (fro2 + 1e-12)        # 即 conc，范围 [1/min(m,n), 1]
+
+def compute_regularizer(model, num_iters=10):
+    reg = torch.zeros((), device=model.get_device(), dtype=torch.float32)
+    # 只打病灶：lm_head（必要时加上 value_embeds）
+    reg = reg + spectral_concentration(model.lm_head.weight, num_iters=num_iters)
+    # transformer 矩阵交给 Muon，不用在这里管；wte 良性，先别碰
+    return reg
+
+###################################################################################################
 # Build the model, move to device, init the weights
 model = build_model_meta(args.depth) # 1) Build on meta device (only shapes/dtypes, no data)
 model_config = model.config
@@ -758,11 +776,7 @@ while True:
     # #################################################################################################
     # #所有数据的 CE 梯度已经累计完成
     if lambda_reg > 0:
-        regularizer = compute_regularizer(
-            orig_model,
-            power=2,
-            num_iters=10,
-        )
+        regularizer = compute_regularizer(orig_model, num_iters=10)
 
         regularizer_loss = lambda_reg * regularizer
 

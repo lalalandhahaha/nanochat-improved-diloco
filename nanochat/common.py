@@ -10,7 +10,9 @@ import numpy as np
 import torch
 import torch.distributed as dist
 from filelock import FileLock
+from pathlib import Path
 
+BASE = Path(os.environ.get("NANOCHAT_BASE_DIR", Path.home() / ".cache" / "nanochat"))
 # The dtype used for compute (matmuls, activations). Master weights stay fp32 for optimizer precision.
 # Linear layers cast their weights to this dtype in forward, replacing torch.amp.autocast.
 # Override with NANOCHAT_DTYPE env var: "bfloat16", "float16", "float32"
