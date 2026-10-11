@@ -4,10 +4,8 @@
 CUDA_VISIBLE_DEVICES=1,2,5,6 torchrun --standalone --nproc_per_node=4 -m scripts.base_train \
     -- --depth=24 \
     --max-seq-len=2048 \
-    --device-batch-size=4 \
-    --total-batch-size=524288 \
-    --num-iterations=21400 \
-    --target-param-data-ratio=-1 \
+    --device-batch-size=4 \  
+    --num-iterations=21400 \  
     --use-diloco=0 \
     --run=d24_ddp_4gpu \
     --model-tag=d24-ddp-4gpu-0909
@@ -34,10 +32,8 @@ CUDA_VISIBLE_DEVICES=1,2,5,6 torchrun --standalone --nproc_per_node=4 -m scripts
 CUDA_VISIBLE_DEVICES=1,2,5,6 torchrun --standalone --nproc_per_node=4 -m scripts.base_train \
     --depth=24 \
     --max-seq-len=2048 \
-    --device-batch-size=4 \
-    --total-batch-size=524288 \
-    --num-iterations=21400 \
-    --target-param-data-ratio=-1 \
+    --device-batch-size=4 \  
+    --num-iterations=21400 \  
     --use-diloco=1 \
     --diloco-H=100 \
     --model-tag=d24-diloco-4gpu-0909 \
@@ -48,10 +44,8 @@ CUDA_VISIBLE_DEVICES=1,2,5,6 torchrun --standalone --nproc_per_node=4 -m scripts
 CUDA_VISIBLE_DEVICES=1,2,5,6 torchrun --standalone --nproc_per_node=4 -m scripts.base_train \
     --depth=24 \
     --max-seq-len=2048 \
-    --device-batch-size=4 \
-    --total-batch-size=524288 \
-    --num-iterations=21400 \
-    --target-param-data-ratio=-1 \
+    --device-batch-size=4 \  
+    --num-iterations=21400 \  
     --use-diloco=1 \
     --diloco-H=100 \
     --model-tag=d24-diloco-regular-1e-4-4gpu-0909 \

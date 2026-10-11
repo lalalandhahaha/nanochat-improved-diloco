@@ -38,6 +38,13 @@ def _patch_missing_keys(model_data, model_config):
         model_data["x0_lambdas"] = torch.zeros(n_layer)
         log0(f"Patching missing x0_lambdas in model data to 0.0")
 
+def save_rank_model(checkpoint_dir, step, model_data, rank):
+    os.makedirs(checkpoint_dir, exist_ok=True)
+    model_path = os.path.join(checkpoint_dir, f"model_{step:06d}_rank{rank:d}.pt")
+    torch.save(model_data, model_path)
+    logger.info(f"Saved rank {rank} model parameters to: {model_path}")
+
+
 def save_checkpoint(checkpoint_dir, step, model_data, optimizer_data, meta_data, rank=0):
     if rank == 0:
         os.makedirs(checkpoint_dir, exist_ok=True)

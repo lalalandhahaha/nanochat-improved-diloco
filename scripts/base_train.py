@@ -29,7 +29,7 @@ from nanochat.gpt import GPT, GPTConfig, Linear
 from nanochat.dataloader import tokenizing_distributed_data_loader_bos_bestfit, tokenizing_distributed_data_loader_with_state_bos_bestfit
 from nanochat.common import compute_init, compute_cleanup, print0, DummyWandb, print_banner, get_base_dir, autodetect_device_type, get_peak_flops, COMPUTE_DTYPE, COMPUTE_DTYPE_REASON, is_ddp_initialized
 from nanochat.tokenizer import get_tokenizer, get_token_bytes
-from nanochat.checkpoint_manager import save_checkpoint, load_checkpoint
+from nanochat.checkpoint_manager import save_checkpoint, save_rank_model, load_checkpoint
 from nanochat.loss_eval import evaluate_bpb
 from nanochat.engine import Engine
 from nanochat.flash_attention import HAS_FA3
@@ -597,16 +597,58 @@ lambda_reg = args.lambda_reg
 
 # Go!
 while True:
+
+
     last_step = step == num_iterations # loop runs num_iterations+1 times so that we can eval/save at the end
     flops_so_far = num_flops_per_token * total_batch_size * step
 
+
     ##############################################################################################################################
     
-    # DiLoCo: ranks hold locally-drifted weights between outer steps. Sync before the final
-    # eval/checkpoint so we measure and save the averaged model, not just rank 0's local copy.
-    if last_step and args.use_diloco:
+    ## save checkpoint if it's the last step, or if it's a save step (every save_every steps, plus one extra step to catch the last step)
+    save_checkpoint_this_step = last_step or (
+            step > 0
+            and step != args.resume_from_step
+            and args.save_every > 0
+            and (step % args.save_every == 0 or step % args.save_every == 1)
+        )
+    if save_checkpoint_this_step:
+        save_rank_model(checkpoint_dir, step, orig_model.state_dict(), rank=ddp_rank)
+
+    # Save local weights before synchronizing, then evaluate/checkpoint the outer-step model.
+    if args.use_diloco and (last_step or save_checkpoint_this_step):
         optimizer.sync_if_pending()
 
+    # save checkpoint: at the end of the run, or every save_every steps, except at the first step or the resume step
+    if save_checkpoint_this_step:
+        save_checkpoint(
+            checkpoint_dir,
+            step,
+            orig_model.state_dict(), # model parameters
+            optimizer.state_dict(), # optimizer state
+            { # metadata saved as json
+                "step": step,
+                "val_bpb": val_bpb, # loss at last step
+                "model_config": model_config_kwargs,
+                "user_config": user_config, # inputs to the training script
+                "device_batch_size": args.device_batch_size,
+                "max_seq_len": args.max_seq_len,
+                "total_batch_size": total_batch_size,
+                "distributed_world_size": ddp_world_size,
+                "diloco_sync_before_checkpoint": bool(args.use_diloco),
+                "dataloader_state_dict": dataloader_state_dict,
+                "loop_state": { # all loop state (other than step) so that we can resume training
+                    "min_val_bpb": min_val_bpb,
+                    "smooth_train_loss": smooth_train_loss,
+                    "total_training_time": total_training_time,
+                },
+            },
+            rank=ddp_rank,
+        )
+
+    
+    ##############################################################################################
+    
     # once in a while: evaluate the val bpb (all ranks participate)
     if args.eval_every > 0 and (last_step or step % args.eval_every == 0):
         val_eval_start = time.perf_counter()
@@ -621,8 +663,8 @@ while True:
             min_val_bpb = val_bpb
 
     # once in a while: estimate the CORE metric (all ranks participate)
-    # use the original uncompiled model because the inputs keep changing shape
-    # disable FP8 for evaluation to use BF16 for more consistent/accurate results
+        # use the original uncompiled model because the inputs keep changing shape
+        # disable FP8 for evaluation to use BF16 for more consistent/accurate results
     results = {}
     if args.core_metric_every > 0 and (last_step or (step > 0 and step % args.core_metric_every == 0)):
         core_eval_start = time.perf_counter()
@@ -641,7 +683,7 @@ while True:
         model.train()
 
     # once in a while: sample from the model (only on master process)
-    # use the original uncompiled model because the inputs keep changing shape
+        # use the original uncompiled model because the inputs keep changing shape
     if args.sample_every > 0 and master_process and (last_step or (step > 0 and step % args.sample_every == 0)):
         model.eval()
         prompts = [
@@ -661,8 +703,9 @@ while True:
             print0(tokenizer.decode(sample[0]))
         model.train()
 
+    # 权重矩阵分析（只在master进程上执行）
     if args.eval_svd > 0 and (last_step or step % args.eval_svd == 0):
-        # 权重矩阵分析（只在master进程上执行）
+        
         weight_metrics = {}
         if master_process:
             weight_analysis_start = time.perf_counter()
@@ -725,43 +768,23 @@ while True:
         })
         model.train()
         
-    # save checkpoint: at the end of the run, or every save_every steps, except at the first step or the resume step
-    if last_step or (step > 0 and step != args.resume_from_step and args.save_every > 0 and step % args.save_every == 0):
-        save_checkpoint(
-            checkpoint_dir,
-            step,
-            orig_model.state_dict(), # model parameters
-            optimizer.state_dict(), # optimizer state
-            { # metadata saved as json
-                "step": step,
-                "val_bpb": val_bpb, # loss at last step
-                "model_config": model_config_kwargs,
-                "user_config": user_config, # inputs to the training script
-                "device_batch_size": args.device_batch_size,
-                "max_seq_len": args.max_seq_len,
-                "total_batch_size": total_batch_size,
-                "dataloader_state_dict": dataloader_state_dict,
-                "loop_state": { # all loop state (other than step) so that we can resume training
-                    "min_val_bpb": min_val_bpb,
-                    "smooth_train_loss": smooth_train_loss,
-                    "total_training_time": total_training_time,
-                },
-            },
-            rank=ddp_rank,
-        )
 
-    # termination conditions (TODO: possibly also add loss explosions etc.)
-    if last_step:
-        break
     
     #############################################################################################################################
+     # termination conditions (TODO: possibly also add loss explosions etc.)
+    if last_step:
+        break
     # -------------------------------------------------------------------------
     # single training step
     # evaluate the gradient
     synchronize()
     t0 = time.time()
-    
-    for micro_step in range(grad_accum_steps):
+     
+    ##每个 rank 对自己的 micro-batch 做前向和反向，并除以 grad_accum_steps 累积梯度
+    ##用 torchrun 启动时，每个进程都有自己的模型、梯度和 dataloader；各进程通过环境变量 RANK 区分身份。
+    # rank 区分没有写在你选中的梯度累积循环里，而是在数据加载器中：它读取当前进程的 rank，并让不同 rank 读取不同的 row group。因此，各 rank 在循环里累积的是各自数据产生的本地梯度，并非同一份共享梯度。
+
+    for micro_step in range(grad_accum_steps): 
         loss = model(x, y)
         train_loss = loss.detach() # for logging
         
@@ -773,7 +796,7 @@ while True:
         #################################
         x, y, dataloader_state_dict = next(train_loader) # prefetch the next batch while the GPU is busy with forward/backward
 
-    # #################################################################################################
+    # ------------------------------------------------------------------------
     # #所有数据的 CE 梯度已经累计完成
     if lambda_reg > 0:
         regularizer = compute_regularizer(orig_model, num_iters=10)
@@ -786,6 +809,7 @@ while True:
             regularizer_loss.backward()
 
         print0(f"Step {step:05d} | CE Loss: {train_loss.item():.6f} | Regularizer Loss: {regularizer_loss.item():.6f} | Total Loss: {(train_loss + regularizer_loss).item():.6f}")
+    
     # print0(f"Step {step:05d} | CE Loss: {train_loss.item():.6f}")
     # ###################################################################################################
     # print0(f"step {step:05d}/{num_iterations:05d} ({pct_done:.2f}%) | loss: {debiased_smooth_loss:.6f} | lrm: {lrm:.2f} | dt: {dt * 1000:.2f}ms | tok/sec: {tok_per_sec:,} | bf16_mfu: {mfu:.2f} | epoch: {epoch} | total time: {total_training_time/60:.2f}m{eta_str}")
@@ -832,6 +856,7 @@ while True:
     synchronize()
     t1 = time.time()
     dt = t1 - t0
+    
     # -------------------------------------------------------------------------
 
     # logging (CPU action only)

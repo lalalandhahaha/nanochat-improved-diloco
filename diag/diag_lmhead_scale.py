@@ -1,18 +1,20 @@
 # scripts/diag_lmhead_scale.py
-#1D É¨Ãè£º°Ñ lm_head ³Ë s£¬¿´ bpb / ±¥ºÍÂÊ / CORE ÔõÃ´±ä¡£
-#²»ÊÇºãµÈ±ä»» ¡ª¡ª ËõÐ¡ s Ï÷Èõ softcap Ñ¹Ëõ£¬ÓÐÐ§ logit ¼ä¾à·´¶ø±ä´ó¡£"""
+#1D É¨ï¿½è£ºï¿½ï¿½ lm_head ï¿½ï¿½ sï¿½ï¿½ï¿½ï¿½ bpb / ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ / CORE ï¿½ï¿½Ã´ï¿½ä¡£
+#ï¿½ï¿½ï¿½Çºï¿½È±ä»» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¡ s ï¿½ï¿½ï¿½ï¿½ softcap Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ logit ï¿½ï¿½à·´ï¿½ï¿½ï¿½ï¿½ï¿½"""
 import os, re, math, torch
 import torch.nn.functional as F
 from nanochat.gpt import GPT, GPTConfig
 from nanochat.tokenizer import get_tokenizer, get_token_bytes
 from nanochat.dataloader import tokenizing_distributed_data_loader_bos_bestfit
 
-CKPT_ROOT = "/home/lyq/.cache/nanochat/base_checkpoints/"
-DEVICE, BS, SEQ, N_BATCH = "cuda", 16, 2048, 30
+CKPT_ROOT = "/data1/users/liuyingqi2/.cache/nanochat/base_checkpoints/"
+DEVICE, BS, SEQ, N_BATCH = "cuda", 8, 2048, 30
 SOFTCAP, STRIDE = 15.0, 211
 SCALES = [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.2]
-TARGET = "d20_diloco"
-REFS   = {"ddp": "d20_ddp", "runA": "d20_ddp_n9500"}
+TARGET = "d12-diloco-regular-1e-4-4gpu-0909"
+REFS   = {"ddp": "d12-ddp-4gpu-0909", \
+          "diloco": "d12-diloco-4gpu-0909", \
+           "regular_head": "d12-regular-4gpu-0909" }
 
 def load_model(tag, device=DEVICE):
     d = os.path.join(CKPT_ROOT, tag)
@@ -36,7 +38,7 @@ def load_model(tag, device=DEVICE):
 
 @torch.inference_mode()
 def measure(m, batches, token_bytes):
-#Ò»´Î±éÀúÍ¬Ê±ÄÃ bpb ºÍ pre-softcap logit Í³¼Æ"""
+#Ò»ï¿½Î±ï¿½ï¿½ï¿½Í¬Ê±ï¿½ï¿½ bpb ï¿½ï¿½ pre-softcap logit Í³ï¿½ï¿½"""
     ctx = torch.amp.autocast("cuda", dtype=torch.bfloat16)
     nats = bytes_ = 0.0
     zs = []
