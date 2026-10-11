@@ -59,6 +59,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4  -m script
     --target-param-data-ratio=-1 \
     --use-diloco=1 \
     --diloco-H=200 \
+    --eval-every=1000 \
+    --core-metric-every=1000 \
     --model-tag=d24-diloco-4gpu-0919-h200 \
     --run=d24_diloco_4gpu_h200
 CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts.chat_sft \

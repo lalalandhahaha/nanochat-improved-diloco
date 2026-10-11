@@ -124,7 +124,7 @@ rm -rf wandb_local/20260902_*
 训练脚本会保存：
 - ✅ 模型参数
 - ✅ Optimizer 状态（包括 DiLoCo 的 inner 和 outer optimizer）
-- ✅ Dataloader 状态
+- ✅ 每个 worker 的 Dataloader 位置（近似恢复，不含打包缓冲区）
 - ✅ 循环状态（step、min_val_bpb、smooth_train_loss、total_training_time）
 - ⚠️ **未保存**：随机数状态（不能保证 bit-exact resume）
 
@@ -151,8 +151,39 @@ DiLoCo 会恢复：
 - ✅ Outer optimizer 状态（SGD with momentum）
 - ✅ `params_offloaded`（上次同步的权重快照）
 - ✅ `inner_step_count`（当前 inner step 计数）
+- ✅ `last_sync_step`（最近一次完成同步的位置，避免重复应用外层动量）
+- ✅ 每个 rank 在保存时的本地模型参数及其对应的循环状态
+
+新 DiLoCo checkpoint 会在同一训练时点保存以下文件：
+
+```text
+model_005351_rank0.pt       # rank 0 的本地模型
+optim_005351_rank0.pt       # 与该模型配对的优化器状态
+meta_005351_rank0.json      # rank 0 的数据位置、循环状态和 rank 标记
+model_005351_rank1.pt       # 其余 rank 使用相同规则
+optim_005351_rank1.pt
+meta_005351_rank1.json
+model_005351.pt             # 供独立加载/推理使用的 rank 0 模型
+meta_005351.json            # 公共元数据，标记 rank_local_checkpoint=true
+```
+
+中途保存不会触发额外外层更新，因此不改变原定的 H 步同步周期；训练结束时仍会同步未提交的本地更新，再保存最终模型。非同步点的公共 `model_<step>.pt` 是 rank 0 的本地模型，最终同步后的公共模型才是各 worker 一致的模型。
+
+恢复训练时，加载器根据元数据标记选择当前 rank 的模型、优化器和元数据。需要保持 worker 数量一致，并保留该步完整的公共文件和各 rank 文件；文件缺失时不会回退到 rank 0 参数。
+
+旧 checkpoint 仅在能够确认参数已同步时支持恢复（正常 H 边界，或元数据明确记录保存前已同步）。旧的非同步点共享 checkpoint 缺少其他 worker 的配对状态，无法精确恢复，加载时会报错。旧版本可能另存了同步前的诊断模型文件，它们不能与同步后的优化器状态混用。
+
+以上保证模型与优化器状态配对恢复。数据加载器仍采用近似恢复，且尚未保存完整随机数状态，因此不保证真实数据流上的 bit-exact resume。
 
 ## 5. 独立评估脚本 (base_eval.py)
+
+训练期间的 BPB/CORE 评估规则如下：
+
+- DiLoCo 的中途评估间隔必须是实际 H 的整数倍；断点恢复后按恢复出的 H 校验。配置不对齐时会在进入训练循环前报错。
+- 例如 H=200，应使用 `--eval-every 1000 --core-metric-every 1000`。评估不会额外触发外层更新，因此不改变本地训练周期。
+- 第 0 步仍可评估初始模型的 BPB；结束时先完成剩余同步，再执行启用的最终评估。仅在结束时触发的大间隔配置无需整除 H；`-1` 仍表示完全关闭对应评估。
+- 每次 BPB 评估完成后，由 rank 0 立即记录 `val/bpb` 和 `eval/val_bpb_seconds`，并恢复训练模式。默认 `--eval-svd -1` 或设置为 0 均不影响 BPB 日志。
+- SVD 分支仅记录权重分析等诊断指标，不会在未执行验证的步骤重复写入旧 BPB。
 
 ### 5.1 W&B 支持
 

@@ -1,18 +1,40 @@
 #!/bin/bash
 
 # d12 model (slightly undertrained to beat GPT-2 => decrease data:params ratio from compute optimal 10.5 (default) to 8)
-CUDA_VISIBLE_DEVICES=0,1,4,6 torchrun --standalone --nproc_per_node=4 -m scripts.base_train \
+CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts.base_train \
     -- --depth=12 \
-    --device-batch-size=8  --unembedding-lr=0.0004 \  
+    --device-batch-size=8  --diloco-outer-lr=0.3  --diloco-outer-momentum=0.9\  
     --use-diloco=1 \
-    --run=d12_diloco_4gpu_headlr_4e-4 \
-    --model-tag=d12_diloco_4gpu_headlr_4e-4_1010
-CUDA_VISIBLE_DEVICES=0,1,4,3 torchrun --standalone --nproc_per_node=4 -m scripts.chat_sft \
-    -- --run=d12_diloco_4gpu_headlr_4e-4 \
+    --run=d12_diloco_4gpu_outerlr_03_outermo_09 \
+    --model-tag=d12_diloco_4gpu_outerlr_03_outermo_09
+CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts.chat_sft \
+    -- --run=d12_diloco_4gpu_outerlr_03_outermo_09 \
     --device-batch-size=8 \
-    --model-tag=d12_diloco_4gpu_headlr_4e-4_1010 \
+    --model-tag=d12_diloco_4gpu_outerlr_03_outermo_09 \
 
 
+CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts.base_train \
+    -- --depth=12 \
+    --device-batch-size=8  --diloco-outer-lr=0.7  --diloco-outer-momentum=0.5\  
+    --use-diloco=1 \
+    --run=d12_diloco_4gpu_outerlr_07_outermo_05 \
+    --model-tag=d12_diloco_4gpu_outerlr_07_outermo_05d
+CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts.chat_sft \
+    -- --run=d12_diloco_4gpu_outerlr_07_outermo_05 \
+    --device-batch-size=8 \
+    --model-tag=d12_diloco_4gpu_outerlr_07_outermo_05 \
+
+
+CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts.base_train \
+    -- --depth=12 \
+    --device-batch-size=8  --diloco-outer-lr=0.3  --diloco-outer-momedntum=0.5\  
+    --use-diloco=1 \
+    --run=d12_diloco_4gpu_outerlr_03_outermo_05 \
+    --model-tag=d12_diloco_4gpu_outerlr_03_outermo_05
+CUDA_VISIBLE_DEVICES=0,1,2,3 torchrun --standalone --nproc_per_node=4 -m scripts.chat_sft \
+    -- --run=d12_diloco_4gpu_outerlr_03_outermo_05 \
+    --device-batch-size=8 \
+    --model-tag=d12_diloco_4gpu_outerlr_03_outermo_05 \
 
 
 

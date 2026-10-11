@@ -8,8 +8,6 @@ import logging
 import torch
 
 from nanochat.common import get_base_dir
-from nanochat.gpt import GPT, GPTConfig
-from nanochat.tokenizer import get_tokenizer
 from nanochat.common import setup_default_logging
 
 # Set up logging
@@ -45,7 +43,25 @@ def save_rank_model(checkpoint_dir, step, model_data, rank):
     logger.info(f"Saved rank {rank} model parameters to: {model_path}")
 
 
-def save_checkpoint(checkpoint_dir, step, model_data, optimizer_data, meta_data, rank=0):
+def save_checkpoint(checkpoint_dir, step, model_data, optimizer_data, meta_data, rank=0, *, rank_local=False):
+    """Save a checkpoint without updating the model or synchronizing workers.
+
+    DiLoCo callers use rank_local=True to pair each worker's current model,
+    optimizer and metadata. The unqualified model/meta files remain available
+    for inference; between outer steps that model is rank 0's local model.
+    """
+    if rank_local:
+        world_size = meta_data['distributed_world_size']
+        if not 0 <= rank < world_size:
+            raise ValueError(f"Checkpoint rank {rank} is outside world size {world_size}")
+        if optimizer_data is None:
+            raise ValueError("A rank-local training checkpoint requires optimizer state")
+        meta_data = {**meta_data, 'rank_local_checkpoint': True}
+        save_rank_model(checkpoint_dir, step, model_data, rank)
+        rank_meta_path = os.path.join(checkpoint_dir, f"meta_{step:06d}_rank{rank:d}.json")
+        with open(rank_meta_path, "w", encoding="utf-8") as f:
+            json.dump({**meta_data, 'checkpoint_rank': rank}, f, indent=2)
+
     if rank == 0:
         os.makedirs(checkpoint_dir, exist_ok=True)
         # Save the model state parameters
@@ -64,19 +80,67 @@ def save_checkpoint(checkpoint_dir, step, model_data, optimizer_data, meta_data,
         torch.save(optimizer_data, optimizer_path)
         logger.info(f"Saved optimizer state to: {optimizer_path}")
 
-def load_checkpoint(checkpoint_dir, step, device, load_optimizer=False, rank=0):
-    # Load the model state
-    model_path = os.path.join(checkpoint_dir, f"model_{step:06d}.pt")
-    model_data = torch.load(model_path, map_location=device)
+def load_checkpoint(checkpoint_dir, step, device, load_optimizer=False, rank=0, *, world_size=None):
+    """Load rank-local training state, or the common model for inference.
+
+    Only checkpoints explicitly marked rank-local use per-rank model files:
+    older runs may contain diagnostic snapshots from before an outer update.
+    """
+    meta_path = os.path.join(checkpoint_dir, f"meta_{step:06d}.json")
+    with open(meta_path, "r", encoding="utf-8") as f:
+        meta_data = json.load(f)
+
+    saved_world_size = meta_data.get('distributed_world_size')
+    rank_local = meta_data.get('rank_local_checkpoint', False)
+    if load_optimizer and world_size is not None and saved_world_size is not None:
+        if world_size != saved_world_size:
+            raise ValueError(
+                f"Cannot resume checkpoint with world size {saved_world_size} "
+                f"using world size {world_size}; worker training states must match."
+            )
+
+    if load_optimizer and rank_local:
+        if saved_world_size is None or not 0 <= rank < saved_world_size:
+            raise ValueError(f"Invalid rank {rank} for rank-local checkpoint")
+        model_path = os.path.join(checkpoint_dir, f"model_{step:06d}_rank{rank:d}.pt")
+        rank_meta_path = os.path.join(checkpoint_dir, f"meta_{step:06d}_rank{rank:d}.json")
+        optimizer_path = os.path.join(checkpoint_dir, f"optim_{step:06d}_rank{rank:d}.pt")
+        for path in (model_path, rank_meta_path, optimizer_path):
+            if not os.path.isfile(path):
+                raise FileNotFoundError(f"Incomplete rank-local checkpoint: {path}")
+        with open(rank_meta_path, "r", encoding="utf-8") as f:
+            rank_meta = json.load(f)
+        if (rank_meta.get('checkpoint_rank') != rank
+                or rank_meta.get('step') != step
+                or rank_meta.get('distributed_world_size') != saved_world_size
+                or not rank_meta.get('rank_local_checkpoint')):
+            raise ValueError(f"Mismatched rank-local checkpoint metadata: {rank_meta_path}")
+        meta_data = rank_meta
+    else:
+        model_path = os.path.join(checkpoint_dir, f"model_{step:06d}.pt")
+
     # Load the optimizer state if requested
     optimizer_data = None
     if load_optimizer:
         optimizer_path = os.path.join(checkpoint_dir, f"optim_{step:06d}_rank{rank:d}.pt")
         optimizer_data = torch.load(optimizer_path, map_location=device)
-    # Load the metadata
-    meta_path = os.path.join(checkpoint_dir, f"meta_{step:06d}.json")
-    with open(meta_path, "r", encoding="utf-8") as f:
-        meta_data = json.load(f)
+        if not rank_local and 'inner_optimizers' in optimizer_data:
+            inner_step = optimizer_data['inner_step_count']
+            last_sync = optimizer_data.get('last_sync_step')
+            if last_sync is None:
+                if meta_data.get('diloco_sync_before_checkpoint') or inner_step % optimizer_data['H'] == 0:
+                    # Old explicitly synchronized checkpoints are unambiguous.
+                    last_sync = inner_step
+                    optimizer_data['last_sync_step'] = last_sync
+            if last_sync != inner_step:
+                raise ValueError(
+                    "This legacy DiLoCo checkpoint has pending local updates but "
+                    "does not contain paired rank-local training states. Other "
+                    "workers' weights cannot be reconstructed from rank 0's model; "
+                    "resume from a synchronized checkpoint instead."
+                )
+
+    model_data = torch.load(model_path, map_location=device)
     return model_data, optimizer_data, meta_data
 
 
@@ -88,6 +152,9 @@ def build_model(checkpoint_dir, step, device, phase):
     - tokenizer
     - meta data saved during base model training
     """
+    from nanochat.gpt import GPT, GPTConfig
+    from nanochat.tokenizer import get_tokenizer
+
     assert phase in ["train", "eval"], f"Invalid phase: {phase}"
     model_data, optimizer_data, meta_data = load_checkpoint(checkpoint_dir, step, device, load_optimizer=False)
     if device.type in {"cpu", "mps"}:

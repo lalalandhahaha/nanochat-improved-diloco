@@ -73,13 +73,13 @@ parser.add_argument("--warmdown-ratio", type=float, default=0.65, help="ratio of
 parser.add_argument("--final-lr-frac", type=float, default=0.05, help="final LR as fraction of initial LR")
 parser.add_argument("--resume-from-step", type=int, default=-1, help="resume training from this step (-1 = disable)")
 # Evaluation
-parser.add_argument("--eval-every", type=int, default=500, help="evaluate val bpb every N steps (-1 = disable)")
-parser.add_argument("--eval-svd", type=int, default=-1, help="evaluate val bpb every N steps (-1 = disable)")
+parser.add_argument("--eval-every", type=int, default=500, help="evaluate val bpb every N steps (must be a multiple of H with DiLoCo; -1 = disable)")
+parser.add_argument("--eval-svd", type=int, default=-1, help="analyze weight spectra every N steps (-1 = disable)")
 parser.add_argument("--eval-tokens", type=int, default=10*524288, help="number of tokens to evaluate val loss on")
-parser.add_argument("--core-metric-every", type=int, default=500, help="evaluate CORE metric every N steps (-1 = disable)")
+parser.add_argument("--core-metric-every", type=int, default=500, help="evaluate CORE metric every N steps (must be a multiple of H with DiLoCo; -1 = disable)")
 parser.add_argument("--core-metric-max-per-task", type=int, default=500, help="examples per task for CORE metric")
 parser.add_argument("--sample-every", type=int, default=1000, help="sample from model every N steps (-1 = disable)")
-parser.add_argument("--save-every", type=int, default=5351, help="save checkpoints every N steps (-1 = only at end)")
+parser.add_argument("--save-every", type=int, default=5000, help="save checkpoints every N steps (-1 = only at end)")
 # Output
 parser.add_argument("--model-tag", type=str, default=None, help="override model tag for checkpoint directory name")
 # DiLoCo distributed training
@@ -238,7 +238,10 @@ checkpoint_dir = os.path.join(base_dir, "base_checkpoints", output_dirname)
 resuming = args.resume_from_step != -1
 if resuming:
     print0(f"Resuming optimization from step {args.resume_from_step}")
-    model_data, optimizer_data, meta_data = load_checkpoint(checkpoint_dir, args.resume_from_step, device, load_optimizer=True, rank=ddp_rank)
+    model_data, optimizer_data, meta_data = load_checkpoint(
+        checkpoint_dir, args.resume_from_step, device,
+        load_optimizer=True, rank=ddp_rank, world_size=ddp_world_size,
+    )
     model.load_state_dict(model_data, strict=True, assign=True)
     del model_data # free up this memory after the copy
 
@@ -496,6 +499,18 @@ if resuming:
     optimizer.load_state_dict(optimizer_data)
     del optimizer_data
 
+# Check the restored H, which can differ from the command-line value.
+# Evaluation must not introduce extra outer updates or mix worker-local models.
+if args.use_diloco:
+    for name in ("eval_every", "core_metric_every"):
+        interval = getattr(args, name)
+        if interval > 0 and interval % optimizer.H != 0:
+            raise ValueError(
+                f"--{name.replace('_', '-')}={interval} must be a multiple of "
+                f"the active DiLoCo H={optimizer.H}. Use an aligned interval "
+                "(or -1 to disable) so evaluation uses synchronized weights."
+            )
+
 # -----------------------------------------------------------------------------
 # GradScaler for fp16 training (bf16/fp32 don't need it — bf16 has the same exponent range as fp32)
 scaler = torch.amp.GradScaler() if COMPUTE_DTYPE == torch.float16 else None
@@ -612,12 +627,15 @@ while True:
             and args.save_every > 0
             and (step % args.save_every == 0 or step % args.save_every == 1)
         )
-    if save_checkpoint_this_step:
+    if save_checkpoint_this_step and not args.use_diloco:
         save_rank_model(checkpoint_dir, step, orig_model.state_dict(), rank=ddp_rank)
 
-    # Save local weights before synchronizing, then evaluate/checkpoint the outer-step model.
-    if args.use_diloco and (last_step or save_checkpoint_this_step):
+    # Intermediate checkpoints preserve local training state without changing H.
+    # Only the final evaluation/checkpoint flushes a partial outer round.
+    if args.use_diloco and last_step:
         optimizer.sync_if_pending()
+
+    eval_model_synced = not args.use_diloco or optimizer.last_sync_step == optimizer.inner_step_count
 
     # save checkpoint: at the end of the run, or every save_every steps, except at the first step or the resume step
     if save_checkpoint_this_step:
@@ -635,7 +653,7 @@ while True:
                 "max_seq_len": args.max_seq_len,
                 "total_batch_size": total_batch_size,
                 "distributed_world_size": ddp_world_size,
-                "diloco_sync_before_checkpoint": bool(args.use_diloco),
+                "diloco_sync_before_checkpoint": bool(args.use_diloco and optimizer.last_sync_step == optimizer.inner_step_count),
                 "dataloader_state_dict": dataloader_state_dict,
                 "loop_state": { # all loop state (other than step) so that we can resume training
                     "min_val_bpb": min_val_bpb,
@@ -644,13 +662,14 @@ while True:
                 },
             },
             rank=ddp_rank,
+            rank_local=bool(args.use_diloco),
         )
 
     
     ##############################################################################################
     
     # once in a while: evaluate the val bpb (all ranks participate)
-    if args.eval_every > 0 and (last_step or step % args.eval_every == 0):
+    if args.eval_every > 0 and eval_model_synced and (last_step or step % args.eval_every == 0):
         val_eval_start = time.perf_counter()
         model.eval()
         val_loader = build_val_loader()
@@ -661,12 +680,21 @@ while True:
         print0(f"Step {step:05d} | Validation bpb: {val_bpb:.6f}")
         if val_bpb < min_val_bpb:
             min_val_bpb = val_bpb
+        if master_process:
+            wandb_run.log({
+                "step": step,
+                "total_training_flops": flops_so_far,
+                "total_training_time": total_training_time,
+                "val/bpb": val_bpb,
+                "eval/val_bpb_seconds": val_eval_time,
+            })
+        model.train()
 
     # once in a while: estimate the CORE metric (all ranks participate)
-        # use the original uncompiled model because the inputs keep changing shape
-        # disable FP8 for evaluation to use BF16 for more consistent/accurate results
+    # use the original uncompiled model because the inputs keep changing shape
+    # disable FP8 for evaluation to use BF16 for more consistent/accurate results
     results = {}
-    if args.core_metric_every > 0 and (last_step or (step > 0 and step % args.core_metric_every == 0)):
+    if args.core_metric_every > 0 and eval_model_synced and (last_step or (step > 0 and step % args.core_metric_every == 0)):
         core_eval_start = time.perf_counter()
         model.eval()
         with disable_fp8(orig_model):
@@ -760,8 +788,6 @@ while True:
             "step": step,
             "total_training_flops": flops_so_far,
             "total_training_time": total_training_time,
-            "val/bpb": val_bpb,
-            "eval/val_bpb_seconds": val_eval_time,
             "eval/weight_analysis_seconds": weight_analysis_time,
             **weight_metrics,
             **diloco_diff_metrics,

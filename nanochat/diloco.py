@@ -64,8 +64,9 @@ class DiLoCoWrapper:
             nesterov=nesterov,
         )
         
-        # Track inner steps
+        # Track inner steps and which updates have already been synchronized.
         self.inner_step_count = 0
+        self.last_sync_step = 0
         
         # Store offloaded parameters (CPU clones) for computing pseudo-gradients
         self.params_offloaded = self._get_offloaded_params()
@@ -147,17 +148,18 @@ class DiLoCoWrapper:
 
         # Refresh offloaded snapshot after the outer step
         self.params_offloaded = self._get_offloaded_params()
+        self.last_sync_step = self.inner_step_count
     
     def sync_if_pending(self):
         """
-        Force an outer step if the last inner step did not land on an H boundary.
+        Force an outer step if new inner updates remain since the last sync.
 
         Between outer steps every rank holds its own locally-drifted weights, so anything
         that reads the weights globally (final eval, checkpointing from rank 0) sees rank 0's
         local copy rather than the synchronized model. Call this before such a read.
         No-op when the weights are already synchronized.
         """
-        if self.inner_step_count % self.H != 0:
+        if self.inner_step_count > self.last_sync_step:
             self._outer_step()
 
     def zero_grad(self, set_to_none: bool = True):
@@ -181,14 +183,32 @@ class DiLoCoWrapper:
             'outer_optimizer': self.outer_optimizer.state_dict(),
             'params_offloaded': self.params_offloaded,
             'inner_step_count': self.inner_step_count,
+            'last_sync_step': self.last_sync_step,
             'H': self.H,
         }
     
     def load_state_dict(self, state_dict):
         """Load state dict from checkpoint."""
+        inner_step_count = state_dict['inner_step_count']
+        H = state_dict.get('H', self.H)
+        if 'last_sync_step' in state_dict:
+            last_sync_step = state_dict['last_sync_step']
+        elif inner_step_count % H == 0:
+            # Legacy checkpoints at regular H boundaries are synchronized.
+            last_sync_step = inner_step_count
+        else:
+            # Validate before mutating any state: a legacy partial round may be
+            # either pending or already flushed by the final training step.
+            raise ValueError(
+                "Legacy DiLoCo checkpoint is missing 'last_sync_step' at a non-H "
+                "boundary. Confirm whether a final sync was performed before "
+                "saving, then supply the last synchronized inner step explicitly."
+            )
+
         for opt, opt_state in zip(self.inner_optimizers, state_dict['inner_optimizers']):
             opt.load_state_dict(opt_state)
         self.outer_optimizer.load_state_dict(state_dict['outer_optimizer'])
         self.params_offloaded = state_dict['params_offloaded']
-        self.inner_step_count = state_dict['inner_step_count']
-        self.H = state_dict.get('H', self.H)
+        self.inner_step_count = inner_step_count
+        self.last_sync_step = last_sync_step
+        self.H = H
